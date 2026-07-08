@@ -188,12 +188,12 @@ export const timeline: TimelineItem[] = [
     title: 'Senior AI Engineer III',
     company: 'Pix Force',
     description:
-      'Rehired at senior level — end-to-end computer vision and applied-AI products for industrial clients (PyTorch, YOLO, edge inference).',
+      'Internal move within the Pix Force group, from Promeat AI — senior-level, end-to-end computer vision and applied-AI products for industrial clients (PyTorch, YOLO, edge inference).',
   },
   {
     period: 'Jan 2026 – Jun 2026',
     title: 'Full-Stack Software Engineer',
-    company: 'Promeat AI',
+    company: 'Promeat AI · Pix Force group',
     description:
       'CV platform for JBS & Marfrig — 25,000+ animals/day across 4 plants, event-driven microservices, multi-agent LLM automation, real-time weight estimation at 98.5%.',
   },
