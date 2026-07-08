@@ -19,7 +19,7 @@ export default function Demos() {
             <div className="demo-meta">
               <div className="demo-title">
                 <strong>{d.title}</strong>
-                <span className="pill pill-live">{d.project}</span>
+                <span className="pill pill-neutral">{d.project}</span>
               </div>
               <div className="demo-caption">{d.caption}</div>
             </div>

@@ -6,7 +6,9 @@ export default function Experience() {
     <section id="experience">
       <div className="section-title">Trajectory</div>
       <h2 className="section-heading">Experience</h2>
-      <p className="section-sub">&nbsp;</p>
+      <p className="section-sub">
+        Freelance to founder to senior IC — every stop shipped to production, owned end to end.
+      </p>
       <div className="timeline">
         {timeline.map((t) => (
           <Reveal key={t.period} className="t-item">

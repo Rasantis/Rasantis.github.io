@@ -10,9 +10,14 @@ export default function Contact() {
           Open to remote roles worldwide — AI engineering, computer vision, full-stack AI products. Italian (EU)
           citizen, fluent English, fully async-ready.
         </p>
-        <a className="btn btn-primary" href={`mailto:${links.email}`}>
-          {links.email}
-        </a>
+        <div className="contact-ctas">
+          <a className="btn btn-primary" href={`mailto:${links.email}`}>
+            {links.email}
+          </a>
+          <a className="btn btn-ghost" href={links.cv} target="_blank" rel="noreferrer">
+            Download CV
+          </a>
+        </div>
       </Reveal>
     </section>
   );

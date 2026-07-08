@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <header className="hero">
       <div>
-        <div className="eyebrow">São Paulo, Brazil · Remote Worldwide</div>
+        <div className="eyebrow">São Paulo, Brazil · Remote worldwide</div>
         <h1>
           I build <em>production AI systems</em> — from edge vision to multi-agent platforms.
         </h1>
@@ -35,10 +35,32 @@ export default function Hero() {
           <span className="badge badge-available">
             <span className="dot" /> Available — remote worldwide
           </span>
-          <span className="badge badge-eu">🇮🇹 Italian (EU) citizen · work-ready across the EU</span>
+          <span className="badge badge-eu">
+            <svg width="14" height="10" viewBox="0 0 15 10" aria-hidden="true" style={{ borderRadius: 2, flexShrink: 0 }}>
+              <rect width="5" height="10" fill="#009246" />
+              <rect x="5" width="5" height="10" fill="#f1f2f1" />
+              <rect x="10" width="5" height="10" fill="#ce2b37" />
+            </svg>
+            Italian (EU) citizen · work-ready across the EU
+          </span>
         </div>
       </div>
-      <img src="./profile.png" alt="Rafael De Santis" className="hero-photo" />
+      <figure className="feed" aria-label="Rafael De Santis, framed as a camera feed with a detection overlay">
+        <img src="./profile.png" alt="Rafael De Santis" />
+        <span className="feed-corner tl" aria-hidden="true" />
+        <span className="feed-corner tr" aria-hidden="true" />
+        <span className="feed-corner bl" aria-hidden="true" />
+        <span className="feed-corner br" aria-hidden="true" />
+        <span className="feed-label" aria-hidden="true">
+          ID 01 · ENGINEER · 0.99
+        </span>
+        <span className="feed-rec" aria-hidden="true">
+          <i /> REC
+        </span>
+        <span className="feed-cam" aria-hidden="true">
+          CAM 01 · SÃO PAULO · 24/7
+        </span>
+      </figure>
     </header>
   );
 }
