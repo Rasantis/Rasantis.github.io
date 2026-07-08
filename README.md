@@ -1,6 +1,6 @@
 # Portfólio — Rafael De Santis
 
-Aplicação **React + TypeScript + Vite** com os projetos reais de visão computacional, IA e full-stack. Em inglês, voltada para recrutador internacional. Todos os números batem com os CVs ATS de `cv_atualizado/`.
+Aplicação **React + TypeScript + Vite** com os projetos reais de visão computacional, IA e full-stack. **Bilíngue (EN/ES)** — toggle no nav, idioma inicial detectado do navegador, escolha persistida em `localStorage`; conteúdo dos dois idiomas centralizado em `src/data.ts` (**sempre editar os dois**). Voltada para recrutador internacional. Todos os números batem com os CVs ATS de `cv_atualizado/`.
 
 O próprio código deste repositório é vitrine: React, TypeScript, componentes, dados tipados — a stack declarada nos CVs.
 

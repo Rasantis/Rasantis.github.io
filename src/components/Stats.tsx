@@ -1,11 +1,12 @@
-import { stats } from '../data';
+import { useLang } from '../i18n';
 import Reveal from './Reveal';
 
 export default function Stats() {
+  const { c } = useLang();
   return (
     <div className="stats">
-      {stats.map((s) => (
-        <Reveal key={s.num} className="stat">
+      {c.stats.map((s) => (
+        <Reveal key={s.label} className="stat">
           <div className="num">{s.num}</div>
           <div className="label">{s.label}</div>
         </Reveal>

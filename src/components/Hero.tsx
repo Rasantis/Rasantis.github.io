@@ -1,25 +1,40 @@
 import { links } from '../data';
+import { useLang } from '../i18n';
 
 export default function Hero() {
+  const { lang, c } = useLang();
+  const h = c.ui.hero;
+
   return (
     <header className="hero">
       <div>
-        <div className="eyebrow">São Paulo, Brazil · Remote worldwide</div>
+        <div className="eyebrow">{h.eyebrow}</div>
         <h1>
-          I build <em>production AI systems</em> — from edge vision to multi-agent platforms.
+          {h.h1Pre}
+          <em>{h.h1Em}</em>
+          {h.h1Post}
         </h1>
-        <p className="lede">
-          Full-stack AI engineer — today Senior AI Engineer III at <strong>Pix Force</strong>. Founder &amp; CTO of
-          <strong> ShopGuard AI</strong> — a retail security platform I built solo and ran across 150 stores. Built
-          the computer vision platform serving <strong>JBS and Marfrig</strong>, the world's two largest meat
-          processors — real systems, real traffic, zero handoffs.
-        </p>
+        {lang === 'en' ? (
+          <p className="lede">
+            Full-stack AI engineer — today Senior AI Engineer III at <strong>Pix Force</strong>. Founder &amp; CTO of
+            <strong> ShopGuard AI</strong> — a retail security platform I built solo and ran across 150 stores. Built
+            the computer vision platform serving <strong>JBS and Marfrig</strong>, the world's two largest meat
+            processors — real systems, real traffic, zero handoffs.
+          </p>
+        ) : (
+          <p className="lede">
+            Ingeniero de IA full-stack — hoy Senior AI Engineer III en <strong>Pix Force</strong>. Founder &amp; CTO de
+            <strong> ShopGuard AI</strong>, una plataforma de seguridad para retail que construí solo y operé en 150
+            tiendas. Construí la plataforma de visión computacional que atiende a <strong>JBS y Marfrig</strong>, los
+            dos mayores procesadores de carne del mundo — sistemas reales, tráfico real, cero handoffs.
+          </p>
+        )}
         <div className="hero-ctas">
           <a className="btn btn-primary" href="#projects">
-            View Projects
+            {h.ctaProjects}
           </a>
           <a className="btn btn-ghost" href={links.cv} target="_blank" rel="noreferrer">
-            Download CV
+            {h.ctaCv}
           </a>
         </div>
         <div className="hero-links">
@@ -33,7 +48,7 @@ export default function Hero() {
         </div>
         <div className="hero-badges">
           <span className="badge badge-available">
-            <span className="dot" /> Available — remote worldwide
+            <span className="dot" /> {h.badgeAvailable}
           </span>
           <span className="badge badge-eu">
             <svg width="14" height="10" viewBox="0 0 15 10" aria-hidden="true" style={{ borderRadius: 2, flexShrink: 0 }}>
@@ -41,7 +56,7 @@ export default function Hero() {
               <rect x="5" width="5" height="10" fill="#f1f2f1" />
               <rect x="10" width="5" height="10" fill="#ce2b37" />
             </svg>
-            Italian (EU) citizen · work-ready across the EU
+            {h.badgeEu}
           </span>
         </div>
       </div>

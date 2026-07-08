@@ -1,16 +1,15 @@
-import { projects } from '../data';
+import { useLang } from '../i18n';
 import Reveal from './Reveal';
 
 export default function Projects() {
+  const { c } = useLang();
   return (
     <section id="projects">
-      <div className="section-title">Selected Work</div>
-      <h2 className="section-heading">Projects that run in production</h2>
-      <p className="section-sub">
-        Not demos. Every system below shipped to real users and ran — or still runs — under 24/7 production traffic.
-      </p>
+      <div className="section-title">{c.ui.projects.eyebrow}</div>
+      <h2 className="section-heading">{c.ui.projects.heading}</h2>
+      <p className="section-sub">{c.ui.projects.sub}</p>
       <div className="projects-grid">
-        {projects.map((p) => (
+        {c.projects.map((p) => (
           <Reveal key={p.title} className="project">
             <div className="project-top">
               <div>

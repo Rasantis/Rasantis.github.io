@@ -1,17 +1,16 @@
-import { timeline } from '../data';
+import { useLang } from '../i18n';
 import Reveal from './Reveal';
 
 export default function Experience() {
+  const { c } = useLang();
   return (
     <section id="experience">
-      <div className="section-title">Trajectory</div>
-      <h2 className="section-heading">Experience</h2>
-      <p className="section-sub">
-        Freelance to founder to senior IC — every stop shipped to production, owned end to end.
-      </p>
+      <div className="section-title">{c.ui.experience.eyebrow}</div>
+      <h2 className="section-heading">{c.ui.experience.heading}</h2>
+      <p className="section-sub">{c.ui.experience.sub}</p>
       <div className="timeline">
-        {timeline.map((t) => (
-          <Reveal key={t.period} className="t-item">
+        {c.timeline.map((t) => (
+          <Reveal key={`${t.title}-${t.company}`} className="t-item">
             <div className="t-period">{t.period}</div>
             <h4>
               {t.title} · <span>{t.company}</span>

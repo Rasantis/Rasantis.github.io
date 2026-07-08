@@ -1,6 +1,8 @@
 import { links } from '../data';
+import { useLang } from '../i18n';
 
 export default function Footer() {
+  const { c } = useLang();
   return (
     <footer>
       <div className="foot-links">
@@ -11,10 +13,10 @@ export default function Footer() {
           LinkedIn
         </a>
         <a href={links.cv} target="_blank" rel="noreferrer">
-          CV (PDF)
+          {c.ui.footer.cv}
         </a>
       </div>
-      © {new Date().getFullYear()} Rafael De Santis — built with React + TypeScript + Vite, deployed on GitHub Pages.
+      © {new Date().getFullYear()} Rafael De Santis — {c.ui.footer.tagline}
     </footer>
   );
 }
