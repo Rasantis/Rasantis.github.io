@@ -294,11 +294,11 @@ const en: Content = {
         'Retail theft-detection platform: 150 stores, 4,500+ camera streams, 90% fewer completed thefts. Oracle / Google / Antler accelerated. Sole engineer, zero handoffs.',
     },
     {
-      period: 'Jul 2024 – Jun 2025',
-      title: 'Tech Lead & Senior AI Engineer',
+      period: 'Jan 2024 – Jun 2025',
+      title: 'Co-Founder & Tech Lead',
       company: 'Vision Labs',
       description:
-        'CV products from pilot to production for enterprise B2B clients; GPT-4 + LangChain automation in production.',
+        'Co-founded an AI & computer vision company — CV products from pilot to production for enterprise B2B clients; GPT-4 + LangChain automation in production.',
     },
     {
       period: 'Jul 2024 – Feb 2025',
@@ -542,11 +542,11 @@ const es: Content = {
         'Plataforma de detección de hurtos en retail: 150 tiendas, 4.500+ streams de cámara, 90% menos hurtos consumados. Acelerada por Oracle / Google / Antler. Único ingeniero, cero handoffs.',
     },
     {
-      period: 'Jul 2024 – Jun 2025',
-      title: 'Tech Lead & Senior AI Engineer',
+      period: 'Ene 2024 – Jun 2025',
+      title: 'Co-Founder & Tech Lead',
       company: 'Vision Labs',
       description:
-        'Productos de visión computacional de piloto a producción para clientes B2B enterprise; automatización GPT-4 + LangChain en producción.',
+        'Co-fundé una empresa de IA y visión computacional — productos de visión de piloto a producción para clientes B2B enterprise; automatización GPT-4 + LangChain en producción.',
     },
     {
       period: 'Jul 2024 – Feb 2025',
