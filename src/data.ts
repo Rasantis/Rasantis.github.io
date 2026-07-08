@@ -48,6 +48,15 @@ export const projects: Project[] = [
     tags: ['YOLO11', 'TensorRT', 'GStreamer', 'FastAPI', 'React', 'GCP'],
   },
   {
+    title: 'Pix Safety — Model & Cloud Optimization',
+    role: 'Senior AI Engineer III · Pix Force · 2026–present',
+    pill: { label: '+30% accuracy', type: 'live' },
+    description:
+      'Ongoing ownership of Pix Safety refinement: retrained oversized models into smaller, better-tuned ones, and rebuilt the serving economics — reserved instances, right-sized clusters, hot-path Python→C++ migrations.',
+    impact: '30% more accurate · 45% faster inference · cloud costs −37% in month one',
+    tags: ['PyTorch', 'C++', 'TensorRT', 'MLOps', 'Cloud Cost'],
+  },
+  {
     title: 'Industrial CV Platform — Promeat AI',
     role: 'Full-Stack Engineer · 2026',
     pill: { label: 'In production', type: 'live' },
@@ -188,7 +197,7 @@ export const timeline: TimelineItem[] = [
     title: 'Senior AI Engineer III',
     company: 'Pix Force',
     description:
-      'Internal move within the Pix Force group, from Promeat AI — senior-level, end-to-end computer vision and applied-AI products for industrial clients (PyTorch, YOLO, edge inference).',
+      'Internal move within the Pix Force group, from Promeat AI. Owner of Pix Safety refinement — models retrained 30% more accurate and 45% faster; cloud costs down 37% in the first month (reserved instances, Python→C++, right-sized clusters).',
   },
   {
     period: 'Jan 2026 – Jun 2026',
