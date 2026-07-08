@@ -83,6 +83,6 @@ ffmpeg -y -ss <segundos> -i public\<video>.mp4 -frames:v 1 -vf "scale=800:-2" -q
 
 - **Hero**: posicionamento + foto + badge UE + CTAs
 - **Stats**: 25k+/dia · 150 lojas/4.500 streams · 90% menos furtos · 98.5% acurácia
-- **Projects** (7): ShopGuard · Plataforma Promeat · **Estimativa de peso 98.5%** · Multi-Agent Engine · Drone governo · Pix Force · rPPG
+- **Projects** (8): ShopGuard · **Pix Safety (otimização de modelos e cloud)** · Plataforma Promeat · **Estimativa de peso 98.5%** · Multi-Agent Engine · Drone governo · Pix Force · rPPG
 - **Demos** (7): estimativa de peso · tracking + re-ID em farmácia · detecção de furto (2 streams) · inspeção de rosqueamento · contagem por drone · contagem de veículos
 - **Skills** (6 grupos) · **Experience** (timeline) · **Contact**
