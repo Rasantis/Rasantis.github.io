@@ -112,6 +112,27 @@ export const demos: Demo[] = [
     caption: 'Instance segmentation + per-bird weight prediction on live barn footage.',
   },
   {
+    src: './pharmacy_detection_demo.mp4',
+    poster: './posters/pharmacy_detection_demo.jpg',
+    project: 'ShopGuard AI',
+    title: 'In-store tracking & re-identification',
+    caption: 'Multi-person tracking, people counter and known / unknown re-ID on store CCTV.',
+  },
+  {
+    src: './furto_vd8_processado.mp4',
+    poster: './posters/furto_vd8_processado.jpg',
+    project: 'ShopGuard AI',
+    title: 'Theft detection — stream #1',
+    caption: 'Real-time detection and tracking over retail CCTV footage.',
+  },
+  {
+    src: './furto_vd15_processado.mp4',
+    poster: './posters/furto_vd15_processado.jpg',
+    project: 'ShopGuard AI',
+    title: 'Theft detection — stream #2',
+    caption: 'Behavioral pattern flagged under occlusion and motion.',
+  },
+  {
     src: './pipe_monitoring.mp4',
     poster: './posters/pipe_monitoring.jpg',
     project: 'Pix Force',

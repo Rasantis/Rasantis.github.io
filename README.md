@@ -19,6 +19,9 @@ portfolio/
 │   ├── profile.png
 │   ├── Rafael_Santis_CV_EN.pdf   ← link "Download CV" (atualize ao regenerar o CV)
 │   ├── weight_estimation_demo.mp4 ← demo Promeat (peso em tempo real, 98.5%)
+│   ├── pharmacy_detection_demo.mp4 ← demo ShopGuard (farmácia, tracking + re-ID)
+│   ├── furto_vd8_processado.mp4   ← demos ShopGuard (H.264 web-safe)
+│   ├── furto_vd15_processado.mp4
 │   ├── pipe_monitoring.mp4        ← demo Pix Force (inspeção de rosqueamento)
 │   ├── crowd_counting_demo.mp4    ← demo drone (contagem de pessoas em multidão)
 │   └── vehicle_counting_demo.mp4  ← demo contagem de veículos (webcam pública Coldwater, MI)
@@ -81,7 +84,5 @@ ffmpeg -y -ss <segundos> -i public\<video>.mp4 -frames:v 1 -vf "scale=800:-2" -q
 - **Hero**: posicionamento + foto + badge UE + CTAs
 - **Stats**: 25k+/dia · 150 lojas/4.500 streams · 90% menos furtos · 98.5% acurácia
 - **Projects** (7): ShopGuard · Plataforma Promeat · **Estimativa de peso 98.5%** · Multi-Agent Engine · Drone governo · Pix Force · rPPG
-- **Demos** (4): estimativa de peso · inspeção de rosqueamento · contagem por drone · contagem de veículos
+- **Demos** (7): estimativa de peso · tracking + re-ID em farmácia · detecção de furto (2 streams) · inspeção de rosqueamento · contagem por drone · contagem de veículos
 - **Skills** (6 grupos) · **Experience** (timeline) · **Contact**
-
-> ⚠️ Vídeos com pendência de verificação (LGPD/direitos de imagem) ficam **fora** deste repositório, em `..\videos_nao_publicados\` — só entram aqui depois de liberados no checklist interno.
