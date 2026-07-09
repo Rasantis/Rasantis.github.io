@@ -1,4 +1,4 @@
-import { links } from '../data';
+import { links, type Lang } from '../data';
 import { useLang } from '../i18n';
 
 function FlagUS() {
@@ -24,6 +24,22 @@ function FlagES() {
   );
 }
 
+function FlagBR() {
+  return (
+    <svg width="15" height="10" viewBox="0 0 15 10" aria-hidden="true">
+      <rect width="15" height="10" fill="#009C3B" />
+      <polygon points="7.5,0.9 13.6,5 7.5,9.1 1.4,5" fill="#FFDF00" />
+      <circle cx="7.5" cy="5" r="2.1" fill="#002776" />
+    </svg>
+  );
+}
+
+const LANGS: { code: Lang; label: string; aria: string; Flag: () => JSX.Element }[] = [
+  { code: 'en', label: 'EN', aria: 'English', Flag: FlagUS },
+  { code: 'es', label: 'ES', aria: 'Español', Flag: FlagES },
+  { code: 'pt', label: 'PT', aria: 'Português', Flag: FlagBR },
+];
+
 export default function Nav() {
   const { lang, setLang, c } = useLang();
 
@@ -42,26 +58,19 @@ export default function Nav() {
             <a href="#contact">{c.ui.nav.contact}</a>
           </div>
           <div className="lang-switch" role="group" aria-label="Language / Idioma">
-            <button
-              type="button"
-              className={`lang-opt${lang === 'en' ? ' active' : ''}`}
-              onClick={() => setLang('en')}
-              aria-pressed={lang === 'en'}
-              aria-label="English"
-            >
-              <FlagUS />
-              <span className="lang-txt">EN</span>
-            </button>
-            <button
-              type="button"
-              className={`lang-opt${lang === 'es' ? ' active' : ''}`}
-              onClick={() => setLang('es')}
-              aria-pressed={lang === 'es'}
-              aria-label="Español"
-            >
-              <FlagES />
-              <span className="lang-txt">ES</span>
-            </button>
+            {LANGS.map(({ code, label, aria, Flag }) => (
+              <button
+                key={code}
+                type="button"
+                className={`lang-opt${lang === code ? ' active' : ''}`}
+                onClick={() => setLang(code)}
+                aria-pressed={lang === code}
+                aria-label={aria}
+              >
+                <Flag />
+                <span className="lang-txt">{label}</span>
+              </button>
+            ))}
           </div>
           <a className="btn btn-primary btn-nav" href={links.cv} target="_blank" rel="noreferrer">
             {c.ui.nav.cv}

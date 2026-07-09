@@ -21,12 +21,19 @@ export default function Hero() {
             the computer vision platform serving <strong>JBS and Marfrig</strong>, the world's two largest meat
             processors — real systems, real traffic, zero handoffs.
           </p>
-        ) : (
+        ) : lang === 'es' ? (
           <p className="lede">
             Ingeniero de IA full-stack — hoy Senior AI Engineer III en <strong>Pix Force</strong>. Founder &amp; CTO de
             <strong> ShopGuard AI</strong>, una plataforma de seguridad para retail que construí solo y operé en 150
             tiendas. Construí la plataforma de visión computacional que atiende a <strong>JBS y Marfrig</strong>, los
             dos mayores procesadores de carne del mundo — sistemas reales, tráfico real, cero handoffs.
+          </p>
+        ) : (
+          <p className="lede">
+            Engenheiro de IA full-stack — hoje Senior AI Engineer III na <strong>Pix Force</strong>. Founder &amp; CTO
+            da <strong>ShopGuard AI</strong>, uma plataforma de segurança para o varejo que construí sozinho e operei
+            em 150 lojas. Construí a plataforma de visão computacional que atende <strong>JBS e Marfrig</strong>, os
+            dois maiores frigoríficos do mundo — sistemas reais, tráfego real, zero handoffs.
           </p>
         )}
         <div className="hero-ctas">

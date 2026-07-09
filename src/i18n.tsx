@@ -11,7 +11,8 @@ const LanguageContext = createContext<LangState | null>(null);
 
 function initialLang(): Lang {
   const saved = localStorage.getItem('lang');
-  if (saved === 'en' || saved === 'es') return saved;
+  if (saved === 'en' || saved === 'es' || saved === 'pt') return saved;
+  // Padrão é inglês (posicionamento internacional); só espanhol é auto-detectado.
   return navigator.language?.toLowerCase().startsWith('es') ? 'es' : 'en';
 }
 

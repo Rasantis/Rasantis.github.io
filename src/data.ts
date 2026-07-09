@@ -1,6 +1,6 @@
-// Conteúdo bilíngue do site. ATENÇÃO: qualquer edição de conteúdo deve ser
-// feita SEMPRE nos dois idiomas (en e es) — os fatos e números têm de bater.
-export type Lang = 'en' | 'es';
+// Conteúdo trilíngue do site (EN padrão · ES · PT). ATENÇÃO: qualquer edição de
+// conteúdo deve ser feita SEMPRE nos TRÊS idiomas — os fatos e números têm de bater.
+export type Lang = 'en' | 'es' | 'pt';
 export type PillType = 'flagship' | 'live' | 'gov';
 
 export interface Project {
@@ -570,4 +570,252 @@ const es: Content = {
   ],
 };
 
-export const content: Record<Lang, Content> = { en, es };
+const pt: Content = {
+  ui: {
+    nav: { projects: 'Projetos', demos: 'Demos', skills: 'Stack', experience: 'Experiência', contact: 'Contato', cv: 'Baixar CV' },
+    hero: {
+      eyebrow: 'São Paulo, Brasil · Remoto para o mundo todo',
+      h1Pre: 'Eu construo ',
+      h1Em: 'sistemas de IA em produção',
+      h1Post: ' — da visão no edge a plataformas multiagente.',
+      ctaProjects: 'Ver projetos',
+      ctaCv: 'Baixar CV',
+      badgeAvailable: 'Disponível — remoto no mundo todo',
+      badgeEu: 'Cidadão italiano (UE) · autorizado a trabalhar em toda a UE',
+    },
+    projects: {
+      eyebrow: 'Trabalhos selecionados',
+      heading: 'Projetos que rodam em produção',
+      sub: 'Não são demos: cada sistema desta lista chegou a usuários reais e rodou — ou ainda roda — sob tráfego de produção 24/7.',
+    },
+    demos: {
+      eyebrow: 'Veja funcionando',
+      heading: 'Sistemas de produção em ação',
+      sub: 'Saída real de pipelines em produção — estimativa de peso, detecção de furtos no varejo, inspeção industrial e contagem de multidões / veículos. Clique em qualquer clipe para reproduzir.',
+    },
+    skills: {
+      eyebrow: 'Stack',
+      heading: 'Ferramentas com que eu construo',
+      sub: 'Confortável em toda a stack — de kernels CUDA no edge a dashboards React no navegador. Uso diário intensivo de desenvolvimento assistido por IA (Claude Code, Codex, Cursor).',
+    },
+    experience: {
+      eyebrow: 'Trajetória',
+      heading: 'Experiência',
+      sub: 'De freelancer a founder a sênior IC — cada etapa chegou à produção, com ownership de ponta a ponta.',
+    },
+    contact: {
+      heading: 'Vamos construir algo que chegue à produção.',
+      sub: 'Aberto a posições remotas no mundo todo — engenharia de IA, visão computacional e produtos de IA full-stack. Cidadão italiano (UE), inglês fluente, pronto para trabalho 100% async.',
+      cv: 'Baixar CV',
+    },
+    footer: { cv: 'CV (PDF)', tagline: 'feito com React + TypeScript + Vite, hospedado no GitHub Pages.' },
+  },
+  stats: [
+    { num: '25.000+', label: 'animais contados por dia — plantas da JBS e Marfrig' },
+    { num: '150 lojas', label: '4.500+ streams de câmera — footprint da ShopGuard AI' },
+    { num: '90%', label: 'menos furtos consumados nas lojas atendidas' },
+    { num: '98,5%', label: 'de acurácia na estimativa de peso em tempo real' },
+  ],
+  projects: [
+    {
+      title: 'ShopGuard AI — Detecção de Furtos no Varejo',
+      role: 'Founder & CTO · 2025',
+      pill: { label: '150 lojas', type: 'flagship' },
+      description:
+        'Plataforma de segurança para o varejo nativa de IA, construída solo do edge à UI: YOLO11 + GStreamer + TensorRT com latência sub-segundo em hardware edge NVIDIA, backend híbrido GCP / Oracle Cloud e dashboards de operador em React. Acelerada por Oracle / Google / Antler.',
+      impact: '150 lojas · 4.500+ streams de câmera · 90% menos furtos consumados',
+      tags: ['YOLO11', 'TensorRT', 'GStreamer', 'FastAPI', 'React', 'GCP'],
+    },
+    {
+      title: 'Pix Safety — Otimização de Modelos e Cloud',
+      role: 'Senior AI Engineer III · Pix Force · 2026–atual',
+      pill: { label: '+30% acurácia', type: 'live' },
+      description:
+        'Ownership contínuo do refinamento do Pix Safety: re-treinei modelos superdimensionados em modelos menores e mais bem ajustados, e refiz a economia do serving — reserved instances, clusters redimensionados e migrações Python→C++ nos hot paths.',
+      impact: '30% mais preciso · inferência 45% mais rápida · custos de cloud −37% no primeiro mês',
+      tags: ['PyTorch', 'C++', 'TensorRT', 'MLOps', 'Cloud Cost'],
+    },
+    {
+      title: 'Plataforma Industrial de Visão — Promeat AI',
+      role: 'Full-Stack Engineer · 2026',
+      pill: { label: 'Em produção', type: 'live' },
+      description:
+        'Plataforma de visão computacional para JBS e Marfrig. Ingestão FFmpeg sobre câmeras heterogêneas de planta, pré-processamento com OpenCV, microsserviços orientados a eventos e dashboards React — a fonte de verdade operacional da planta, sem fallback manual.',
+      impact: '25.000+ animais contados por dia · 4 plantas (2 JBS, 2 Marfrig)',
+      tags: ['Python', 'FFmpeg', 'OpenCV', 'PyTorch', 'Microservices'],
+    },
+    {
+      title: 'Estimativa de Peso em Tempo Real',
+      role: 'Visão computacional · projeto para cliente da Promeat',
+      pill: { label: '98,5% acurácia', type: 'live' },
+      description:
+        'Regressão baseada em visão sobre streams de câmera ao vivo prevendo o peso do animal em tempo real, integrada à plataforma de produção. Entregue acima do requisito de 95% do cliente.',
+      impact: '98,5% de acurácia em tempo real — superou a meta de 95% do cliente',
+      tags: ['PyTorch', 'YOLO11', 'OpenCV', 'Real-Time Inference'],
+    },
+    {
+      title: 'Motor de Decisões Multiagente',
+      role: 'IA aplicada · Promeat AI',
+      pill: { label: 'Agentes LLM', type: 'live' },
+      description:
+        'Sistema multiagente em LangGraph que consome dados vivos de ERP/planta, roteia por subagentes de classificação / validação / decisão e executa ou escala para um humano conforme a confiança. Observabilidade total com traces no Langfuse.',
+      impact: 'Decisões autônomas em fluxos críticos de produção, com HITL e iteração guiada por evals',
+      tags: ['LangGraph', 'AutoGen', 'Langfuse', 'RAG', 'FastAPI'],
+    },
+    {
+      title: 'Contagem de Multidões por Drone',
+      role: 'Visão computacional · Contrato governamental',
+      pill: { label: 'Governo', type: 'gov' },
+      description:
+        'Contagem de pessoas em tempo real a partir de vídeo aéreo de drone em grandes eventos públicos — detecção ajustada para vistas aéreas, motion blur e iluminação variável, sob restrições duras de latência e confiabilidade.',
+      impact: 'Milhares contados simultaneamente · margem de erro inferior a 5%',
+      tags: ['PyTorch', 'CNNs', 'OpenCV', 'Edge GPU'],
+    },
+    {
+      title: 'Produtos Industriais de Visão — Pix Force',
+      role: 'Full-Stack AI Engineer · 2024',
+      pill: { label: '4 produtos', type: 'live' },
+      description:
+        'Quatro produtos de IA em produção para grandes clientes industriais — contagem de pessoas (YOLOv8 + ByteTrack), performance de funcionários, detecção de furto de veículos, tempo de permanência em docas — além de inspeção automatizada de rosqueamento de tubos. Inferência edge em Jetson / Raspberry Pi.',
+      impact: '5.000+ imagens anotadas · 4 produtos entregues · delivery on-site',
+      tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'FastAPI'],
+    },
+    {
+      title: 'Monitor de Frequência Cardíaca sem Contato (rPPG)',
+      role: 'Projeto de P&D',
+      pill: { label: 'P&D', type: 'live' },
+      description:
+        'Detecção de frequência cardíaca em tempo real com uma webcam comum via fotopletismografia remota (rPPG) — processamento de vídeo com OpenCV e análise de sinal, sem sensores ou wearables. Servido por uma interface Flask.',
+      impact: 'Sinais vitais a partir de vídeo — casos de uso em telemedicina e fitness',
+      tags: ['OpenCV', 'Signal Processing', 'Python', 'Flask'],
+    },
+  ],
+  demos: [
+    {
+      src: './weight_estimation_demo.mp4',
+      poster: './posters/weight_estimation_demo.jpg',
+      project: 'Promeat AI',
+      title: 'Estimativa de peso em tempo real — 98,5%',
+      caption: 'Segmentação de instâncias + previsão de peso por ave em vídeo ao vivo do galpão.',
+    },
+    {
+      src: './pharmacy_detection_demo.mp4',
+      poster: './posters/pharmacy_detection_demo.jpg',
+      project: 'ShopGuard AI',
+      title: 'Tracking e reidentificação em loja',
+      caption: 'Tracking multipessoa, contador de pessoas e re-ID conhecido / desconhecido em CCTV de loja.',
+    },
+    {
+      src: './furto_vd8_processado.mp4',
+      poster: './posters/furto_vd8_processado.jpg',
+      project: 'ShopGuard AI',
+      title: 'Detecção de furto — stream #1',
+      caption: 'Detecção e tracking em tempo real sobre CCTV de varejo.',
+    },
+    {
+      src: './furto_vd15_processado.mp4',
+      poster: './posters/furto_vd15_processado.jpg',
+      project: 'ShopGuard AI',
+      title: 'Detecção de furto — stream #2',
+      caption: 'Padrão de comportamento sinalizado sob oclusão e movimento.',
+    },
+    {
+      src: './pipe_monitoring.mp4',
+      poster: './posters/pipe_monitoring.jpg',
+      project: 'Pix Force',
+      title: 'Inspeção visual de rosqueamento de tubos',
+      caption: 'Inspeção automatizada de conexão para tubulares de óleo e gás, com checklist de evidências ao vivo.',
+    },
+    {
+      src: './crowd_counting_demo.mp4',
+      poster: './posters/crowd_counting_demo.jpg',
+      project: 'Contrato governamental',
+      title: 'Contagem de multidões por drone',
+      caption: 'Contagem aérea por cruzamento de linha + pessoas por quadro em multidões densas — pico de 1.100+ pessoas em quadro.',
+    },
+    {
+      src: './vehicle_counting_demo.mp4',
+      poster: './posters/vehicle_counting_demo.jpg',
+      project: 'Analítica de tráfego',
+      title: 'Contagem de veículos e fluxo de tráfego',
+      caption: 'Contagens de entrada / saída multizona e tracking em uma câmera de tráfego ao vivo.',
+    },
+  ],
+  skillGroups: [
+    {
+      title: 'Visão Computacional',
+      tags: ['YOLO11 / YOLOv8', 'PyTorch', 'OpenCV', 'TensorRT', 'GStreamer', 'FFmpeg', 'MediaPipe', 'SAM', 'NVIDIA Jetson'],
+    },
+    {
+      title: 'IA e Agentes LLM',
+      tags: ['LangGraph', 'LangChain', 'AutoGen', 'GPT-4', 'Claude', 'RAG', 'Langfuse', 'Eval Pipelines'],
+    },
+    {
+      title: 'Backend e APIs',
+      tags: ['Python', 'C++', 'FastAPI', 'Node.js', 'REST', 'Microservices', 'Event-Driven', 'WebSockets'],
+    },
+    {
+      title: 'Frontend',
+      tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    },
+    {
+      title: 'Cloud e DevOps',
+      tags: ['GCP', 'AWS', 'Oracle Cloud', 'Docker', 'CI/CD', 'PostgreSQL', 'Supabase'],
+    },
+    {
+      title: 'Fluxo de Trabalho com IA',
+      tags: ['Claude Code', 'Codex', 'Cursor', 'Agent-Driven Dev'],
+    },
+  ],
+  timeline: [
+    {
+      period: 'Jul 2026 – Atual',
+      title: 'Senior AI Engineer III',
+      company: 'Pix Force',
+      description:
+        'Movimento interno dentro do grupo Pix Force, vindo da Promeat AI. Dono do refinamento do Pix Safety — modelos re-treinados 30% mais precisos e 45% mais rápidos; custos de cloud −37% no primeiro mês (reserved instances, Python→C++, clusters redimensionados).',
+    },
+    {
+      period: 'Jan 2026 – Jun 2026',
+      title: 'Full-Stack Software Engineer',
+      company: 'Promeat AI · grupo Pix Force',
+      description:
+        'Plataforma de visão para JBS e Marfrig — 25.000+ animais/dia em 4 plantas, microsserviços orientados a eventos, automação LLM multiagente, estimativa de peso em tempo real a 98,5%.',
+    },
+    {
+      period: 'Ago 2025 – Dez 2025',
+      title: 'Founder & CTO',
+      company: 'ShopGuard AI',
+      description:
+        'Plataforma de detecção de furtos no varejo: 150 lojas, 4.500+ streams de câmera, 90% menos furtos consumados. Acelerada por Oracle / Google / Antler. Único engenheiro, zero handoffs.',
+    },
+    {
+      period: 'Jan 2024 – Jun 2025',
+      title: 'Co-Founder & Tech Lead',
+      company: 'Vision Labs',
+      description:
+        'Co-fundei uma empresa de IA e visão computacional — produtos de visão do piloto à produção para clientes B2B enterprise; automação GPT-4 + LangChain em produção.',
+    },
+    {
+      period: 'Jul 2024 – Fev 2025',
+      title: 'Innovation Projects Lead & Technical PO',
+      company: 'Link4Innovation',
+      description: 'Liderei 5+ engenheiros, mão na massa, em entregas para indústria, logística e agronegócio.',
+    },
+    {
+      period: 'Jan 2024 – Jul 2024',
+      title: 'Full-Stack AI Engineer',
+      company: 'Pix Force',
+      description:
+        '4 produtos industriais de IA — contagem de pessoas, performance de funcionários, furto de veículos, analítica de docas — além de inspeção de rosqueamento de tubos.',
+    },
+    {
+      period: 'Jan 2023 – Dez 2023',
+      title: 'Freelance Software Engineer',
+      company: 'Independent',
+      description: 'Entregas full-stack e de visão computacional solo para clientes early-stage.',
+    },
+  ],
+};
+
+export const content: Record<Lang, Content> = { en, es, pt };

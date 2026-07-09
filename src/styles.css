@@ -216,7 +216,7 @@ nav {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
     .nav-logo span {
         display: none;
     }
