@@ -314,7 +314,7 @@ const en: Content = {
         '4 industrial AI products — people counting, employee performance, vehicle theft, dock analytics — plus pipe-threading inspection.',
     },
     {
-      period: 'Jan 2023 – Dec 2023',
+      period: '2021 – Dec 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
       description: 'Solo full-stack and computer vision deliveries for early-stage clients.',
@@ -562,7 +562,7 @@ const es: Content = {
         '4 productos industriales de IA — conteo de personas, desempeño de empleados, robo de vehículos, analítica de muelles — más inspección de roscado de tubos.',
     },
     {
-      period: 'Ene 2023 – Dic 2023',
+      period: '2021 – Dic 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
       description: 'Entregas full-stack y de visión computacional en solitario para clientes early-stage.',
@@ -810,7 +810,7 @@ const pt: Content = {
         '4 produtos industriais de IA — contagem de pessoas, performance de funcionários, furto de veículos, analítica de docas — além de inspeção de rosqueamento de tubos.',
     },
     {
-      period: 'Jan 2023 – Dez 2023',
+      period: '2021 – Dez 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
       description: 'Entregas full-stack e de visão computacional solo para clientes early-stage.',
