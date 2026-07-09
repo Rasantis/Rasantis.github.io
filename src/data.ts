@@ -317,7 +317,8 @@ const en: Content = {
       period: '2021 – Dec 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
-      description: 'Solo full-stack and computer vision deliveries for early-stage clients.',
+      description:
+        'Solo full-stack and computer vision deliveries — from player-performance analysis on match footage to drone-based solar-panel inspection.',
     },
   ],
 };
@@ -565,7 +566,8 @@ const es: Content = {
       period: '2021 – Dic 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
-      description: 'Entregas full-stack y de visión computacional en solitario para clientes early-stage.',
+      description:
+        'Entregas full-stack y de visión computacional en solitario — del análisis de rendimiento de jugadores en video de partidos a la inspección de paneles solares con drones.',
     },
   ],
 };
@@ -813,7 +815,8 @@ const pt: Content = {
       period: '2021 – Dez 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
-      description: 'Entregas full-stack e de visão computacional solo para clientes early-stage.',
+      description:
+        'Entregas full-stack e de visão computacional solo — da análise de desempenho de jogadores em vídeos de partidas à inspeção de painéis solares com drones.',
     },
   ],
 };
