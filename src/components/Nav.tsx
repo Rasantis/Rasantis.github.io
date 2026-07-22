@@ -53,6 +53,7 @@ export default function Nav() {
           <div className="nav-links">
             <a href="#projects">{c.ui.nav.projects}</a>
             <a href="#demos">{c.ui.nav.demos}</a>
+            <a href="#systems">{c.ui.nav.systems}</a>
             <a href="#skills">{c.ui.nav.skills}</a>
             <a href="#experience">{c.ui.nav.experience}</a>
             <a href="#contact">{c.ui.nav.contact}</a>

@@ -84,5 +84,6 @@ ffmpeg -y -ss <segundos> -i public\<video>.mp4 -frames:v 1 -vf "scale=800:-2" -q
 - **Hero**: posicionamento + foto + badge UE + CTAs
 - **Stats**: 25k+/dia · 150 lojas/4.500 streams · 90% menos furtos · 98.5% acurácia
 - **Projects** (8): ShopGuard · **Pix Safety (otimização de modelos e cloud)** · Plataforma Promeat · **Estimativa de peso 98.5%** · Multi-Agent Engine · Drone governo · Pix Force · rPPG
-- **Demos** (7): estimativa de peso · tracking + re-ID em farmácia · detecção de furto (2 streams) · inspeção de rosqueamento · contagem por drone · contagem de veículos
+- **Demos** (7, "Visão computacional, ao vivo"): estimativa de peso · tracking + re-ID em farmácia · detecção de furto (2 streams) · inspeção de rosqueamento · contagem por drone · contagem de veículos
+- **Systems** (3 arquiteturas animadas — agentes/automação/full-stack): Multi-Agent Decision Engine · LLM Automation Layer · Full-Stack Product Architecture. Fluxo animado (nós + conectores com dados fluindo) em `Systems.tsx` + estilos `.flow*` no styles.css. **Para adicionar vídeos reais de agentes rodando:** dropar `.mp4` + poster em `public/`, e me pedir para incluir na grade (mesma mecânica dos demos de CV).
 - **Skills** (6 grupos) · **Experience** (timeline) · **Contact**

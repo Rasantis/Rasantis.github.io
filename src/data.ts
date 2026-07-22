@@ -25,6 +25,25 @@ export interface SkillGroup {
   tags: string[];
 }
 
+export type FlowAccent = 'in' | 'agent' | 'exec' | 'ui' | 'store';
+
+export interface FlowNode {
+  label: string;
+  sub: string;
+  accent?: FlowAccent;
+}
+
+export interface SystemFlow {
+  key: string;
+  badge: string;
+  badgeType: 'agents' | 'auto' | 'fullstack';
+  title: string;
+  desc: string;
+  nodes: FlowNode[];
+  footer: string;
+  tags: string[];
+}
+
 export interface TimelineItem {
   period: string;
   title: string;
@@ -39,7 +58,7 @@ export interface Stat {
 }
 
 export interface UI {
-  nav: { projects: string; demos: string; skills: string; experience: string; contact: string; cv: string };
+  nav: { projects: string; demos: string; systems: string; skills: string; experience: string; contact: string; cv: string };
   hero: {
     eyebrow: string;
     h1Pre: string;
@@ -52,6 +71,7 @@ export interface UI {
   };
   projects: { eyebrow: string; heading: string; sub: string };
   demos: { eyebrow: string; heading: string; sub: string };
+  systems: { eyebrow: string; heading: string; sub: string };
   skills: { eyebrow: string; heading: string; sub: string };
   experience: { eyebrow: string; heading: string; sub: string };
   contact: { heading: string; sub: string; cv: string };
@@ -63,6 +83,7 @@ export interface Content {
   stats: Stat[];
   projects: Project[];
   demos: Demo[];
+  systems: SystemFlow[];
   skillGroups: SkillGroup[];
   timeline: TimelineItem[];
 }
@@ -76,7 +97,7 @@ export const links = {
 
 const en: Content = {
   ui: {
-    nav: { projects: 'Projects', demos: 'Demos', skills: 'Skills', experience: 'Experience', contact: 'Contact', cv: 'Download CV' },
+    nav: { projects: 'Projects', demos: 'Demos', systems: 'Systems', skills: 'Skills', experience: 'Experience', contact: 'Contact', cv: 'Download CV' },
     hero: {
       eyebrow: 'São Paulo, Brazil · Remote worldwide',
       h1Pre: 'I build ',
@@ -94,13 +115,18 @@ const en: Content = {
     },
     demos: {
       eyebrow: 'See It Running',
-      heading: 'Production systems in action',
-      sub: 'Real output from shipped pipelines — weight estimation, retail theft detection, industrial inspection, and crowd / vehicle counting. Click any clip to play.',
+      heading: 'Computer vision, live',
+      sub: 'Real output from shipped vision pipelines — weight estimation, retail theft detection, industrial inspection, and crowd / vehicle counting. Click any clip to play.',
+    },
+    systems: {
+      eyebrow: 'Beyond Vision',
+      heading: 'Agents, automation & full-stack',
+      sub: 'Vision is where I started — but I ship the whole product around it: LLM agents that make autonomous decisions, automation layers, and the React + FastAPI stack underneath. Real architectures, in production.',
     },
     skills: {
       eyebrow: 'Stack',
       heading: 'Tools I ship with',
-      sub: 'Comfortable across the whole stack — from CUDA kernels at the edge to React dashboards in the browser. Heavy daily use of AI-augmented development (Claude Code, Codex, Cursor).',
+      sub: 'End to end across the stack — computer vision and LLM agents, the Python/FastAPI + React product around them, and the cloud they run on. Heavy daily use of AI-augmented development (Claude Code, Codex, Cursor).',
     },
     experience: {
       eyebrow: 'Trajectory',
@@ -118,7 +144,7 @@ const en: Content = {
     { num: '25,000+', label: 'animals counted daily — JBS & Marfrig plants' },
     { num: '150 stores', label: '4,500+ camera streams — ShopGuard AI footprint' },
     { num: '90%', label: 'fewer completed thefts at deployed stores' },
-    { num: '98.5%', label: 'accuracy on real-time weight estimation' },
+    { num: '−37%', label: 'cloud cost cut in month one — Pix Safety' },
   ],
   projects: [
     {
@@ -245,6 +271,56 @@ const en: Content = {
       caption: 'Multi-zone in / out vehicle tallies and tracking on a live traffic camera.',
     },
   ],
+  systems: [
+    {
+      key: 'agents-en',
+      badge: 'LLM Agents',
+      badgeType: 'agents',
+      title: 'Multi-Agent Decision Engine — Promeat AI',
+      desc: 'LangGraph agents pull live ERP and plant data, route it through specialized sub-agents, and act autonomously — escalating to a human only when confidence drops.',
+      nodes: [
+        { label: 'ERP + Plant', sub: 'live data', accent: 'in' },
+        { label: 'Classify', sub: 'agent', accent: 'agent' },
+        { label: 'Validate', sub: 'agent', accent: 'agent' },
+        { label: 'Decide', sub: 'agent', accent: 'agent' },
+        { label: 'Execute', sub: 'or escalate', accent: 'exec' },
+      ],
+      footer: '// Langfuse traces · human-in-the-loop on low confidence · eval-driven',
+      tags: ['LangGraph', 'AutoGen', 'RAG', 'Langfuse', 'FastAPI'],
+    },
+    {
+      key: 'auto-en',
+      badge: 'Automation',
+      badgeType: 'auto',
+      title: 'LLM Automation Layer — ShopGuard AI',
+      desc: 'Turns raw detection events into contextual alerts, summaries and escalation workflows — the language layer sitting on top of real-time vision, running 24/7.',
+      nodes: [
+        { label: 'Detection', sub: 'event', accent: 'in' },
+        { label: 'Context', sub: 'build', accent: 'agent' },
+        { label: 'Summarize', sub: 'LLM', accent: 'agent' },
+        { label: 'Route', sub: 'escalate', accent: 'agent' },
+        { label: 'Operator', sub: 'action', accent: 'ui' },
+      ],
+      footer: '// LangChain + AutoGen · contextual alerts & summaries · production traffic',
+      tags: ['LangChain', 'AutoGen', 'GPT-4', 'Prompt Eng', 'FastAPI'],
+    },
+    {
+      key: 'fullstack-en',
+      badge: 'Full-Stack',
+      badgeType: 'fullstack',
+      title: 'Full-Stack Product Architecture',
+      desc: 'One engineer, the whole stack: React dashboards over FastAPI services, event-driven microservices, edge inference and cloud — owned end to end, no handoffs.',
+      nodes: [
+        { label: 'React UI', sub: 'dashboards', accent: 'ui' },
+        { label: 'FastAPI', sub: 'REST + WS', accent: 'agent' },
+        { label: 'Event bus', sub: 'microservices', accent: 'agent' },
+        { label: 'Edge + Cloud', sub: 'GCP · OCI', accent: 'exec' },
+        { label: 'Postgres', sub: 'Supabase', accent: 'store' },
+      ],
+      footer: '// CI/CD · observability · shipped and maintained solo',
+      tags: ['React', 'TypeScript', 'FastAPI', 'Docker', 'PostgreSQL', 'GCP'],
+    },
+  ],
   skillGroups: [
     {
       title: 'Computer Vision',
@@ -325,7 +401,7 @@ const en: Content = {
 
 const es: Content = {
   ui: {
-    nav: { projects: 'Proyectos', demos: 'Demos', skills: 'Stack', experience: 'Experiencia', contact: 'Contacto', cv: 'Descargar CV' },
+    nav: { projects: 'Proyectos', demos: 'Demos', systems: 'Sistemas', skills: 'Stack', experience: 'Experiencia', contact: 'Contacto', cv: 'Descargar CV' },
     hero: {
       eyebrow: 'São Paulo, Brasil · Remoto para todo el mundo',
       h1Pre: 'Construyo ',
@@ -343,13 +419,18 @@ const es: Content = {
     },
     demos: {
       eyebrow: 'Míralo funcionando',
-      heading: 'Sistemas de producción en acción',
-      sub: 'Salida real de pipelines en producción — estimación de peso, detección de hurtos en retail, inspección industrial y conteo de multitudes / vehículos. Haz clic en cualquier clip para reproducirlo.',
+      heading: 'Visión computacional, en vivo',
+      sub: 'Salida real de pipelines de visión en producción — estimación de peso, detección de hurtos en retail, inspección industrial y conteo de multitudes / vehículos. Haz clic en cualquier clip para reproducirlo.',
+    },
+    systems: {
+      eyebrow: 'Más allá de la visión',
+      heading: 'Agentes, automatización y full-stack',
+      sub: 'La visión fue mi punto de partida — pero construyo todo el producto a su alrededor: agentes LLM que toman decisiones autónomas, capas de automatización y el stack React + FastAPI por debajo. Arquitecturas reales, en producción.',
     },
     skills: {
       eyebrow: 'Stack',
       heading: 'Herramientas con las que construyo',
-      sub: 'Cómodo en todo el stack — de kernels CUDA en el edge a dashboards en React en el navegador. Uso diario intensivo de desarrollo asistido por IA (Claude Code, Codex, Cursor).',
+      sub: 'De punta a punta en todo el stack — visión computacional y agentes LLM, el producto Python/FastAPI + React que los rodea, y la nube donde corren. Uso diario intensivo de desarrollo asistido por IA (Claude Code, Codex, Cursor).',
     },
     experience: {
       eyebrow: 'Trayectoria',
@@ -367,7 +448,7 @@ const es: Content = {
     { num: '25.000+', label: 'animales contados al día — plantas de JBS y Marfrig' },
     { num: '150 tiendas', label: '4.500+ streams de cámara — huella de ShopGuard AI' },
     { num: '90%', label: 'menos hurtos consumados en las tiendas desplegadas' },
-    { num: '98,5%', label: 'precisión en estimación de peso en tiempo real' },
+    { num: '−37%', label: 'de costo cloud en el primer mes — Pix Safety' },
   ],
   projects: [
     {
@@ -494,6 +575,56 @@ const es: Content = {
       caption: 'Conteos de entrada / salida multizona y tracking sobre una cámara de tráfico en vivo.',
     },
   ],
+  systems: [
+    {
+      key: 'agents-es',
+      badge: 'Agentes LLM',
+      badgeType: 'agents',
+      title: 'Motor de Decisiones Multiagente — Promeat AI',
+      desc: 'Agentes en LangGraph consumen datos vivos de ERP y planta, los enrutan por subagentes especializados y actúan de forma autónoma — escalando a un humano solo cuando baja la confianza.',
+      nodes: [
+        { label: 'ERP + Planta', sub: 'datos vivos', accent: 'in' },
+        { label: 'Clasificar', sub: 'agente', accent: 'agent' },
+        { label: 'Validar', sub: 'agente', accent: 'agent' },
+        { label: 'Decidir', sub: 'agente', accent: 'agent' },
+        { label: 'Ejecutar', sub: 'o escalar', accent: 'exec' },
+      ],
+      footer: '// trazas Langfuse · human-in-the-loop en baja confianza · guiado por evals',
+      tags: ['LangGraph', 'AutoGen', 'RAG', 'Langfuse', 'FastAPI'],
+    },
+    {
+      key: 'auto-es',
+      badge: 'Automatización',
+      badgeType: 'auto',
+      title: 'Capa de Automatización LLM — ShopGuard AI',
+      desc: 'Convierte eventos de detección en alertas contextuales, resúmenes y flujos de escalamiento — la capa de lenguaje sobre la visión en tiempo real, corriendo 24/7.',
+      nodes: [
+        { label: 'Detección', sub: 'evento', accent: 'in' },
+        { label: 'Contexto', sub: 'construir', accent: 'agent' },
+        { label: 'Resumir', sub: 'LLM', accent: 'agent' },
+        { label: 'Enrutar', sub: 'escalar', accent: 'agent' },
+        { label: 'Operador', sub: 'acción', accent: 'ui' },
+      ],
+      footer: '// LangChain + AutoGen · alertas y resúmenes contextuales · tráfico de producción',
+      tags: ['LangChain', 'AutoGen', 'GPT-4', 'Prompt Eng', 'FastAPI'],
+    },
+    {
+      key: 'fullstack-es',
+      badge: 'Full-Stack',
+      badgeType: 'fullstack',
+      title: 'Arquitectura de Producto Full-Stack',
+      desc: 'Un ingeniero, todo el stack: dashboards React sobre servicios FastAPI, microservicios orientados a eventos, inferencia en el edge y nube — de punta a punta, sin handoffs.',
+      nodes: [
+        { label: 'UI React', sub: 'dashboards', accent: 'ui' },
+        { label: 'FastAPI', sub: 'REST + WS', accent: 'agent' },
+        { label: 'Event bus', sub: 'microservicios', accent: 'agent' },
+        { label: 'Edge + Nube', sub: 'GCP · OCI', accent: 'exec' },
+        { label: 'Postgres', sub: 'Supabase', accent: 'store' },
+      ],
+      footer: '// CI/CD · observabilidad · entregado y mantenido en solitario',
+      tags: ['React', 'TypeScript', 'FastAPI', 'Docker', 'PostgreSQL', 'GCP'],
+    },
+  ],
   skillGroups: [
     {
       title: 'Visión Computacional',
@@ -574,7 +705,7 @@ const es: Content = {
 
 const pt: Content = {
   ui: {
-    nav: { projects: 'Projetos', demos: 'Demos', skills: 'Stack', experience: 'Experiência', contact: 'Contato', cv: 'Baixar CV' },
+    nav: { projects: 'Projetos', demos: 'Demos', systems: 'Sistemas', skills: 'Stack', experience: 'Experiência', contact: 'Contato', cv: 'Baixar CV' },
     hero: {
       eyebrow: 'São Paulo, Brasil · Remoto para o mundo todo',
       h1Pre: 'Eu construo ',
@@ -592,13 +723,18 @@ const pt: Content = {
     },
     demos: {
       eyebrow: 'Veja funcionando',
-      heading: 'Sistemas de produção em ação',
-      sub: 'Saída real de pipelines em produção — estimativa de peso, detecção de furtos no varejo, inspeção industrial e contagem de multidões / veículos. Clique em qualquer clipe para reproduzir.',
+      heading: 'Visão computacional, ao vivo',
+      sub: 'Saída real de pipelines de visão em produção — estimativa de peso, detecção de furtos no varejo, inspeção industrial e contagem de multidões / veículos. Clique em qualquer clipe para reproduzir.',
+    },
+    systems: {
+      eyebrow: 'Além da visão',
+      heading: 'Agentes, automação e full-stack',
+      sub: 'A visão foi meu ponto de partida — mas eu construo o produto inteiro em volta dela: agentes LLM que tomam decisões autônomas, camadas de automação e a stack React + FastAPI por baixo. Arquiteturas reais, em produção.',
     },
     skills: {
       eyebrow: 'Stack',
       heading: 'Ferramentas com que eu construo',
-      sub: 'Confortável em toda a stack — de kernels CUDA no edge a dashboards React no navegador. Uso diário intensivo de desenvolvimento assistido por IA (Claude Code, Codex, Cursor).',
+      sub: 'De ponta a ponta em toda a stack — visão computacional e agentes LLM, o produto Python/FastAPI + React em volta deles, e a nuvem onde rodam. Uso diário intensivo de desenvolvimento assistido por IA (Claude Code, Codex, Cursor).',
     },
     experience: {
       eyebrow: 'Trajetória',
@@ -616,7 +752,7 @@ const pt: Content = {
     { num: '25.000+', label: 'animais contados por dia — plantas da JBS e Marfrig' },
     { num: '150 lojas', label: '4.500+ streams de câmera — footprint da ShopGuard AI' },
     { num: '90%', label: 'menos furtos consumados nas lojas atendidas' },
-    { num: '98,5%', label: 'de acurácia na estimativa de peso em tempo real' },
+    { num: '−37%', label: 'de custo cloud no primeiro mês — Pix Safety' },
   ],
   projects: [
     {
@@ -741,6 +877,56 @@ const pt: Content = {
       project: 'Analítica de tráfego',
       title: 'Contagem de veículos e fluxo de tráfego',
       caption: 'Contagens de entrada / saída multizona e tracking em uma câmera de tráfego ao vivo.',
+    },
+  ],
+  systems: [
+    {
+      key: 'agents-pt',
+      badge: 'Agentes LLM',
+      badgeType: 'agents',
+      title: 'Motor de Decisões Multiagente — Promeat AI',
+      desc: 'Agentes em LangGraph consomem dados vivos de ERP e planta, roteiam por subagentes especializados e agem de forma autônoma — escalando para um humano só quando a confiança cai.',
+      nodes: [
+        { label: 'ERP + Planta', sub: 'dados vivos', accent: 'in' },
+        { label: 'Classificar', sub: 'agente', accent: 'agent' },
+        { label: 'Validar', sub: 'agente', accent: 'agent' },
+        { label: 'Decidir', sub: 'agente', accent: 'agent' },
+        { label: 'Executar', sub: 'ou escalar', accent: 'exec' },
+      ],
+      footer: '// traces Langfuse · human-in-the-loop em baixa confiança · guiado por evals',
+      tags: ['LangGraph', 'AutoGen', 'RAG', 'Langfuse', 'FastAPI'],
+    },
+    {
+      key: 'auto-pt',
+      badge: 'Automação',
+      badgeType: 'auto',
+      title: 'Camada de Automação LLM — ShopGuard AI',
+      desc: 'Transforma eventos de detecção em alertas contextuais, resumos e fluxos de escalonamento — a camada de linguagem sobre a visão em tempo real, rodando 24/7.',
+      nodes: [
+        { label: 'Detecção', sub: 'evento', accent: 'in' },
+        { label: 'Contexto', sub: 'construir', accent: 'agent' },
+        { label: 'Resumir', sub: 'LLM', accent: 'agent' },
+        { label: 'Rotear', sub: 'escalar', accent: 'agent' },
+        { label: 'Operador', sub: 'ação', accent: 'ui' },
+      ],
+      footer: '// LangChain + AutoGen · alertas e resumos contextuais · tráfego de produção',
+      tags: ['LangChain', 'AutoGen', 'GPT-4', 'Prompt Eng', 'FastAPI'],
+    },
+    {
+      key: 'fullstack-pt',
+      badge: 'Full-Stack',
+      badgeType: 'fullstack',
+      title: 'Arquitetura de Produto Full-Stack',
+      desc: 'Um engenheiro, a stack inteira: dashboards React sobre serviços FastAPI, microsserviços orientados a eventos, inferência no edge e nuvem — de ponta a ponta, sem handoffs.',
+      nodes: [
+        { label: 'UI React', sub: 'dashboards', accent: 'ui' },
+        { label: 'FastAPI', sub: 'REST + WS', accent: 'agent' },
+        { label: 'Event bus', sub: 'microsserviços', accent: 'agent' },
+        { label: 'Edge + Nuvem', sub: 'GCP · OCI', accent: 'exec' },
+        { label: 'Postgres', sub: 'Supabase', accent: 'store' },
+      ],
+      footer: '// CI/CD · observabilidade · entregue e mantido sozinho',
+      tags: ['React', 'TypeScript', 'FastAPI', 'Docker', 'PostgreSQL', 'GCP'],
     },
   ],
   skillGroups: [
