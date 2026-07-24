@@ -878,181 +878,299 @@ section {
     border: 1px solid rgba(120, 170, 255, 0.35);
 }
 
-.flow {
-    display: flex;
-    align-items: stretch;
-    margin: 6px 0 2px;
-    overflow-x: auto;
-    padding-bottom: 4px;
+/* Blueprint: a data bus feeding numbered stage lanes, a decision gate, and
+   cross-cutting rails underneath — reads like a rack diagram, not a flowchart. */
+.blueprint {
+    margin: 4px 0 2px;
+    border: 1px solid rgba(35, 43, 54, 0.85);
+    border-radius: 10px;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px) 0 0 / 100% 26px,
+        rgba(9, 11, 15, 0.55);
+    padding: 0 0 14px;
+    overflow: hidden;
 }
 
-.flow-step {
+.bp-bus {
+    position: relative;
+    height: 3px;
+    margin: 0 0 18px;
+    background: linear-gradient(90deg, transparent, rgba(255, 178, 36, 0.22) 8%, rgba(255, 178, 36, 0.22) 92%, transparent);
+}
+
+.bp-pulse {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 54px;
+    height: 7px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, transparent, var(--detect), transparent);
+    opacity: 0.75;
+    animation: busrun 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+@keyframes busrun {
+    0% { transform: translateX(-60px); opacity: 0; }
+    8% { opacity: 0.75; }
+    92% { opacity: 0.75; }
+    100% { transform: translateX(calc(100vw)); opacity: 0; }
+}
+
+.bp-lanes {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(35, 43, 54, 0.7);
+    border-top: 1px solid rgba(35, 43, 54, 0.7);
+    border-bottom: 1px solid rgba(35, 43, 54, 0.7);
+}
+
+.lane {
+    background: var(--card);
+    padding: 14px 15px 13px;
     display: flex;
-    align-items: center;
-    flex: 1 1 0;
+    flex-direction: column;
+    gap: 9px;
     min-width: 0;
 }
 
-.flow-step:last-child {
-    flex: 0 0 auto;
+.lane-head {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed rgba(35, 43, 54, 0.9);
 }
 
-.flow-node {
-    flex: 0 0 auto;
-    min-width: 94px;
-    text-align: center;
-    padding: 10px 12px;
-    border: 1px solid var(--card-border);
-    border-radius: 8px;
-    background: rgba(16, 20, 26, 0.7);
-}
-
-.flow-label {
-    display: block;
-    font-family: var(--display);
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--text);
-    white-space: nowrap;
-}
-
-.flow-sub {
-    display: block;
+.lane-idx {
     font-family: var(--mono);
     font-size: 10px;
-    letter-spacing: 0.04em;
+    font-weight: 600;
     color: var(--text-faint);
-    margin-top: 2px;
-    white-space: nowrap;
+    letter-spacing: 0.08em;
 }
 
-.node-in {
-    border-color: rgba(157, 178, 206, 0.4);
+.lane-name {
+    font-family: var(--display);
+    font-size: 12.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text);
 }
 
-.node-in .flow-label {
-    color: #b9c6d8;
+.lane-chips {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
 }
 
-.node-agent {
-    border-color: rgba(255, 178, 36, 0.45);
-    background: rgba(255, 178, 36, 0.05);
+.lane-chip {
+    position: relative;
+    font-size: 12.5px;
+    line-height: 1.35;
+    color: var(--text-dim);
+    padding: 6px 9px 6px 20px;
+    border: 1px solid rgba(35, 43, 54, 0.9);
+    border-radius: 6px;
+    background: rgba(16, 20, 26, 0.75);
+    overflow-wrap: break-word;
 }
 
-.node-agent .flow-label {
+.lane-chip::before {
+    content: "";
+    position: absolute;
+    left: 9px;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    margin-top: -2px;
+    border-radius: 1px;
+    background: currentColor;
+    opacity: 0.55;
+}
+
+.lane-note {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.45;
+    color: var(--text-faint);
+    margin-top: auto;
+    padding-top: 4px;
+}
+
+/* Lane identity: input rails read cool, agent work reads amber,
+   execution reads live-green, UI reads blue, storage stays neutral. */
+.lane-in .lane-name { color: #b9c6d8; }
+.lane-in .lane-chip { color: #a7b6c8; border-color: rgba(157, 178, 206, 0.28); }
+
+.lane-agent .lane-name { color: var(--accent); }
+.lane-agent .lane-chip { color: #e2c489; border-color: rgba(255, 178, 36, 0.3); background: rgba(255, 178, 36, 0.045); }
+
+.lane-exec .lane-name { color: var(--detect); }
+.lane-exec .lane-chip { color: #9fdcbb; border-color: rgba(69, 212, 131, 0.32); background: rgba(69, 212, 131, 0.05); }
+
+.lane-ui .lane-name { color: #8fb4ff; }
+.lane-ui .lane-chip { color: #a9c2f0; border-color: rgba(120, 170, 255, 0.28); }
+
+.lane-store .lane-name { color: var(--text-dim); }
+
+/* Decision gate — the fork between machine and human */
+.bp-gate {
+    padding: 0 15px;
+}
+
+.gate-stem {
+    width: 1px;
+    height: 16px;
+    margin: 0 auto;
+    background: repeating-linear-gradient(180deg, rgba(255, 178, 36, 0.5) 0 4px, transparent 4px 8px);
+}
+
+.gate-body {
+    text-align: center;
+    padding: 12px 14px 13px;
+    border: 1px dashed rgba(255, 178, 36, 0.35);
+    border-radius: 8px;
+    background: rgba(255, 178, 36, 0.03);
+}
+
+.gate-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
     color: var(--accent);
 }
 
-.node-exec {
-    border-color: rgba(69, 212, 131, 0.5);
-    background: rgba(69, 212, 131, 0.06);
-    animation: nodepulse 2.6s ease-in-out infinite;
+.gate-paths {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 9px;
 }
 
-.node-exec .flow-label {
-    color: var(--detect);
-}
-
-.node-ui {
-    border-color: rgba(120, 170, 255, 0.45);
-}
-
-.node-ui .flow-label {
-    color: #8fb4ff;
-}
-
-@keyframes nodepulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(69, 212, 131, 0); }
-    50% { box-shadow: 0 0 14px 0 rgba(69, 212, 131, 0.28); }
-}
-
-.flow-arrow {
-    flex: 1 1 20px;
-    min-width: 18px;
-    height: 2px;
-    align-self: center;
+.gate-path {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 5px;
     position: relative;
-    background: repeating-linear-gradient(90deg, var(--card-border) 0 5px, transparent 5px 9px);
 }
 
-.flow-arrow::after {
-    content: "";
+.gate-path::before {
+    content: "→ ";
+    opacity: 0.7;
+}
+
+.gate-auto {
+    color: var(--detect);
+    border: 1px solid rgba(69, 212, 131, 0.4);
+    background: rgba(69, 212, 131, 0.07);
+}
+
+.gate-human {
+    color: var(--accent);
+    border: 1px solid rgba(255, 178, 36, 0.4);
+    background: rgba(255, 178, 36, 0.06);
+}
+
+.gate-caption {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin: 10px auto 0;
+    max-width: 520px;
+}
+
+/* Cross-cutting rails — concerns that span every stage */
+.bp-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin: 14px 15px 0;
+    border: 1px solid rgba(35, 43, 54, 0.8);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bp-layer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    padding: 10px 13px;
+    background: rgba(16, 20, 26, 0.6);
+}
+
+.layer-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    color: var(--text-faint);
+    min-width: 108px;
+}
+
+.layer-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+}
+
+.layer-item {
+    font-size: 12px;
+    color: var(--text-dim);
+    position: relative;
+}
+
+.layer-item:not(:last-child)::after {
+    content: "·";
     position: absolute;
-    top: 50%;
-    left: 0;
-    width: 6px;
-    height: 6px;
-    margin-top: -3px;
-    border-radius: 50%;
-    background: var(--detect);
-    box-shadow: 0 0 8px var(--detect);
-    animation: flowdot 2.8s linear infinite;
-}
-
-.flow-step:nth-child(2) .flow-arrow::after { animation-delay: 0.35s; }
-.flow-step:nth-child(3) .flow-arrow::after { animation-delay: 0.7s; }
-.flow-step:nth-child(4) .flow-arrow::after { animation-delay: 1.05s; }
-
-@keyframes flowdot {
-    0% { left: 0; opacity: 0; }
-    12% { opacity: 1; }
-    88% { opacity: 1; }
-    100% { left: 100%; opacity: 0; }
+    right: -10px;
+    color: var(--text-faint);
 }
 
 .system-footer {
     font-family: var(--mono);
     font-size: 11.5px;
+    line-height: 1.5;
     color: var(--text-faint);
     letter-spacing: 0.02em;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .flow-arrow::after { animation: none; opacity: 0.85; }
-    .node-exec { animation: none; }
+    .bp-pulse { animation: none; opacity: 0.35; }
 }
 
-@media (max-width: 720px) {
-    .flow {
-        flex-direction: column;
-        align-items: stretch;
-        overflow-x: visible;
+@media (max-width: 860px) {
+    .bp-lanes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .bp-lanes {
+        grid-template-columns: minmax(0, 1fr);
     }
 
-    .flow-step {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .flow-step:last-child {
-        flex: 1 1 0;
-    }
-
-    .flow-node {
-        width: 100%;
-    }
-
-    .flow-arrow {
-        width: 2px;
-        height: 20px;
+    .layer-label {
         min-width: 0;
-        margin: 0 auto;
-        background: repeating-linear-gradient(180deg, var(--card-border) 0 5px, transparent 5px 9px);
     }
 
-    .flow-arrow::after {
-        left: 50%;
-        top: 0;
-        margin-top: 0;
-        margin-left: -3px;
-        animation: flowdotv 2.8s linear infinite;
+    .bp-layers {
+        margin: 12px 12px 0;
     }
 
-    @keyframes flowdotv {
-        0% { top: 0; opacity: 0; }
-        12% { opacity: 1; }
-        88% { opacity: 1; }
-        100% { top: 100%; opacity: 0; }
+    .bp-gate {
+        padding: 0 12px;
     }
 }
 

@@ -16,17 +16,61 @@ export default function Systems() {
               <span className={`pill sys-${s.badgeType}`}>{s.badge}</span>
             </div>
             <p className="system-desc">{s.desc}</p>
-            <div className="flow" role="img" aria-label={`${s.title} — architecture`}>
-              {s.nodes.map((n, i) => (
-                <div className="flow-step" key={`${s.key}-${n.label}-${i}`}>
-                  <div className={`flow-node node-${n.accent ?? 'agent'}`}>
-                    <span className="flow-label">{n.label}</span>
-                    <span className="flow-sub">{n.sub}</span>
+
+            <div className="blueprint">
+              <div className="bp-bus" aria-hidden="true">
+                <span className="bp-pulse" />
+              </div>
+
+              <div className="bp-lanes">
+                {s.stages.map((st) => (
+                  <div className={`lane lane-${st.accent}`} key={`${s.key}-${st.idx}`}>
+                    <div className="lane-head">
+                      <span className="lane-idx">{st.idx}</span>
+                      <span className="lane-name">{st.name}</span>
+                    </div>
+                    <ul className="lane-chips">
+                      {st.chips.map((chip) => (
+                        <li className="lane-chip" key={chip}>
+                          {chip}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="lane-note">{st.note}</div>
                   </div>
-                  {i < s.nodes.length - 1 && <span className="flow-arrow" aria-hidden="true" />}
+                ))}
+              </div>
+
+              {s.gate && (
+                <div className="bp-gate">
+                  <div className="gate-stem" aria-hidden="true" />
+                  <div className="gate-body">
+                    <span className="gate-label">{s.gate.label}</span>
+                    <div className="gate-paths">
+                      <span className="gate-path gate-auto">{s.gate.auto}</span>
+                      <span className="gate-path gate-human">{s.gate.human}</span>
+                    </div>
+                    <p className="gate-caption">{s.gate.caption}</p>
+                  </div>
                 </div>
-              ))}
+              )}
+
+              <div className="bp-layers">
+                {s.layers.map((l) => (
+                  <div className="bp-layer" key={`${s.key}-${l.label}`}>
+                    <span className="layer-label">{l.label}</span>
+                    <div className="layer-items">
+                      {l.items.map((item) => (
+                        <span className="layer-item" key={item}>
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
+
             <div className="system-footer">{s.footer}</div>
             <div className="tags">
               {s.tags.map((t) => (
