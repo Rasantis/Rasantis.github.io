@@ -1,46 +1,52 @@
-# Real architecture diagrams for the portfolio, rendered with mingrammer/diagrams
-# (the engine behind the AWS diagram tooling) + Graphviz.
-# Vendor icons only where the technology really is that vendor's; Rafael's own
-# components use neutral icons — the way an architect actually draws it.
+# Architecture diagrams for the portfolio — mingrammer/diagrams + Graphviz
+# (the engine behind the AWS diagram tooling).
+#
+# Two rules this file follows:
+#   1. Layered reference-architecture layout — tiers stacked top-to-bottom, each
+#      holding its components side by side. It fits a screen and carries far more
+#      detail than a left-to-right flow, which only ever gets wider and smaller.
+#   2. A vendor icon ONLY where the technology really is that vendor's. Rafael's
+#      own components are labelled boxes — borrowing a logo would imply a service
+#      that isn't in the stack. Every element here survives a technical deep dive.
 import os
 
 from diagrams import Cluster, Diagram, Edge, Node
 from diagrams.gcp.compute import GPU, ComputeEngine
 from diagrams.gcp.storage import GCS
+from diagrams.oci.compute import VMWhite as OracleCloud
 from diagrams.onprem.container import Docker
 from diagrams.onprem.database import PostgreSQL
-from diagrams.oci.compute import VMWhite as VM
 from diagrams.programming.framework import FastAPI, React
 from diagrams.programming.language import Cpp, Python
 
-OUT = r'D:\Users\rafa2\Downloads\curriculo_rafa\portfolio\public\diagrams'
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'public', 'diagrams')
 os.makedirs(OUT, exist_ok=True)
 
-BG = '#0f1319'          # slightly deeper than the card it sits on
 INK = '#eef1f6'
 MUTED = '#aab4c2'
 LINE = '#7d8899'
 AMBER = '#ffb224'
 GREEN = '#45d483'
 BLUE = '#8fb4ff'
+STEEL = '#9db2ce'
 
 graph_attr = {
-    'bgcolor': BG,
+    'bgcolor': '#0f1319',
     'fontcolor': MUTED,
     'fontname': 'Segoe UI Semibold',
-    'fontsize': '17',
-    'pad': '0.6',
-    'nodesep': '0.45',
-    'ranksep': '0.9',
-    'dpi': '140',
-    'splines': 'spline',
+    'fontsize': '18',
+    'pad': '0.5',
+    'nodesep': '0.4',
+    'ranksep': '0.8',
+    'dpi': '130',
     'compound': 'true',
 }
-node_attr = {'fontcolor': INK, 'fontname': 'Segoe UI', 'fontsize': '14'}
-edge_attr = {'color': LINE, 'fontcolor': MUTED, 'fontname': 'Consolas', 'fontsize': '12', 'penwidth': '1.4'}
+node_attr = {'fontcolor': INK, 'fontname': 'Segoe UI', 'fontsize': '13'}
+edge_attr = {'color': LINE, 'fontcolor': MUTED, 'fontname': 'Consolas', 'fontsize': '11', 'penwidth': '1.3'}
 
 
-def cluster(accent=LINE):
+def tier(accent=LINE):
+    """A horizontal band of the architecture."""
     return {
         'bgcolor': '#141a22',
         'pencolor': accent,
@@ -49,43 +55,47 @@ def cluster(accent=LINE):
         'fontcolor': accent,
         'fontname': 'Consolas',
         'fontsize': '13',
-        'margin': '20',
+        'labeljust': 'l',
+        'margin': '16',
     }
 
 
-def box(label, accent=LINE):
-    """A component of Rafael's own, with no vendor logo to borrow honestly:
-    drawn as a labelled box instead of a misleading third-party icon."""
+def box(label, accent=LINE, fill='#1b222c', ink=INK):
+    """One of Rafael's own components — labelled, not badged with a borrowed logo."""
     return Node(
         label,
         shape='box',
         style='rounded,filled',
-        fillcolor='#1b222c',
+        fillcolor=fill,
         color=accent,
-        penwidth='1.4',
-        fontcolor=INK,
+        penwidth='1.3',
+        fontcolor=ink,
         fontname='Segoe UI',
-        fontsize='14',
-        width='1.9',
-        height='0.85',
-        margin='0.22,0.16',
+        fontsize='13',
+        width='2.0',
+        height='0.8',
+        margin='0.18,0.12',
     )
 
 
 def actor(label):
+    return box(label, GREEN, '#16241d', '#c9f2dd')
+
+
+def gate(label):
+    """A decision point, drawn as one."""
     return Node(
         label,
-        shape='box',
-        style='rounded,filled',
-        fillcolor='#16241d',
-        color=GREEN,
-        penwidth='1.4',
-        fontcolor='#c9f2dd',
-        fontname='Segoe UI',
-        fontsize='14',
-        width='1.9',
-        height='0.85',
-        margin='0.22,0.16',
+        shape='diamond',
+        style='filled',
+        fillcolor='#241d0c',
+        color=AMBER,
+        penwidth='1.5',
+        fontcolor='#ffd98a',
+        fontname='Segoe UI Semibold',
+        fontsize='12',
+        width='2.7',
+        height='1.3',
     )
 
 
@@ -94,7 +104,7 @@ def diagram(name, filename):
         name,
         filename=os.path.join(OUT, filename),
         show=False,
-        direction='LR',
+        direction='TB',
         outformat='png',
         graph_attr=graph_attr,
         node_attr=node_attr,
@@ -102,106 +112,157 @@ def diagram(name, filename):
     )
 
 
-# ─────────────────────── 1. ShopGuard AI ───────────────────────
-with diagram('ShopGuard AI  ·  real-time vision → operator action', 'arch_shopguard'):
-    with Cluster('EDGE  ·  per store', graph_attr=cluster(BLUE)):
-        cams = box('RTSP cameras\nmulti-camera', BLUE)
-        detect = Cpp('YOLO11 + TensorRT\nGStreamer · sub-second')
-        cams >> Edge(color=LINE) >> detect
-
-    with Cluster('CLOUD  ·  hybrid', graph_attr=cluster(LINE)):
-        ingest = FastAPI('Event ingest')
-        cloud = ComputeEngine('GCP')
-        oci = VM('Oracle Cloud')
-        clips = GCS('Clips & datasets')
-
-    with Cluster('LANGUAGE LAYER  ·  LangChain + AutoGen', graph_attr=cluster(AMBER)):
-        llm = Python('Context + GPT-4\nalert & summary')
-        routing = Python('Severity routing')
-        llm >> Edge(color=AMBER) >> routing
-
-    with Cluster('DELIVERY', graph_attr=cluster(GREEN)):
-        dash = React('Operator dashboard')
-        ops = actor('Store operator\nacts on the floor')
-        dash >> Edge(label='intervene', color=GREEN) >> ops
-
-    detect >> Edge(label='detection events', color=LINE) >> ingest
-    ingest >> Edge(color=LINE, style='dotted') >> cloud
-    ingest >> Edge(color=LINE, style='dotted') >> oci
-    ingest >> Edge(label='clips', color=LINE, style='dashed') >> clips
-    ingest >> Edge(label='event', color=AMBER) >> llm
-    clips >> Edge(label='retraining loop', color=LINE, style='dotted') >> detect
-    routing >> Edge(label='escalate now', color=GREEN) >> dash
-    routing >> Edge(label='or batch to digest', color=AMBER, style='dashed') >> dash
+# Intra-tier links are drawn but must not push nodes onto new ranks, otherwise
+# every tier grows downwards instead of sideways.
+def side(color=LINE, label='', style=''):
+    return Edge(color=color, label=label, style=style, constraint='false')
 
 
-# ─────────────────────── 2. Promeat AI ───────────────────────
-with diagram('Promeat AI  ·  multi-agent decision engine (LangGraph)', 'arch_promeat'):
-    with Cluster('SOURCES', graph_attr=cluster(BLUE)):
-        erp = box('Client ERP', BLUE)
-        plant = box('Plant systems', BLUE)
-        vision = Python('Vision events\n25k+ animals/day')
-
-    with Cluster('INGEST  ·  event-driven', graph_attr=cluster(LINE)):
-        api = FastAPI('Event API')
-        bus = box('Event bus\nnormalized schema')
-        api >> Edge(color=LINE) >> bus
-
-    with Cluster('AGENT GRAPH  ·  LangGraph + AutoGen', graph_attr=cluster(AMBER)):
-        classify = Python('Classification')
-        validate = Python('Validation')
-        decide = Python('Decision')
-        rag = PostgreSQL('Plant context\nRAG')
-        classify >> Edge(color=AMBER) >> validate >> Edge(color=AMBER) >> decide
-        validate >> Edge(label='retrieve', color=LINE, style='dashed') >> rag
-
-    with Cluster('ACT', graph_attr=cluster(GREEN)):
-        writeback = box('Write-back\nto client systems', GREEN)
-        human = actor('Plant operator\nhuman-in-the-loop')
-
-    traces = Python('Langfuse traces\n+ eval pipelines')
-
-    erp >> Edge(color=LINE) >> api
-    plant >> Edge(color=LINE) >> api
-    vision >> Edge(color=LINE) >> api
-    bus >> Edge(label='high-frequency events', color=LINE) >> classify
-    decide >> Edge(label='confident → autonomous', color=GREEN) >> writeback
-    decide >> Edge(label='below threshold → review', color=AMBER, style='dashed') >> human
-    decide >> Edge(color=LINE, style='dotted') >> traces
+def down(color=LINE, label='', style=''):
+    return Edge(color=color, label=label, style=style)
 
 
-# ─────────────────────── 3. Full-stack ───────────────────────
-with diagram('Full-stack product architecture  ·  model to on-call', 'arch_fullstack'):
-    people = actor('Operators & clients')
+# ══════════════════════ 1. ShopGuard AI ══════════════════════
+with diagram('ShopGuard AI  ·  retail vision platform, edge to operator', 'arch_shopguard'):
+    with Cluster('1 · STORE EDGE   —   identical appliance per store', graph_attr=tier(BLUE)):
+        cams = box('RTSP cameras\n~30 per store', BLUE)
+        decode = box('GStreamer\nhardware decode', BLUE)
+        detect = Cpp('YOLO11 + TensorRT\nsub-second inference')
+        provisioning = box('Standardised provisioning\nsame stack every store', BLUE)
+        cams >> side() >> decode >> side() >> detect
+        detect >> side(style='dotted') >> provisioning
 
-    with Cluster('CLIENT', graph_attr=cluster(BLUE)):
-        ui = React('React + TypeScript\ndashboards')
+    with Cluster('2 · CLOUD INGEST   —   hybrid GCP / Oracle Cloud', graph_attr=tier(STEEL)):
+        ingest = FastAPI('Event ingest API\nauth + validation')
+        events = box('Detection event stream\nevent-driven services')
+        clips = box('Clip extraction')
+        ingest >> side() >> events >> side() >> clips
 
-    with Cluster('API', graph_attr=cluster(AMBER)):
-        rest = FastAPI('REST + WebSocket\ntyped contracts')
+    with Cluster('3 · INTELLIGENCE   —   LangChain + AutoGen', graph_attr=tier(AMBER)):
+        context = box('Context builder\nstore · camera · history', AMBER)
+        llm = Python('GPT-4\nalert + summary')
+        severity = gate('severity\nrouting')
+        context >> side(AMBER) >> llm >> side(AMBER) >> severity
 
-    with Cluster('SERVICES  ·  event-driven', graph_attr=cluster(AMBER)):
-        pipeline = Python('Ingestion & processing')
-        infer = GPU('GPU inference')
-        workers = Docker('Automation workers')
+    with Cluster('4 · DELIVERY', graph_attr=tier(GREEN)):
+        escalation = box('Escalation workflow', GREEN)
+        dash = React('React operator dashboard\nlive alerts')
+        integrations = box('Client integrations', GREEN)
+        operator = actor('Store operator\nintervenes before the loss')
+        escalation >> side(GREEN) >> dash >> side(GREEN) >> operator
+        dash >> side(GREEN, style='dotted') >> integrations
 
-    with Cluster('DATA', graph_attr=cluster(LINE)):
-        db = PostgreSQL('PostgreSQL / Supabase')
-        blobs = GCS('Media & artifacts')
-
-    with Cluster('PLATFORM', graph_attr=cluster(GREEN)):
+    with Cluster('5 · DATA, MODEL LOOP & PLATFORM', graph_attr=tier(STEEL)):
+        db = PostgreSQL('Events, stores,\nusers')
+        storage = GCS('Clips & datasets')
+        retrain = box('Failure-case retraining\nreal misses → training data')
         ci = Docker('Docker · CI/CD')
         gcp = ComputeEngine('GCP')
-        oci2 = VM('Oracle Cloud')
+        oci = OracleCloud('Oracle Cloud')
+        storage >> side(style='dashed') >> retrain
+        ci >> side(style='dotted') >> gcp
+        ci >> side(style='dotted') >> oci
 
-    people >> Edge(color=LINE) >> ui >> Edge(label='REST + live', color=LINE) >> rest
-    rest >> Edge(color=LINE) >> pipeline
-    rest >> Edge(color=LINE) >> workers
-    pipeline >> Edge(color=LINE) >> infer
-    pipeline >> Edge(color=LINE) >> db
-    infer >> Edge(color=LINE, style='dashed') >> blobs
-    workers >> Edge(color=LINE, style='dashed') >> db
-    ci >> Edge(label='deploy', color=GREEN, style='dashed') >> gcp
-    ci >> Edge(color=GREEN, style='dashed') >> oci2
+    detect >> down(label='  detections') >> ingest
+    events >> down(AMBER, label='  event') >> context
+    severity >> down(GREEN, label='  escalate now') >> escalation
+    severity >> down(AMBER, label='  batch to digest', style='dashed') >> dash
+    clips >> down(style='dashed') >> storage
+    events >> down(style='dotted') >> db
+    retrain >> down(BLUE, label='  new model to every store', style='dashed') >> provisioning
+
+
+# ══════════════════════ 2. Promeat AI ══════════════════════
+with diagram('Promeat AI  ·  multi-agent decision engine (LangGraph)', 'arch_promeat'):
+    with Cluster('1 · SOURCE SYSTEMS', graph_attr=tier(BLUE)):
+        erp = box('Client ERP', BLUE)
+        plant = box('Plant systems', BLUE)
+        vision = box('Vision pipeline\n25k+ animals/day', BLUE)
+
+    with Cluster('2 · INGEST   —   event-driven microservices', graph_attr=tier(STEEL)):
+        api = FastAPI('Event API')
+        bus = box('Event bus')
+        schema = box('Schema normalisation\n+ validation')
+        api >> side() >> bus >> side() >> schema
+
+    with Cluster('3 · AGENT RUNTIME   —   LangGraph + AutoGen', graph_attr=tier(AMBER)):
+        router = box('Graph router\nstate machine', AMBER)
+        classify = Python('Classification\nagent')
+        validate = Python('Validation\nagent')
+        decide = Python('Decision\nagent')
+        tools = box('Agent tools\nRAG · ERP queries', AMBER)
+        router >> side(AMBER) >> classify >> side(AMBER) >> validate >> side(AMBER) >> decide
+        validate >> side(style='dashed') >> tools
+
+    with Cluster('4 · GUARDRAIL & ACTUATION', graph_attr=tier(GREEN)):
+        conf = gate('confidence\ngate')
+        writeback = box('Write-back\nto client systems', GREEN)
+        review = actor('Plant operator\nhuman-in-the-loop')
+        audit = box('Audit record', GREEN)
+        writeback >> side(GREEN, style='dotted') >> audit
+
+    with Cluster('5 · STATE, OBSERVABILITY & PLATFORM', graph_attr=tier(STEEL)):
+        state = PostgreSQL('Agent state\n+ plant context')
+        traces = box('Langfuse traces\nper node')
+        evals = box('Eval pipelines\nregression gate')
+        ci2 = Docker('Docker · CI/CD')
+        cloud2 = ComputeEngine('GCP')
+        traces >> side(style='dotted') >> evals
+        ci2 >> side(style='dotted') >> cloud2
+
+    erp >> down() >> api
+    plant >> down() >> api
+    vision >> down() >> api
+    schema >> down(label='  high-frequency events') >> router
+    decide >> down(AMBER) >> conf
+    conf >> down(GREEN, label='  confident') >> writeback
+    conf >> down(AMBER, label='  below threshold', style='dashed') >> review
+    tools >> down(style='dashed') >> state
+    decide >> down(style='dotted') >> traces
+    review >> down(AMBER, label='  correction feeds evals', style='dotted') >> evals
+
+
+# ══════════════════════ 3. Full-stack ══════════════════════
+with diagram('Full-stack product architecture  ·  first commit to on-call', 'arch_fullstack'):
+    with Cluster('1 · CLIENTS', graph_attr=tier(BLUE)):
+        users = actor('Operators & clients')
+        ui = React('React + TypeScript\noperator dashboards')
+        users >> side(GREEN) >> ui
+
+    with Cluster('2 · API EDGE', graph_attr=tier(AMBER)):
+        rest = FastAPI('REST API\ntyped contracts')
+        ws = box('WebSocket channels\nlive state', AMBER)
+        auth = box('Auth & validation', AMBER)
+        rest >> side(AMBER) >> ws >> side(AMBER) >> auth
+
+    with Cluster('3 · SERVICES   —   event-driven, independently scaled', graph_attr=tier(AMBER)):
+        ingestion = Python('Ingestion & processing')
+        inference = GPU('GPU inference service')
+        workers = box('Automation workers\nLLM + rules', AMBER)
+        ingestion >> side() >> inference >> side() >> workers
+
+    with Cluster('4 · DATA', graph_attr=tier(STEEL)):
+        pg = PostgreSQL('PostgreSQL / Supabase')
+        objects = GCS('Media & artifacts')
+        models = box('Model artifacts\nversioned')
+        objects >> side(style='dotted') >> models
+
+    with Cluster('5 · PLATFORM & OPERATIONS', graph_attr=tier(GREEN)):
+        docker = Docker('Docker')
+        cicd = box('CI/CD pipeline\ndeploy on merge', GREEN)
+        gcp3 = ComputeEngine('GCP')
+        oci3 = OracleCloud('Oracle Cloud')
+        obs = box('Logging, metrics\n& on-call', GREEN)
+        docker >> side(GREEN) >> cicd >> side(GREEN) >> gcp3
+        cicd >> side(GREEN, style='dotted') >> oci3
+
+    ui >> down(label='  REST + live') >> rest
+    auth >> down() >> ingestion
+    ws >> down(GREEN, label='  push') >> workers
+    ingestion >> down() >> pg
+    inference >> down(style='dashed') >> objects
+    workers >> down(style='dotted') >> pg
+    cicd >> down(GREEN, label='  deploy', style='dashed') >> ingestion
+    obs >> down(style='dotted') >> inference
 
 print('diagrams written to', OUT)
