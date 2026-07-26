@@ -77,7 +77,7 @@ export interface Stat {
 }
 
 export interface UI {
-  nav: { projects: string; demos: string; systems: string; skills: string; experience: string; contact: string; cv: string };
+  nav: { work: string; architecture: string; skills: string; experience: string; contact: string; cv: string };
   hero: {
     eyebrow: string;
     h1Pre: string;
@@ -88,9 +88,8 @@ export interface UI {
     badgeAvailable: string;
     badgeEu: string;
   };
-  projects: { eyebrow: string; heading: string; sub: string };
-  demos: { eyebrow: string; heading: string; sub: string };
-  systems: { eyebrow: string; heading: string; sub: string };
+  work: { eyebrow: string; heading: string; sub: string; videos: string; architecture: string };
+  arch: { eyebrow: string; heading: string; sub: string; also: string };
   skills: { eyebrow: string; heading: string; sub: string };
   experience: { eyebrow: string; heading: string; sub: string };
   contact: { heading: string; sub: string; cv: string };
@@ -114,9 +113,46 @@ export const links = {
   cv: './Rafael_Santis_CV_EN.pdf',
 };
 
+/**
+ * Each piece of work appears ONCE, as a self-contained case: the project card
+ * plus its own footage and its own architecture. Grouping by project (instead
+ * of by media type) is what keeps a visitor from meeting ShopGuard three times.
+ *
+ * Videos are matched by `src` and systems by key prefix — both language-independent.
+ * `projectIdx` indexes `content[lang].projects`, which is ordered identically in
+ * every language: keep the three arrays in sync when editing.
+ */
+export interface CaseDef {
+  key: string;
+  idx: string;
+  projectIdx: number;
+  demoSrcs: string[];
+  systemPrefix?: 'agents' | 'auto';
+}
+
+export const CASES: CaseDef[] = [
+  {
+    key: 'shopguard',
+    idx: '01',
+    projectIdx: 0,
+    demoSrcs: ['./pharmacy_detection_demo.mp4', './furto_vd8_processado.mp4', './furto_vd15_processado.mp4'],
+    systemPrefix: 'auto',
+  },
+  { key: 'soccer', idx: '02', projectIdx: 5, demoSrcs: ['./soccer_ai_demo.mp4'] },
+  { key: 'promeat', idx: '03', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents' },
+  { key: 'pixsafety', idx: '04', projectIdx: 1, demoSrcs: [] },
+  { key: 'pixforce', idx: '05', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'] },
+];
+
+/** Work that has no case block of its own — shown compactly at the end. */
+export const EXTRA_PROJECT_IDX = [4];
+export const EXTRA_DEMO_SRCS = ['./vehicle_counting_demo.mp4'];
+/** The full-stack blueprint is cross-cutting: it belongs to no single project. */
+export const CROSS_SYSTEM_PREFIX = 'fullstack';
+
 const en: Content = {
   ui: {
-    nav: { projects: 'Projects', demos: 'Demos', systems: 'Systems', skills: 'Skills', experience: 'Experience', contact: 'Contact', cv: 'Download CV' },
+    nav: { work: 'Work', architecture: 'Architecture', skills: 'Stack', experience: 'Experience', contact: 'Contact', cv: 'Download CV' },
     hero: {
       eyebrow: 'São Paulo, Brazil · Remote worldwide',
       h1Pre: 'I build ',
@@ -127,20 +163,18 @@ const en: Content = {
       badgeAvailable: 'Available — remote worldwide',
       badgeEu: 'Italian (EU) citizen · work-ready across the EU',
     },
-    projects: {
+    work: {
       eyebrow: 'Selected Work',
-      heading: 'Projects that run in production',
-      sub: 'Not demos. Every system below shipped to real users and ran — or still runs — under 24/7 production traffic.',
+      heading: 'Every system, end to end',
+      sub: 'Each block is one full case — what it does, what it changed, footage of it running, and the architecture underneath. All of it shipped to real users under production traffic.',
+      videos: 'See it running',
+      architecture: 'Architecture',
     },
-    demos: {
-      eyebrow: 'See It Running',
-      heading: 'Computer vision, live',
-      sub: 'Real output from shipped vision pipelines — weight estimation, retail theft detection, industrial inspection, and crowd / vehicle counting. Click any clip to play.',
-    },
-    systems: {
-      eyebrow: 'Beyond Vision',
-      heading: 'Agents, automation & full-stack',
-      sub: 'Vision is where I started — but I ship the whole product around it: LLM agents that make autonomous decisions, automation layers, and the React + FastAPI stack underneath. Real architectures, in production.',
+    arch: {
+      eyebrow: 'How I Build',
+      heading: 'The stack around every model',
+      sub: 'Vision is where I started, but the product around it is mine too: typed React over FastAPI, event-driven services, GPU inference, and the deployment and on-call that keep it alive.',
+      also: 'Also shipped',
     },
     skills: {
       eyebrow: 'Stack',
@@ -194,40 +228,13 @@ const en: Content = {
       tags: ['Python', 'FFmpeg', 'OpenCV', 'PyTorch', 'Microservices'],
     },
     {
-      title: 'Real-Time Weight Estimation',
-      role: 'Computer Vision · Promeat client project',
-      pill: { label: '98.5% accuracy', type: 'live' },
-      description:
-        'Vision-based regression over live camera streams predicting animal weight in real time, integrated into the production platform. Shipped above the client’s 95% accuracy requirement.',
-      impact: '98.5% accuracy in real time — beat the 95% client target',
-      tags: ['PyTorch', 'YOLO11', 'OpenCV', 'Real-Time Inference'],
-    },
-    {
-      title: 'Multi-Agent Decision Engine',
-      role: 'Applied AI · Promeat AI',
-      pill: { label: 'LLM Agents', type: 'live' },
-      description:
-        'LangGraph multi-agent system pulling live ERP/plant data, routing it through classification / validation / decision sub-agents, and executing or escalating to a human on confidence. Full Langfuse trace observability.',
-      impact: 'Autonomous decisions on production-critical workflows, with HITL + eval-driven iteration',
-      tags: ['LangGraph', 'AutoGen', 'Langfuse', 'RAG', 'FastAPI'],
-    },
-    {
-      title: 'Drone Crowd Density Monitoring',
-      role: 'Computer Vision · Government Contract',
-      pill: { label: 'Government', type: 'gov' },
-      description:
-        'Real-time crowd counting from aerial drone footage at large public events — detection tuned for aerial views, motion blur and variable lighting, under hard latency and reliability constraints.',
-      impact: 'Thousands counted simultaneously · margin of error under 5%',
-      tags: ['PyTorch', 'CNNs', 'OpenCV', 'Edge GPU'],
-    },
-    {
       title: 'Industrial Vision Products — Pix Force',
       role: 'Full-Stack AI Engineer · 2024',
       pill: { label: '4 products', type: 'live' },
       description:
-        'Four production AI products for large industrial clients — people counting (YOLOv8 + ByteTrack), employee performance, vehicle theft detection, dock dwell-time — plus automated pipe-threading inspection. Edge inference on Jetson / Raspberry Pi.',
-      impact: '5,000+ annotated images · 4 products shipped · on-site delivery',
-      tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'FastAPI'],
+        'Four production AI products for large industrial clients — people counting (YOLOv8 + ByteTrack), employee performance, vehicle theft detection, dock dwell-time — plus automated pipe-threading inspection and a government drone contract for real-time crowd density. Edge inference on Jetson / Raspberry Pi.',
+      impact: '5,000+ annotated images · 4 products shipped · crowd counting within 5% margin of error',
+      tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'CNNs', 'FastAPI'],
     },
     {
       title: 'Contactless Heart-Rate Monitor (rPPG)',
@@ -237,6 +244,15 @@ const en: Content = {
         'Real-time heart-rate detection from a plain webcam via remote photoplethysmography (rPPG) — OpenCV video processing and signal analysis, no sensors or wearables. Served through a Flask interface.',
       impact: 'Medical-style vitals from video alone — telemedicine & fitness use cases',
       tags: ['OpenCV', 'Signal Processing', 'Python', 'Flask'],
+    },
+    {
+      title: 'Soccer AI — Match Intelligence',
+      role: 'Computer Vision · World Cup 2026 footage',
+      pill: { label: 'Sports analytics', type: 'live' },
+      description:
+        'Tactical analysis from broadcast football footage alone: both squads, referees and the ball tracked frame by frame, each player labelled with live speed, possession computed on the fly, and every position projected onto a 2D tactical map that re-solves itself when the broadcast cuts to a new camera angle.',
+      impact: 'Players · referees · ball tracked · per-player km/h · live possession · homography-projected tactical map',
+      tags: ['YOLO', 'Multi-Object Tracking', 'Homography', 'OpenCV', 'PyTorch', 'Team Classification'],
     },
   ],
   demos: [
@@ -288,6 +304,13 @@ const en: Content = {
       project: 'Traffic Analytics',
       title: 'Vehicle counting & traffic flow',
       caption: 'Multi-zone in / out vehicle tallies and tracking on a live traffic camera.',
+    },
+    {
+      src: './soccer_ai_demo.mp4',
+      poster: './posters/soccer_ai_demo.jpg',
+      project: 'Sports Analytics',
+      title: 'Match intelligence — World Cup 2026',
+      caption: 'Both squads, referees and ball tracked from broadcast footage — speed per player, live possession, and a tactical map that survives camera cuts.',
     },
   ],
   systems: [
@@ -512,7 +535,7 @@ const en: Content = {
 
 const es: Content = {
   ui: {
-    nav: { projects: 'Proyectos', demos: 'Demos', systems: 'Sistemas', skills: 'Stack', experience: 'Experiencia', contact: 'Contacto', cv: 'Descargar CV' },
+    nav: { work: 'Trabajo', architecture: 'Arquitectura', skills: 'Stack', experience: 'Experiencia', contact: 'Contacto', cv: 'Descargar CV' },
     hero: {
       eyebrow: 'São Paulo, Brasil · Remoto para todo el mundo',
       h1Pre: 'Construyo ',
@@ -523,20 +546,18 @@ const es: Content = {
       badgeAvailable: 'Disponible — remoto en todo el mundo',
       badgeEu: 'Ciudadano italiano (UE) · autorizado a trabajar en toda la UE',
     },
-    projects: {
+    work: {
       eyebrow: 'Trabajo seleccionado',
-      heading: 'Proyectos que corren en producción',
-      sub: 'No son demos: cada sistema de esta lista llegó a usuarios reales y corrió — o sigue corriendo — bajo tráfico de producción 24/7.',
+      heading: 'Cada sistema, de punta a punta',
+      sub: 'Cada bloque es un caso completo — qué hace, qué cambió, el video de eso corriendo y la arquitectura por debajo. Todo llegó a usuarios reales, bajo tráfico de producción.',
+      videos: 'Míralo funcionando',
+      architecture: 'Arquitectura',
     },
-    demos: {
-      eyebrow: 'Míralo funcionando',
-      heading: 'Visión computacional, en vivo',
-      sub: 'Salida real de pipelines de visión en producción — estimación de peso, detección de hurtos en retail, inspección industrial y conteo de multitudes / vehículos. Haz clic en cualquier clip para reproducirlo.',
-    },
-    systems: {
-      eyebrow: 'Más allá de la visión',
-      heading: 'Agentes, automatización y full-stack',
-      sub: 'La visión fue mi punto de partida — pero construyo todo el producto a su alrededor: agentes LLM que toman decisiones autónomas, capas de automatización y el stack React + FastAPI por debajo. Arquitecturas reales, en producción.',
+    arch: {
+      eyebrow: 'Cómo lo construyo',
+      heading: 'El stack alrededor de cada modelo',
+      sub: 'La visión fue mi punto de partida, pero el producto a su alrededor también es mío: React tipado sobre FastAPI, servicios event-driven, inferencia GPU y el despliegue y on-call que lo mantienen vivo.',
+      also: 'También entregado',
     },
     skills: {
       eyebrow: 'Stack',
@@ -590,40 +611,13 @@ const es: Content = {
       tags: ['Python', 'FFmpeg', 'OpenCV', 'PyTorch', 'Microservices'],
     },
     {
-      title: 'Estimación de peso en tiempo real',
-      role: 'Visión computacional · proyecto para cliente de Promeat',
-      pill: { label: '98,5% precisión', type: 'live' },
-      description:
-        'Regresión basada en visión sobre streams de cámara en vivo que predice el peso del animal en tiempo real, integrada en la plataforma de producción. Entregada por encima del requisito de 95% del cliente.',
-      impact: '98,5% de precisión en tiempo real — superó la meta de 95% del cliente',
-      tags: ['PyTorch', 'YOLO11', 'OpenCV', 'Real-Time Inference'],
-    },
-    {
-      title: 'Motor de decisiones multiagente',
-      role: 'IA aplicada · Promeat AI',
-      pill: { label: 'Agentes LLM', type: 'live' },
-      description:
-        'Sistema multiagente en LangGraph que consume datos vivos de ERP/planta, los enruta por subagentes de clasificación / validación / decisión y ejecuta o escala a un humano según la confianza. Observabilidad total con trazas en Langfuse.',
-      impact: 'Decisiones autónomas en flujos críticos de producción, con HITL e iteración guiada por evals',
-      tags: ['LangGraph', 'AutoGen', 'Langfuse', 'RAG', 'FastAPI'],
-    },
-    {
-      title: 'Conteo de multitudes por dron',
-      role: 'Visión computacional · contrato gubernamental',
-      pill: { label: 'Gobierno', type: 'gov' },
-      description:
-        'Conteo de personas en tiempo real desde video aéreo de dron en grandes eventos públicos — detección ajustada a vistas aéreas, motion blur e iluminación variable, bajo restricciones duras de latencia y confiabilidad.',
-      impact: 'Miles contados simultáneamente · margen de error inferior al 5%',
-      tags: ['PyTorch', 'CNNs', 'OpenCV', 'Edge GPU'],
-    },
-    {
       title: 'Productos industriales de visión — Pix Force',
       role: 'Full-Stack AI Engineer · 2024',
       pill: { label: '4 productos', type: 'live' },
       description:
-        'Cuatro productos de IA en producción para grandes clientes industriales — conteo de personas (YOLOv8 + ByteTrack), desempeño de empleados, detección de robo de vehículos, tiempo de permanencia en muelles — más inspección automatizada de roscado de tubos. Inferencia edge en Jetson / Raspberry Pi.',
-      impact: '5.000+ imágenes anotadas · 4 productos entregados · delivery on-site',
-      tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'FastAPI'],
+        'Cuatro productos de IA en producción para grandes clientes industriales — conteo de personas (YOLOv8 + ByteTrack), desempeño de empleados, detección de robo de vehículos, tiempo de permanencia en muelles — más inspección automatizada de roscado de tubos y un contrato gubernamental de conteo de multitudes por dron. Inferencia edge en Jetson / Raspberry Pi.',
+      impact: '5.000+ imágenes anotadas · 4 productos entregados · conteo de multitudes con margen de error inferior al 5%',
+      tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'CNNs', 'FastAPI'],
     },
     {
       title: 'Monitor de frecuencia cardíaca sin contacto (rPPG)',
@@ -633,6 +627,15 @@ const es: Content = {
         'Detección de frecuencia cardíaca en tiempo real con una webcam común mediante fotopletismografía remota (rPPG) — procesamiento de video con OpenCV y análisis de señal, sin sensores ni wearables. Servido a través de una interfaz Flask.',
       impact: 'Signos vitales desde video — casos de uso en telemedicina y fitness',
       tags: ['OpenCV', 'Signal Processing', 'Python', 'Flask'],
+    },
+    {
+      title: 'Soccer AI — Match Intelligence',
+      role: 'Visión computacional · imágenes del Mundial 2026',
+      pill: { label: 'Analítica deportiva', type: 'live' },
+      description:
+        'Análisis táctico solo a partir de la transmisión de un partido: ambos equipos, árbitros y el balón rastreados cuadro a cuadro, cada jugador con su velocidad en vivo, posesión calculada al vuelo y cada posición proyectada sobre un mapa táctico 2D que se recalcula cuando la transmisión cambia de cámara.',
+      impact: 'Jugadores · árbitros · balón rastreados · km/h por jugador · posesión en vivo · mapa táctico por homografía',
+      tags: ['YOLO', 'Multi-Object Tracking', 'Homografía', 'OpenCV', 'PyTorch', 'Clasificación de equipos'],
     },
   ],
   demos: [
@@ -684,6 +687,13 @@ const es: Content = {
       project: 'Analítica de tráfico',
       title: 'Conteo de vehículos y flujo de tráfico',
       caption: 'Conteos de entrada / salida multizona y tracking sobre una cámara de tráfico en vivo.',
+    },
+    {
+      src: './soccer_ai_demo.mp4',
+      poster: './posters/soccer_ai_demo.jpg',
+      project: 'Analítica deportiva',
+      title: 'Match intelligence — Mundial 2026',
+      caption: 'Ambos equipos, árbitros y balón rastreados desde la transmisión — velocidad por jugador, posesión en vivo y un mapa táctico que sobrevive a los cortes de cámara.',
     },
   ],
   systems: [
@@ -908,7 +918,7 @@ const es: Content = {
 
 const pt: Content = {
   ui: {
-    nav: { projects: 'Projetos', demos: 'Demos', systems: 'Sistemas', skills: 'Stack', experience: 'Experiência', contact: 'Contato', cv: 'Baixar CV' },
+    nav: { work: 'Trabalho', architecture: 'Arquitetura', skills: 'Stack', experience: 'Experiência', contact: 'Contato', cv: 'Baixar CV' },
     hero: {
       eyebrow: 'São Paulo, Brasil · Remoto para o mundo todo',
       h1Pre: 'Eu construo ',
@@ -919,20 +929,18 @@ const pt: Content = {
       badgeAvailable: 'Disponível — remoto no mundo todo',
       badgeEu: 'Cidadão italiano (UE) · autorizado a trabalhar em toda a UE',
     },
-    projects: {
+    work: {
       eyebrow: 'Trabalhos selecionados',
-      heading: 'Projetos que rodam em produção',
-      sub: 'Não são demos: cada sistema desta lista chegou a usuários reais e rodou — ou ainda roda — sob tráfego de produção 24/7.',
+      heading: 'Cada sistema, de ponta a ponta',
+      sub: 'Cada bloco é um caso completo — o que faz, o que mudou, o vídeo dele rodando e a arquitetura por baixo. Tudo chegou a usuários reais, sob tráfego de produção.',
+      videos: 'Veja funcionando',
+      architecture: 'Arquitetura',
     },
-    demos: {
-      eyebrow: 'Veja funcionando',
-      heading: 'Visão computacional, ao vivo',
-      sub: 'Saída real de pipelines de visão em produção — estimativa de peso, detecção de furtos no varejo, inspeção industrial e contagem de multidões / veículos. Clique em qualquer clipe para reproduzir.',
-    },
-    systems: {
-      eyebrow: 'Além da visão',
-      heading: 'Agentes, automação e full-stack',
-      sub: 'A visão foi meu ponto de partida — mas eu construo o produto inteiro em volta dela: agentes LLM que tomam decisões autônomas, camadas de automação e a stack React + FastAPI por baixo. Arquiteturas reais, em produção.',
+    arch: {
+      eyebrow: 'Como eu construo',
+      heading: 'A stack em volta de cada modelo',
+      sub: 'A visão foi meu ponto de partida, mas o produto em volta dela também é meu: React tipado sobre FastAPI, serviços event-driven, inferência em GPU e o deploy e o on-call que mantêm tudo de pé.',
+      also: 'Também entregue',
     },
     skills: {
       eyebrow: 'Stack',
@@ -986,40 +994,13 @@ const pt: Content = {
       tags: ['Python', 'FFmpeg', 'OpenCV', 'PyTorch', 'Microservices'],
     },
     {
-      title: 'Estimativa de Peso em Tempo Real',
-      role: 'Visão computacional · projeto para cliente da Promeat',
-      pill: { label: '98,5% acurácia', type: 'live' },
-      description:
-        'Regressão baseada em visão sobre streams de câmera ao vivo prevendo o peso do animal em tempo real, integrada à plataforma de produção. Entregue acima do requisito de 95% do cliente.',
-      impact: '98,5% de acurácia em tempo real — superou a meta de 95% do cliente',
-      tags: ['PyTorch', 'YOLO11', 'OpenCV', 'Real-Time Inference'],
-    },
-    {
-      title: 'Motor de Decisões Multiagente',
-      role: 'IA aplicada · Promeat AI',
-      pill: { label: 'Agentes LLM', type: 'live' },
-      description:
-        'Sistema multiagente em LangGraph que consome dados vivos de ERP/planta, roteia por subagentes de classificação / validação / decisão e executa ou escala para um humano conforme a confiança. Observabilidade total com traces no Langfuse.',
-      impact: 'Decisões autônomas em fluxos críticos de produção, com HITL e iteração guiada por evals',
-      tags: ['LangGraph', 'AutoGen', 'Langfuse', 'RAG', 'FastAPI'],
-    },
-    {
-      title: 'Contagem de Multidões por Drone',
-      role: 'Visão computacional · Contrato governamental',
-      pill: { label: 'Governo', type: 'gov' },
-      description:
-        'Contagem de pessoas em tempo real a partir de vídeo aéreo de drone em grandes eventos públicos — detecção ajustada para vistas aéreas, motion blur e iluminação variável, sob restrições duras de latência e confiabilidade.',
-      impact: 'Milhares contados simultaneamente · margem de erro inferior a 5%',
-      tags: ['PyTorch', 'CNNs', 'OpenCV', 'Edge GPU'],
-    },
-    {
       title: 'Produtos Industriais de Visão — Pix Force',
       role: 'Full-Stack AI Engineer · 2024',
       pill: { label: '4 produtos', type: 'live' },
       description:
-        'Quatro produtos de IA em produção para grandes clientes industriais — contagem de pessoas (YOLOv8 + ByteTrack), performance de funcionários, detecção de furto de veículos, tempo de permanência em docas — além de inspeção automatizada de rosqueamento de tubos. Inferência edge em Jetson / Raspberry Pi.',
-      impact: '5.000+ imagens anotadas · 4 produtos entregues · delivery on-site',
-      tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'FastAPI'],
+        'Quatro produtos de IA em produção para grandes clientes industriais — contagem de pessoas (YOLOv8 + ByteTrack), performance de funcionários, detecção de furto de veículos, tempo de permanência em docas — além de inspeção automatizada de rosqueamento de tubos e um contrato governamental de contagem de multidões por drone. Inferência edge em Jetson / Raspberry Pi.',
+      impact: '5.000+ imagens anotadas · 4 produtos entregues · contagem de multidões com margem de erro inferior a 5%',
+      tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'CNNs', 'FastAPI'],
     },
     {
       title: 'Monitor de Frequência Cardíaca sem Contato (rPPG)',
@@ -1029,6 +1010,15 @@ const pt: Content = {
         'Detecção de frequência cardíaca em tempo real com uma webcam comum via fotopletismografia remota (rPPG) — processamento de vídeo com OpenCV e análise de sinal, sem sensores ou wearables. Servido por uma interface Flask.',
       impact: 'Sinais vitais a partir de vídeo — casos de uso em telemedicina e fitness',
       tags: ['OpenCV', 'Signal Processing', 'Python', 'Flask'],
+    },
+    {
+      title: 'Soccer AI — Match Intelligence',
+      role: 'Visão computacional · imagens da Copa do Mundo 2026',
+      pill: { label: 'Analytics esportivo', type: 'live' },
+      description:
+        'Análise tática só a partir da transmissão do jogo: os dois times, os árbitros e a bola rastreados quadro a quadro, cada jogador com sua velocidade ao vivo, posse de bola calculada em tempo real e cada posição projetada num mapa tático 2D que se recalcula quando a transmissão troca de câmera.',
+      impact: 'Jogadores · árbitros · bola rastreados · km/h por jogador · posse ao vivo · mapa tático por homografia',
+      tags: ['YOLO', 'Multi-Object Tracking', 'Homografia', 'OpenCV', 'PyTorch', 'Classificação de times'],
     },
   ],
   demos: [
@@ -1080,6 +1070,13 @@ const pt: Content = {
       project: 'Analítica de tráfego',
       title: 'Contagem de veículos e fluxo de tráfego',
       caption: 'Contagens de entrada / saída multizona e tracking em uma câmera de tráfego ao vivo.',
+    },
+    {
+      src: './soccer_ai_demo.mp4',
+      poster: './posters/soccer_ai_demo.jpg',
+      project: 'Analytics esportivo',
+      title: 'Match intelligence — Copa do Mundo 2026',
+      caption: 'Os dois times, árbitros e bola rastreados a partir da transmissão — velocidade por jogador, posse ao vivo e um mapa tático que sobrevive aos cortes de câmera.',
     },
   ],
   systems: [

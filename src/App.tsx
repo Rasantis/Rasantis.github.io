@@ -3,9 +3,8 @@ import { LanguageProvider } from './i18n';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Stats from './components/Stats';
-import Projects from './components/Projects';
-import Demos from './components/Demos';
-import Systems from './components/Systems';
+import Work from './components/Work';
+import Architecture from './components/Architecture';
 import Skills from './components/Skills';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
@@ -25,9 +24,8 @@ export default function App() {
       <div className="wrap">
         <Hero />
         <Stats />
-        <Projects />
-        <Demos />
-        <Systems />
+        <Work />
+        <Architecture />
         <Skills />
         <Experience />
         <Contact />
