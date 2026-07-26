@@ -25,40 +25,20 @@ export interface SkillGroup {
   tags: string[];
 }
 
-export type FlowAccent = 'in' | 'agent' | 'exec' | 'ui' | 'store';
-
-/** One lane of the architecture blueprint — a real pipeline stage with its components. */
-export interface FlowStage {
-  idx: string;
-  name: string;
-  chips: string[];
-  note: string;
-  accent: FlowAccent;
-}
-
-/** The decision fork: where the system chooses between acting alone and asking a human. */
-export interface FlowGate {
-  label: string;
-  auto: string;
-  human: string;
-  caption: string;
-}
-
-/** Concerns that span every stage (observability, state, runtime). */
-export interface CrossLayer {
-  label: string;
-  items: string[];
-}
-
+/**
+ * Architecture diagrams are rendered with mingrammer/diagrams + Graphviz
+ * (see tools/build_diagrams.py) and exported to public/diagrams — real vendor
+ * icons, not CSS boxes. The diagrams themselves stay in English, as engineering
+ * documentation normally does; the caption around them is translated.
+ */
 export interface SystemFlow {
   key: string;
   badge: string;
   badgeType: 'agents' | 'auto' | 'fullstack';
   title: string;
   desc: string;
-  stages: FlowStage[];
-  gate?: FlowGate;
-  layers: CrossLayer[];
+  image: string;
+  alt: string;
   footer: string;
   tags: string[];
 }
@@ -88,7 +68,7 @@ export interface UI {
     badgeAvailable: string;
     badgeEu: string;
   };
-  work: { eyebrow: string; heading: string; sub: string; videos: string; architecture: string };
+  work: { eyebrow: string; heading: string; sub: string; videos: string; architecture: string; zoom: string };
   arch: { eyebrow: string; heading: string; sub: string; also: string };
   skills: { eyebrow: string; heading: string; sub: string };
   experience: { eyebrow: string; heading: string; sub: string };
@@ -169,6 +149,7 @@ const en: Content = {
       sub: 'Each block is one full case — what it does, what it changed, footage of it running, and the architecture underneath. All of it shipped to real users under production traffic.',
       videos: 'See it running',
       architecture: 'Architecture',
+      zoom: 'open full size',
     },
     arch: {
       eyebrow: 'How I Build',
@@ -320,46 +301,8 @@ const en: Content = {
       badgeType: 'agents',
       title: 'Multi-Agent Decision Engine — Promeat AI',
       desc: 'Agents that read the plant floor and act on it. Live ERP and operational data flows into a LangGraph state machine, gets classified, validated and decided by specialized agents, and either writes back autonomously or lands in a human queue — every step traced.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Sources',
-          chips: ['Client ERP', 'Plant operational systems', 'Vision event stream'],
-          note: 'high-frequency events, no manual entry',
-          accent: 'in',
-        },
-        {
-          idx: '02',
-          name: 'Ingest',
-          chips: ['FastAPI endpoints', 'Event-driven microservices', 'Schema normalization'],
-          note: 'one contract for heterogeneous sources',
-          accent: 'in',
-        },
-        {
-          idx: '03',
-          name: 'Agent graph',
-          chips: ['LangGraph orchestration', 'Classification agent', 'Validation agent', 'Decision agent', 'RAG over plant context'],
-          note: 'AutoGen multi-agent · prompt + eval iteration',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Act',
-          chips: ['Write-back to client systems', 'Operator notification', 'Audit record'],
-          note: 'autonomous when the agents agree',
-          accent: 'exec',
-        },
-      ],
-      gate: {
-        label: 'confidence gate',
-        auto: 'execute autonomously',
-        human: 'human-in-the-loop review',
-        caption: 'Below threshold, the decision goes to a person instead of to production.',
-      },
-      layers: [
-        { label: 'Observability', items: ['Langfuse traces per node', 'multi-step agent state', 'eval pipelines on regressions'] },
-        { label: 'Serving & state', items: ['FastAPI services', 'PostgreSQL', 'Docker · GCP'] },
-      ],
+      image: './diagrams/arch_promeat.png',
+      alt: 'Architecture: client ERP, plant systems and vision events feed a FastAPI event API and an event bus; a LangGraph agent graph runs classification, validation and decision agents with RAG retrieval over PostgreSQL; confident decisions write back to client systems automatically, low-confidence ones go to a plant operator; Langfuse traces and eval pipelines observe every node.',
       footer: '// Runs under JBS & Marfrig plant traffic — 25,000+ animals counted daily, zero manual fallback',
       tags: ['LangGraph', 'AutoGen', 'RAG', 'Langfuse', 'FastAPI', 'PostgreSQL'],
     },
@@ -369,46 +312,8 @@ const en: Content = {
       badgeType: 'auto',
       title: 'LLM Automation Layer — ShopGuard AI',
       desc: 'The language layer on top of real-time vision. Edge detections arrive as events, get assembled into context, and come out as an alert a store operator can act on in seconds — or as a summary that can wait.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Edge',
-          chips: ['YOLO11 + TensorRT', 'GStreamer multi-camera', 'NVIDIA edge hardware'],
-          note: 'sub-second latency, per store',
-          accent: 'in',
-        },
-        {
-          idx: '02',
-          name: 'Event layer',
-          chips: ['Detection events → cloud', 'FastAPI ingest', 'Hybrid GCP / Oracle Cloud'],
-          note: '24/7 production traffic',
-          accent: 'in',
-        },
-        {
-          idx: '03',
-          name: 'Language layer',
-          chips: ['Context assembly', 'LangChain + AutoGen', 'GPT-4 alert & summary'],
-          note: 'what happened, where, how sure',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Delivery',
-          chips: ['Escalation workflow', 'React operator dashboard', 'Client integrations'],
-          note: 'operator intervenes before the loss',
-          accent: 'ui',
-        },
-      ],
-      gate: {
-        label: 'severity routing',
-        auto: 'escalate now',
-        human: 'batch into summary',
-        caption: 'Not every detection deserves an interruption — routing decides which ones do.',
-      },
-      layers: [
-        { label: 'Runtime', items: ['150 stores · 4,500+ camera streams', 'hybrid edge/cloud', 'remote debugging'] },
-        { label: 'Product', items: ['FastAPI services', 'React dashboards', 'model retraining loop'] },
-      ],
+      image: './diagrams/arch_shopguard.png',
+      alt: 'Architecture: per-store RTSP cameras feed YOLO11 + TensorRT with GStreamer on NVIDIA edge hardware at sub-second latency; detection events reach a FastAPI ingest on hybrid GCP and Oracle Cloud, with clips stored for a retraining loop; a LangChain and AutoGen language layer assembles context and GPT-4 writes the alert and summary; severity routing either escalates immediately or batches into a digest for the React operator dashboard.',
       footer: '// 90% fewer completed thefts in production — built and operated by one engineer',
       tags: ['LangChain', 'AutoGen', 'GPT-4', 'YOLO11', 'TensorRT', 'FastAPI'],
     },
@@ -418,39 +323,8 @@ const en: Content = {
       badgeType: 'fullstack',
       title: 'Full-Stack Product Architecture',
       desc: 'The stack I build around every model. Typed React dashboards over FastAPI, event-driven services that scale on their own, GPU inference where it belongs, and the deployment and on-call that keep it alive — one engineer, no handoffs.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Client',
-          chips: ['React + TypeScript', 'Operator dashboards', 'Live WebSocket updates'],
-          note: 'built for people watching a floor, not a report',
-          accent: 'ui',
-        },
-        {
-          idx: '02',
-          name: 'API',
-          chips: ['FastAPI (REST)', 'WebSocket channels', 'Auth & validation'],
-          note: 'typed contracts between every layer',
-          accent: 'agent',
-        },
-        {
-          idx: '03',
-          name: 'Services',
-          chips: ['Event-driven microservices', 'GPU inference service', 'Automation workers'],
-          note: 'modular — each scales on its own',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Data & platform',
-          chips: ['PostgreSQL / Supabase', 'Media & artifact storage', 'Docker · CI/CD', 'GCP · AWS · Oracle Cloud'],
-          note: 'deploy, observe, stay on call',
-          accent: 'store',
-        },
-      ],
-      layers: [
-        { label: 'Cross-cutting', items: ['logging & observability', 'CI/CD on every merge', 'cost and latency tuning'] },
-      ],
+      image: './diagrams/arch_fullstack.png',
+      alt: 'Architecture: operators and clients use React and TypeScript dashboards; a FastAPI layer exposes REST and WebSocket with typed contracts; event-driven services handle ingestion and processing, GPU inference and automation workers; data lives in PostgreSQL/Supabase plus media and artifact storage; Docker and CI/CD deploy it to GCP and Oracle Cloud.',
       footer: '// Same architecture shipped at ShopGuard, Promeat and Pix Force — from first commit to production support',
       tags: ['React', 'TypeScript', 'FastAPI', 'WebSockets', 'Docker', 'PostgreSQL', 'GCP'],
     },
@@ -552,6 +426,7 @@ const es: Content = {
       sub: 'Cada bloque es un caso completo — qué hace, qué cambió, el video de eso corriendo y la arquitectura por debajo. Todo llegó a usuarios reales, bajo tráfico de producción.',
       videos: 'Míralo funcionando',
       architecture: 'Arquitectura',
+      zoom: 'abrir en tamaño real',
     },
     arch: {
       eyebrow: 'Cómo lo construyo',
@@ -703,46 +578,8 @@ const es: Content = {
       badgeType: 'agents',
       title: 'Motor de Decisiones Multiagente — Promeat AI',
       desc: 'Agentes que leen la planta y actúan sobre ella. Los datos vivos del ERP y de operación entran en una máquina de estados LangGraph, pasan por agentes de clasificación, validación y decisión, y se escriben de vuelta solos o caen en una cola humana — con traza en cada paso.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Fuentes',
-          chips: ['ERP del cliente', 'Sistemas de planta', 'Eventos de visión'],
-          note: 'eventos de alta frecuencia, sin carga manual',
-          accent: 'in',
-        },
-        {
-          idx: '02',
-          name: 'Ingesta',
-          chips: ['Endpoints FastAPI', 'Microservicios event-driven', 'Normalización de esquema'],
-          note: 'un contrato para fuentes heterogéneas',
-          accent: 'in',
-        },
-        {
-          idx: '03',
-          name: 'Grafo de agentes',
-          chips: ['Orquestación LangGraph', 'Agente de clasificación', 'Agente de validación', 'Agente de decisión', 'RAG sobre contexto de planta'],
-          note: 'multiagente AutoGen · iteración de prompts y evals',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Actuar',
-          chips: ['Escritura en sistemas del cliente', 'Notificación al operador', 'Registro de auditoría'],
-          note: 'autónomo cuando los agentes coinciden',
-          accent: 'exec',
-        },
-      ],
-      gate: {
-        label: 'umbral de confianza',
-        auto: 'ejecutar de forma autónoma',
-        human: 'revisión human-in-the-loop',
-        caption: 'Por debajo del umbral, la decisión va a una persona en vez de a producción.',
-      },
-      layers: [
-        { label: 'Observabilidad', items: ['trazas Langfuse por nodo', 'estado multi-paso del agente', 'evals ante regresiones'] },
-        { label: 'Serving y estado', items: ['servicios FastAPI', 'PostgreSQL', 'Docker · GCP'] },
-      ],
+      image: './diagrams/arch_promeat.png',
+      alt: 'Arquitectura: el ERP del cliente, los sistemas de planta y los eventos de visión alimentan una API de eventos en FastAPI y un event bus; un grafo de agentes LangGraph ejecuta clasificación, validación y decisión con recuperación RAG sobre PostgreSQL; las decisiones con confianza alta se escriben solas en los sistemas del cliente y las de baja confianza van a un operador de planta; trazas Langfuse y pipelines de evals observan cada nodo.',
       footer: '// Corre bajo el tráfico de plantas de JBS y Marfrig — 25.000+ animales contados al día, sin fallback manual',
       tags: ['LangGraph', 'AutoGen', 'RAG', 'Langfuse', 'FastAPI', 'PostgreSQL'],
     },
@@ -752,46 +589,8 @@ const es: Content = {
       badgeType: 'auto',
       title: 'Capa de Automatización LLM — ShopGuard AI',
       desc: 'La capa de lenguaje sobre la visión en tiempo real. Las detecciones del edge llegan como eventos, se arman en contexto y salen como una alerta sobre la que un operador puede actuar en segundos — o como un resumen que puede esperar.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Edge',
-          chips: ['YOLO11 + TensorRT', 'GStreamer multi-cámara', 'Hardware edge NVIDIA'],
-          note: 'latencia sub-segundo, por tienda',
-          accent: 'in',
-        },
-        {
-          idx: '02',
-          name: 'Capa de eventos',
-          chips: ['Detecciones → nube', 'Ingesta FastAPI', 'Híbrido GCP / Oracle Cloud'],
-          note: 'tráfico de producción 24/7',
-          accent: 'in',
-        },
-        {
-          idx: '03',
-          name: 'Capa de lenguaje',
-          chips: ['Armado de contexto', 'LangChain + AutoGen', 'Alerta y resumen GPT-4'],
-          note: 'qué pasó, dónde, con cuánta certeza',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Entrega',
-          chips: ['Flujo de escalamiento', 'Dashboard React de operador', 'Integraciones con el cliente'],
-          note: 'el operador interviene antes de la pérdida',
-          accent: 'ui',
-        },
-      ],
-      gate: {
-        label: 'enrutamiento por severidad',
-        auto: 'escalar ahora',
-        human: 'agrupar en resumen',
-        caption: 'No toda detección merece una interrupción — el enrutamiento decide cuáles sí.',
-      },
-      layers: [
-        { label: 'Runtime', items: ['150 tiendas · 4.500+ streams', 'edge/nube híbrido', 'depuración remota'] },
-        { label: 'Producto', items: ['servicios FastAPI', 'dashboards React', 'ciclo de reentrenamiento'] },
-      ],
+      image: './diagrams/arch_shopguard.png',
+      alt: 'Arquitectura: cámaras RTSP por tienda alimentan YOLO11 + TensorRT con GStreamer en hardware edge NVIDIA con latencia sub-segundo; las detecciones llegan a una ingesta FastAPI sobre GCP y Oracle Cloud híbridos, guardando clips para el ciclo de reentrenamiento; una capa de lenguaje con LangChain y AutoGen arma el contexto y GPT-4 escribe la alerta y el resumen; el enrutamiento por severidad escala de inmediato o agrupa en un resumen para el dashboard React del operador.',
       footer: '// 90% menos hurtos consumados en producción — construido y operado por un solo ingeniero',
       tags: ['LangChain', 'AutoGen', 'GPT-4', 'YOLO11', 'TensorRT', 'FastAPI'],
     },
@@ -801,39 +600,8 @@ const es: Content = {
       badgeType: 'fullstack',
       title: 'Arquitectura de Producto Full-Stack',
       desc: 'El stack que construyo alrededor de cada modelo. Dashboards React tipados sobre FastAPI, servicios event-driven que escalan solos, inferencia GPU donde corresponde, y el despliegue y on-call que lo mantienen vivo — un ingeniero, sin handoffs.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Cliente',
-          chips: ['React + TypeScript', 'Dashboards de operador', 'Actualizaciones WebSocket'],
-          note: 'para gente que mira una operación, no un reporte',
-          accent: 'ui',
-        },
-        {
-          idx: '02',
-          name: 'API',
-          chips: ['FastAPI (REST)', 'Canales WebSocket', 'Auth y validación'],
-          note: 'contratos tipados entre cada capa',
-          accent: 'agent',
-        },
-        {
-          idx: '03',
-          name: 'Servicios',
-          chips: ['Microservicios event-driven', 'Servicio de inferencia GPU', 'Workers de automatización'],
-          note: 'modular — cada uno escala por su cuenta',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Datos y plataforma',
-          chips: ['PostgreSQL / Supabase', 'Almacenamiento de media', 'Docker · CI/CD', 'GCP · AWS · Oracle Cloud'],
-          note: 'desplegar, observar, seguir de guardia',
-          accent: 'store',
-        },
-      ],
-      layers: [
-        { label: 'Transversal', items: ['logging y observabilidad', 'CI/CD en cada merge', 'ajuste de costo y latencia'] },
-      ],
+      image: './diagrams/arch_fullstack.png',
+      alt: 'Arquitectura: operadores y clientes usan dashboards en React y TypeScript; una capa FastAPI expone REST y WebSocket con contratos tipados; servicios event-driven manejan ingesta y procesamiento, inferencia GPU y workers de automatización; los datos viven en PostgreSQL/Supabase más almacenamiento de media y artefactos; Docker y CI/CD lo despliegan en GCP y Oracle Cloud.',
       footer: '// La misma arquitectura entregada en ShopGuard, Promeat y Pix Force — del primer commit al soporte en producción',
       tags: ['React', 'TypeScript', 'FastAPI', 'WebSockets', 'Docker', 'PostgreSQL', 'GCP'],
     },
@@ -935,6 +703,7 @@ const pt: Content = {
       sub: 'Cada bloco é um caso completo — o que faz, o que mudou, o vídeo dele rodando e a arquitetura por baixo. Tudo chegou a usuários reais, sob tráfego de produção.',
       videos: 'Veja funcionando',
       architecture: 'Arquitetura',
+      zoom: 'abrir em tamanho real',
     },
     arch: {
       eyebrow: 'Como eu construo',
@@ -1086,46 +855,8 @@ const pt: Content = {
       badgeType: 'agents',
       title: 'Motor de Decisões Multiagente — Promeat AI',
       desc: 'Agentes que leem o chão de fábrica e agem sobre ele. Dados vivos do ERP e da operação entram numa máquina de estados LangGraph, passam por agentes de classificação, validação e decisão, e voltam escritos sozinhos ou caem numa fila humana — com trace em cada passo.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Fontes',
-          chips: ['ERP do cliente', 'Sistemas da planta', 'Eventos de visão'],
-          note: 'eventos de alta frequência, sem digitação manual',
-          accent: 'in',
-        },
-        {
-          idx: '02',
-          name: 'Ingestão',
-          chips: ['Endpoints FastAPI', 'Microsserviços event-driven', 'Normalização de schema'],
-          note: 'um contrato para fontes heterogêneas',
-          accent: 'in',
-        },
-        {
-          idx: '03',
-          name: 'Grafo de agentes',
-          chips: ['Orquestração LangGraph', 'Agente de classificação', 'Agente de validação', 'Agente de decisão', 'RAG sobre contexto da planta'],
-          note: 'multiagente AutoGen · iteração de prompts e evals',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Agir',
-          chips: ['Escrita nos sistemas do cliente', 'Notificação ao operador', 'Registro de auditoria'],
-          note: 'autônomo quando os agentes concordam',
-          accent: 'exec',
-        },
-      ],
-      gate: {
-        label: 'limiar de confiança',
-        auto: 'executar de forma autônoma',
-        human: 'revisão human-in-the-loop',
-        caption: 'Abaixo do limiar, a decisão vai para uma pessoa em vez de ir para produção.',
-      },
-      layers: [
-        { label: 'Observabilidade', items: ['traces Langfuse por nó', 'estado multi-passo do agente', 'evals em regressões'] },
-        { label: 'Serving e estado', items: ['serviços FastAPI', 'PostgreSQL', 'Docker · GCP'] },
-      ],
+      image: './diagrams/arch_promeat.png',
+      alt: 'Arquitetura: ERP do cliente, sistemas da planta e eventos de visão alimentam uma API de eventos em FastAPI e um event bus; um grafo de agentes LangGraph roda classificação, validação e decisão com recuperação RAG sobre PostgreSQL; decisões com confiança alta são escritas sozinhas nos sistemas do cliente e as de baixa confiança vão para um operador da planta; traces Langfuse e pipelines de eval observam cada nó.',
       footer: '// Roda sob o tráfego das plantas da JBS e Marfrig — 25.000+ animais contados por dia, sem fallback manual',
       tags: ['LangGraph', 'AutoGen', 'RAG', 'Langfuse', 'FastAPI', 'PostgreSQL'],
     },
@@ -1135,46 +866,8 @@ const pt: Content = {
       badgeType: 'auto',
       title: 'Camada de Automação LLM — ShopGuard AI',
       desc: 'A camada de linguagem sobre a visão em tempo real. Detecções do edge chegam como eventos, são montadas em contexto e saem como um alerta sobre o qual o operador age em segundos — ou como um resumo que pode esperar.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Edge',
-          chips: ['YOLO11 + TensorRT', 'GStreamer multi-câmera', 'Hardware edge NVIDIA'],
-          note: 'latência sub-segundo, por loja',
-          accent: 'in',
-        },
-        {
-          idx: '02',
-          name: 'Camada de eventos',
-          chips: ['Detecções → nuvem', 'Ingestão FastAPI', 'Híbrido GCP / Oracle Cloud'],
-          note: 'tráfego de produção 24/7',
-          accent: 'in',
-        },
-        {
-          idx: '03',
-          name: 'Camada de linguagem',
-          chips: ['Montagem de contexto', 'LangChain + AutoGen', 'Alerta e resumo GPT-4'],
-          note: 'o que aconteceu, onde, com que certeza',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Entrega',
-          chips: ['Fluxo de escalonamento', 'Dashboard React do operador', 'Integrações com o cliente'],
-          note: 'o operador intervém antes da perda',
-          accent: 'ui',
-        },
-      ],
-      gate: {
-        label: 'roteamento por severidade',
-        auto: 'escalar agora',
-        human: 'agrupar em resumo',
-        caption: 'Nem toda detecção merece uma interrupção — o roteamento decide quais merecem.',
-      },
-      layers: [
-        { label: 'Runtime', items: ['150 lojas · 4.500+ streams', 'edge/nuvem híbrido', 'debug remoto'] },
-        { label: 'Produto', items: ['serviços FastAPI', 'dashboards React', 'ciclo de re-treino'] },
-      ],
+      image: './diagrams/arch_shopguard.png',
+      alt: 'Arquitetura: câmeras RTSP por loja alimentam YOLO11 + TensorRT com GStreamer em hardware edge NVIDIA com latência sub-segundo; as detecções chegam a uma ingestão FastAPI sobre GCP e Oracle Cloud híbridos, guardando clipes para o ciclo de re-treino; uma camada de linguagem com LangChain e AutoGen monta o contexto e o GPT-4 escreve o alerta e o resumo; o roteamento por severidade escala na hora ou agrupa num resumo para o dashboard React do operador.',
       footer: '// 90% menos furtos consumados em produção — construído e operado por um engenheiro só',
       tags: ['LangChain', 'AutoGen', 'GPT-4', 'YOLO11', 'TensorRT', 'FastAPI'],
     },
@@ -1184,39 +877,8 @@ const pt: Content = {
       badgeType: 'fullstack',
       title: 'Arquitetura de Produto Full-Stack',
       desc: 'A stack que eu construo em volta de cada modelo. Dashboards React tipados sobre FastAPI, serviços event-driven que escalam sozinhos, inferência em GPU onde é devido, e o deploy e o on-call que mantêm tudo de pé — um engenheiro, sem handoffs.',
-      stages: [
-        {
-          idx: '01',
-          name: 'Cliente',
-          chips: ['React + TypeScript', 'Dashboards de operador', 'Atualizações via WebSocket'],
-          note: 'para quem olha uma operação, não um relatório',
-          accent: 'ui',
-        },
-        {
-          idx: '02',
-          name: 'API',
-          chips: ['FastAPI (REST)', 'Canais WebSocket', 'Auth e validação'],
-          note: 'contratos tipados entre cada camada',
-          accent: 'agent',
-        },
-        {
-          idx: '03',
-          name: 'Serviços',
-          chips: ['Microsserviços event-driven', 'Serviço de inferência GPU', 'Workers de automação'],
-          note: 'modular — cada um escala por conta própria',
-          accent: 'agent',
-        },
-        {
-          idx: '04',
-          name: 'Dados e plataforma',
-          chips: ['PostgreSQL / Supabase', 'Armazenamento de mídia', 'Docker · CI/CD', 'GCP · AWS · Oracle Cloud'],
-          note: 'subir, observar, ficar de plantão',
-          accent: 'store',
-        },
-      ],
-      layers: [
-        { label: 'Transversal', items: ['logging e observabilidade', 'CI/CD a cada merge', 'ajuste de custo e latência'] },
-      ],
+      image: './diagrams/arch_fullstack.png',
+      alt: 'Arquitetura: operadores e clientes usam dashboards em React e TypeScript; uma camada FastAPI expõe REST e WebSocket com contratos tipados; serviços event-driven cuidam de ingestão e processamento, inferência em GPU e workers de automação; os dados ficam em PostgreSQL/Supabase mais armazenamento de mídia e artefatos; Docker e CI/CD sobem tudo em GCP e Oracle Cloud.',
       footer: '// A mesma arquitetura entregue na ShopGuard, Promeat e Pix Force — do primeiro commit ao suporte em produção',
       tags: ['React', 'TypeScript', 'FastAPI', 'WebSockets', 'Docker', 'PostgreSQL', 'GCP'],
     },

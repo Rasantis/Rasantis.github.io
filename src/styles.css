@@ -956,301 +956,41 @@ section {
     border: 1px solid rgba(120, 170, 255, 0.35);
 }
 
-/* Blueprint: a data bus feeding numbered stage lanes, a decision gate, and
-   cross-cutting rails underneath — reads like a rack diagram, not a flowchart. */
-.blueprint {
-    margin: 4px 0 2px;
-    border: 1px solid rgba(35, 43, 54, 0.85);
+/* ARCHITECTURE — real diagrams (mingrammer/diagrams + Graphviz), not CSS boxes */
+.arch-figure {
+    display: block;
+    border: 1px solid var(--card-border);
     border-radius: 10px;
-    background:
-        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px) 0 0 / 100% 26px,
-        rgba(9, 11, 15, 0.55);
-    padding: 0 0 14px;
     overflow: hidden;
+    background: #0f1319;
+    transition: border-color .2s;
 }
 
-.bp-bus {
-    position: relative;
-    height: 3px;
-    margin: 0 0 18px;
-    background: linear-gradient(90deg, transparent, rgba(255, 178, 36, 0.22) 8%, rgba(255, 178, 36, 0.22) 92%, transparent);
+.arch-figure:hover {
+    border-color: rgba(255, 178, 36, 0.45);
 }
 
-.bp-pulse {
-    position: absolute;
-    top: -2px;
-    left: 0;
-    width: 54px;
-    height: 7px;
-    border-radius: 4px;
-    background: linear-gradient(90deg, transparent, var(--detect), transparent);
-    opacity: 0.75;
-    animation: busrun 7s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+.arch-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
-/* travels the width of its own rail — never the viewport, so it can't overflow */
-@keyframes busrun {
-    0% { left: -60px; opacity: 0; }
-    8% { opacity: 0.75; }
-    92% { opacity: 0.75; }
-    100% { left: 100%; opacity: 0; }
-}
-
-.bp-lanes {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1px;
-    background: rgba(35, 43, 54, 0.7);
-    border-top: 1px solid rgba(35, 43, 54, 0.7);
-    border-bottom: 1px solid rgba(35, 43, 54, 0.7);
-}
-
-.lane {
-    background: var(--card);
-    padding: 14px 15px 13px;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    min-width: 0;
-}
-
-.lane-head {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    padding-bottom: 8px;
-    border-bottom: 1px dashed rgba(35, 43, 54, 0.9);
-}
-
-.lane-idx {
+.arch-zoom {
     font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.06em;
     color: var(--text-faint);
-    letter-spacing: 0.08em;
+    text-align: right;
+    margin-top: 7px;
 }
 
-.lane-name {
-    font-family: var(--display);
-    font-size: 12.5px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--text);
-}
-
-.lane-chips {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin: 0;
-    padding: 0;
-}
-
-.lane-chip {
-    position: relative;
-    font-size: 12.5px;
-    line-height: 1.35;
-    color: var(--text-dim);
-    padding: 6px 9px 6px 20px;
-    border: 1px solid rgba(35, 43, 54, 0.9);
-    border-radius: 6px;
-    background: rgba(16, 20, 26, 0.75);
-    overflow-wrap: break-word;
-}
-
-.lane-chip::before {
-    content: "";
-    position: absolute;
-    left: 9px;
-    top: 50%;
-    width: 4px;
-    height: 4px;
-    margin-top: -2px;
-    border-radius: 1px;
-    background: currentColor;
-    opacity: 0.55;
-}
-
-.lane-note {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    line-height: 1.45;
-    color: var(--text-faint);
-    margin-top: auto;
-    padding-top: 4px;
-}
-
-/* Lane identity: input rails read cool, agent work reads amber,
-   execution reads live-green, UI reads blue, storage stays neutral. */
-.lane-in .lane-name { color: #b9c6d8; }
-.lane-in .lane-chip { color: #a7b6c8; border-color: rgba(157, 178, 206, 0.28); }
-
-.lane-agent .lane-name { color: var(--accent); }
-.lane-agent .lane-chip { color: #e2c489; border-color: rgba(255, 178, 36, 0.3); background: rgba(255, 178, 36, 0.045); }
-
-.lane-exec .lane-name { color: var(--detect); }
-.lane-exec .lane-chip { color: #9fdcbb; border-color: rgba(69, 212, 131, 0.32); background: rgba(69, 212, 131, 0.05); }
-
-.lane-ui .lane-name { color: #8fb4ff; }
-.lane-ui .lane-chip { color: #a9c2f0; border-color: rgba(120, 170, 255, 0.28); }
-
-.lane-store .lane-name { color: var(--text-dim); }
-
-/* Decision gate — the fork between machine and human */
-.bp-gate {
-    padding: 0 15px;
-}
-
-.gate-stem {
-    width: 1px;
-    height: 16px;
-    margin: 0 auto;
-    background: repeating-linear-gradient(180deg, rgba(255, 178, 36, 0.5) 0 4px, transparent 4px 8px);
-}
-
-.gate-body {
-    text-align: center;
-    padding: 12px 14px 13px;
-    border: 1px dashed rgba(255, 178, 36, 0.35);
-    border-radius: 8px;
-    background: rgba(255, 178, 36, 0.03);
-}
-
-.gate-label {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
+.arch-figure:hover + .arch-zoom {
     color: var(--accent);
-}
-
-.gate-paths {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 9px;
-}
-
-.gate-path {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 5px;
-    position: relative;
-}
-
-.gate-path::before {
-    content: "→ ";
-    opacity: 0.7;
-}
-
-.gate-auto {
-    color: var(--detect);
-    border: 1px solid rgba(69, 212, 131, 0.4);
-    background: rgba(69, 212, 131, 0.07);
-}
-
-.gate-human {
-    color: var(--accent);
-    border: 1px solid rgba(255, 178, 36, 0.4);
-    background: rgba(255, 178, 36, 0.06);
-}
-
-.gate-caption {
-    font-size: 12.5px;
-    color: var(--text-dim);
-    margin: 10px auto 0;
-    max-width: 520px;
-}
-
-/* Cross-cutting rails — concerns that span every stage */
-.bp-layers {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    margin: 14px 15px 0;
-    border: 1px solid rgba(35, 43, 54, 0.8);
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.bp-layer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 14px;
-    padding: 10px 13px;
-    background: rgba(16, 20, 26, 0.6);
-}
-
-.layer-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.13em;
-    color: var(--text-faint);
-    min-width: 108px;
-}
-
-.layer-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px 16px;
-}
-
-.layer-item {
-    font-size: 12px;
-    color: var(--text-dim);
-    position: relative;
-}
-
-.layer-item:not(:last-child)::after {
-    content: "·";
-    position: absolute;
-    right: -10px;
-    color: var(--text-faint);
 }
 
 .system-footer {
-    font-family: var(--mono);
-    font-size: 11.5px;
-    line-height: 1.5;
-    color: var(--text-faint);
-    letter-spacing: 0.02em;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .bp-pulse { animation: none; opacity: 0.35; }
-}
-
-@media (max-width: 860px) {
-    .bp-lanes {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 560px) {
-    .bp-lanes {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .layer-label {
-        min-width: 0;
-    }
-
-    .bp-layers {
-        margin: 12px 12px 0;
-    }
-
-    .bp-gate {
-        padding: 0 12px;
-    }
+    margin-top: 10px;
 }
 
 /* SKILLS */

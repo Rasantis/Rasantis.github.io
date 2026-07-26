@@ -88,6 +88,10 @@ ffmpeg -y -ss <segundos> -i public\<video>.mp4 -frames:v 1 -vf "scale=800:-2" -q
   - `01` ShopGuard (3 vídeos + blueprint da camada LLM) · `02` Soccer AI / Copa 2026 (vídeo) · `03` Promeat (vídeo + blueprint multiagente) · `04` Pix Safety · `05` Pix Force 2024 (2 vídeos)
   - A composição dos casos vive em `CASES` no `data.ts`: vídeos casados por `src` e arquiteturas por prefixo de chave (independentes de idioma); `projectIdx` indexa `projects` — **mantenha a ordem dos três arrays igual nos 3 idiomas**.
 - **Architecture** (`Architecture.tsx`) — o blueprint full-stack (transversal, não pertence a um projeto só) + "Também entregue" (rPPG, contagem de veículos).
-- **Blueprint** (`Blueprint.tsx`) — renderizador do diagrama: barramento com pulso, pistas numeradas com componentes, gate de decisão, trilhos transversais. Estilos `.bp-*` / `.lane-*` no styles.css.
+- **Diagramas de arquitetura** — imagens **de verdade**, geradas com [mingrammer/diagrams](https://diagrams.mingrammer.com/) + Graphviz (a mesma engine por trás do tooling de diagramas da AWS), com ícones oficiais de vendor.
+  - Fonte: `tools/build_diagrams.py` → saída em `public/diagrams/*.png`. Para regerar: `pip install diagrams` (requer Graphviz no PATH) e `python tools/build_diagrams.py`.
+  - Regra ao editar: **ícone de vendor só onde a tecnologia é realmente daquele vendor**; componentes próprios usam caixas neutras (`box()`/`actor()`) — nunca emprestar um logo que sugira um serviço que não é usado.
+  - Os diagramas ficam **em inglês** (como documentação de engenharia normalmente fica); o `alt` e a legenda são traduzidos nos 3 idiomas.
+  - `Blueprint.tsx` só exibe a imagem, com link para abrir em tamanho real (no celular o diagrama reduz a ~290px).
 - **Para adicionar um projeto novo com vídeo:** dropar `.mp4` + poster em `public/`, criar o projeto e o demo nos 3 idiomas em `data.ts` e adicionar a entrada em `CASES`.
 - **Skills** (6 grupos) · **Experience** (timeline) · **Contact**
