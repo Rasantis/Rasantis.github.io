@@ -339,6 +339,10 @@ const en: Content = {
       tags: ['LangGraph', 'LangChain', 'AutoGen', 'GPT-4', 'Claude', 'RAG', 'Langfuse', 'Eval Pipelines'],
     },
     {
+      title: 'Multimodal & Model Adaptation',
+      tags: ['VLMs', 'GPT-4V', 'LLaVA', 'Qwen-VL', 'SAM', 'LoRA fine-tuning', 'VLA (exploration)'],
+    },
+    {
       title: 'Backend & APIs',
       tags: ['Python', 'C++', 'FastAPI', 'Node.js', 'REST', 'Microservices', 'Event-Driven', 'WebSockets'],
     },
@@ -616,6 +620,10 @@ const es: Content = {
       tags: ['LangGraph', 'LangChain', 'AutoGen', 'GPT-4', 'Claude', 'RAG', 'Langfuse', 'Eval Pipelines'],
     },
     {
+      title: 'Multimodal y Adaptación de Modelos',
+      tags: ['VLMs', 'GPT-4V', 'LLaVA', 'Qwen-VL', 'SAM', 'fine-tuning LoRA', 'VLA (exploración)'],
+    },
+    {
       title: 'Backend y APIs',
       tags: ['Python', 'C++', 'FastAPI', 'Node.js', 'REST', 'Microservices', 'Event-Driven', 'WebSockets'],
     },
@@ -891,6 +899,10 @@ const pt: Content = {
     {
       title: 'IA e Agentes LLM',
       tags: ['LangGraph', 'LangChain', 'AutoGen', 'GPT-4', 'Claude', 'RAG', 'Langfuse', 'Eval Pipelines'],
+    },
+    {
+      title: 'Multimodal e Adaptação de Modelos',
+      tags: ['VLMs', 'GPT-4V', 'LLaVA', 'Qwen-VL', 'SAM', 'fine-tuning LoRA', 'VLA (exploração)'],
     },
     {
       title: 'Backend e APIs',
