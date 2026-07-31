@@ -10,6 +10,8 @@ export interface Project {
   description: string;
   impact: string;
   tags: string[];
+  /** Public repository, when the work is open source. */
+  repo?: string;
 }
 
 export interface Demo {
@@ -122,6 +124,7 @@ export const CASES: CaseDef[] = [
   { key: 'promeat', idx: '03', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents' },
   { key: 'pixsafety', idx: '04', projectIdx: 1, demoSrcs: [] },
   { key: 'pixforce', idx: '05', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'] },
+  { key: 'docintel', idx: '06', projectIdx: 6, demoSrcs: ['./docintel_demo.mp4'] },
 ];
 
 /** Work that has no case block of its own — shown compactly at the end. */
@@ -235,6 +238,16 @@ const en: Content = {
       impact: 'Players · referees · ball tracked · per-player km/h · live possession · homography-projected tactical map',
       tags: ['YOLO', 'Multi-Object Tracking', 'Homography', 'OpenCV', 'PyTorch', 'Team Classification'],
     },
+    {
+      title: 'DocIntel — OCR Verification with Human-in-the-Loop',
+      role: 'Applied AI · open source · 2026',
+      pill: { label: 'Open source', type: 'live' },
+      description:
+        'The workflow a document-verification provider runs: read the document, prove where each value came from, decide alone only when confident, and route the rest to a person. A local vision-language model (Qwen2.5-VL via Ollama) extracts the values, OCR anchors each one on the page, and cross-field validation catches what a confidence score cannot — an invoice whose subtotal and tax contradict its own total is blocked even when the model read all three numbers perfectly.',
+      impact: 'Discrepancies routed to human review · escaped errors measured (wrong AND auto-approved) · confidence calibration and a regression gate · runs on-device, no per-document cost',
+      tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
+      repo: 'https://github.com/Rasantis/docintel',
+    },
   ],
   demos: [
     {
@@ -292,6 +305,13 @@ const en: Content = {
       project: 'Sports Analytics',
       title: 'Match intelligence — World Cup 2026',
       caption: 'Both squads, referees and ball tracked from broadcast footage — speed per player, live possession, and a tactical map that survives camera cuts.',
+    },
+    {
+      src: './docintel_demo.mp4',
+      poster: './posters/docintel_demo.jpg',
+      project: 'DocIntel',
+      title: 'Document verification with a confidence gate',
+      caption: 'An invoice that does not add up: the model read every number correctly and the cross-field check blocked approval anyway. Hover a field to see where it was read.',
     },
   ],
   systems: [
@@ -516,6 +536,16 @@ const es: Content = {
       impact: 'Jugadores · árbitros · balón rastreados · km/h por jugador · posesión en vivo · mapa táctico por homografía',
       tags: ['YOLO', 'Multi-Object Tracking', 'Homografía', 'OpenCV', 'PyTorch', 'Clasificación de equipos'],
     },
+    {
+      title: 'DocIntel — Verificación de Documentos con Revisión Humana',
+      role: 'IA aplicada · código abierto · 2026',
+      pill: { label: 'Código abierto', type: 'live' },
+      description:
+        'El flujo que corre un proveedor de verificación documental: leer el documento, probar de dónde salió cada valor, decidir solo cuando hay certeza y mandar el resto a una persona. Un modelo de visión-lenguaje local (Qwen2.5-VL con Ollama) extrae los valores, OCR ancla cada uno en la página, y la validación cruzada detecta lo que un score de confianza no puede: una factura cuyo subtotal e impuesto contradicen su propio total queda bloqueada aunque el modelo haya leído los tres números perfectamente.',
+      impact: 'Discrepancias enrutadas a revisión humana · escaped errors medidos (equivocados Y auto-aprobados) · calibración de confianza y gate de regresión · corre on-device, sin costo por documento',
+      tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
+      repo: 'https://github.com/Rasantis/docintel',
+    },
   ],
   demos: [
     {
@@ -573,6 +603,13 @@ const es: Content = {
       project: 'Analítica deportiva',
       title: 'Match intelligence — Mundial 2026',
       caption: 'Ambos equipos, árbitros y balón rastreados desde la transmisión — velocidad por jugador, posesión en vivo y un mapa táctico que sobrevive a los cortes de cámara.',
+    },
+    {
+      src: './docintel_demo.mp4',
+      poster: './posters/docintel_demo.jpg',
+      project: 'DocIntel',
+      title: 'Verificación documental con umbral de confianza',
+      caption: 'Una factura que no cuadra: el modelo leyó cada número correctamente y la validación cruzada bloqueó la aprobación igual. Pasa el mouse por un campo para ver de dónde salió.',
     },
   ],
   systems: [
@@ -797,6 +834,16 @@ const pt: Content = {
       impact: 'Jogadores · árbitros · bola rastreados · km/h por jogador · posse ao vivo · mapa tático por homografia',
       tags: ['YOLO', 'Multi-Object Tracking', 'Homografia', 'OpenCV', 'PyTorch', 'Classificação de times'],
     },
+    {
+      title: 'DocIntel — Verificação de Documentos com Revisão Humana',
+      role: 'IA aplicada · código aberto · 2026',
+      pill: { label: 'Código aberto', type: 'live' },
+      description:
+        'O fluxo que um provedor de verificação documental roda: ler o documento, provar de onde saiu cada valor, decidir sozinho só quando tem certeza e mandar o resto para uma pessoa. Um modelo de visão-linguagem local (Qwen2.5-VL via Ollama) extrai os valores, o OCR ancora cada um na página, e a validação cruzada pega o que um score de confiança não pega: uma nota cujo subtotal e imposto contradizem o próprio total fica bloqueada mesmo que o modelo tenha lido os três números perfeitamente.',
+      impact: 'Discrepâncias roteadas para revisão humana · escaped errors medidos (errados E auto-aprovados) · calibração de confiança e gate de regressão · roda on-device, sem custo por documento',
+      tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
+      repo: 'https://github.com/Rasantis/docintel',
+    },
   ],
   demos: [
     {
@@ -854,6 +901,13 @@ const pt: Content = {
       project: 'Analytics esportivo',
       title: 'Match intelligence — Copa do Mundo 2026',
       caption: 'Os dois times, árbitros e bola rastreados a partir da transmissão — velocidade por jogador, posse ao vivo e um mapa tático que sobrevive aos cortes de câmera.',
+    },
+    {
+      src: './docintel_demo.mp4',
+      poster: './posters/docintel_demo.jpg',
+      project: 'DocIntel',
+      title: 'Verificação documental com limiar de confiança',
+      caption: 'Uma nota que não fecha: o modelo leu cada número corretamente e a validação cruzada bloqueou a aprovação mesmo assim. Passe o mouse num campo para ver de onde ele saiu.',
     },
   ],
   systems: [

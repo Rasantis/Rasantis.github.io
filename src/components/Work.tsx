@@ -43,6 +43,11 @@ export default function Work() {
                     {t}
                   </span>
                 ))}
+                {p.repo && (
+                  <a className="tag tag-repo" href={p.repo} target="_blank" rel="noreferrer">
+                    ↗ source on GitHub
+                  </a>
+                )}
               </div>
 
               {videos.length > 0 && (
