@@ -125,6 +125,7 @@ export const CASES: CaseDef[] = [
   { key: 'pixsafety', idx: '04', projectIdx: 1, demoSrcs: [] },
   { key: 'pixforce', idx: '05', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'] },
   { key: 'docintel', idx: '06', projectIdx: 6, demoSrcs: ['./docintel_demo.mp4'] },
+  { key: 'auspex', idx: '07', projectIdx: 7, demoSrcs: ['./auspex_demo.mp4'] },
 ];
 
 /** Work that has no case block of its own — shown compactly at the end. */
@@ -248,6 +249,15 @@ const en: Content = {
       tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
       repo: 'https://github.com/Rasantis/docintel',
     },
+    {
+      title: 'Auspex — Multi-Agent Incident Command',
+      role: 'Applied AI · agent systems · 2026',
+      pill: { label: 'Case study', type: 'flagship' },
+      description:
+        'An alert fires at 3am. Four specialist agents investigate in parallel — metrics, logs, deploys, runbooks — each connected to a different MCP server I wrote, and each able to call only the tools that server exposes. A commander names one root cause, a skeptic attacks it with the same tools, and only then does a planner propose a mitigation. It cannot execute one: every write is a proposal that stops at a LangGraph interrupt until a person approves it.',
+      impact: '0 unsafe actions across the eval set · restraint held on 100% of the incidents where acting is the mistake · correct action on 4 of 7 · runs on one consumer GPU, no per-incident cost',
+      tags: ['LangGraph', 'MCP', 'Multi-Agent', 'Human-in-the-Loop', 'Agent Evals', 'Prompt Injection', 'FastAPI', 'React'],
+    },
   ],
   demos: [
     {
@@ -312,6 +322,13 @@ const en: Content = {
       project: 'DocIntel',
       title: 'Document verification with a confidence gate',
       caption: 'An invoice that does not add up: the model read every number correctly and the cross-field check blocked approval anyway. Hover a field to see where it was read.',
+    },
+    {
+      src: './auspex_demo.mp4',
+      poster: './posters/auspex_demo.jpg',
+      project: 'Auspex',
+      title: 'Four agents investigating one production incident',
+      caption: 'Replay of a real run at 6×. The agents fan out across five MCP servers, the skeptic challenges the conclusion, and the rollback waits for a human before anything touches production.',
     },
   ],
   systems: [
@@ -546,6 +563,15 @@ const es: Content = {
       tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
       repo: 'https://github.com/Rasantis/docintel',
     },
+    {
+      title: 'Auspex — Comando de Incidentes Multiagente',
+      role: 'IA aplicada · sistemas de agentes · 2026',
+      pill: { label: 'Caso de estudio', type: 'flagship' },
+      description:
+        'Suena una alerta a las 3am. Cuatro agentes especialistas investigan en paralelo — métricas, logs, deploys, runbooks — cada uno conectado a un servidor MCP distinto que escribí, y cada uno capaz de llamar solo las herramientas que ese servidor expone. Un comandante nombra una causa raíz, un escéptico la ataca con las mismas herramientas, y recién entonces un planificador propone una mitigación. No puede ejecutarla: toda escritura es una propuesta que se detiene en un interrupt de LangGraph hasta que una persona la aprueba.',
+      impact: '0 acciones inseguras en todo el set · contención sostenida en el 100% de los incidentes donde actuar es el error · acción correcta en 4 de 7 · corre en una GPU de consumo, sin costo por incidente',
+      tags: ['LangGraph', 'MCP', 'Multiagente', 'Human-in-the-Loop', 'Evals de Agentes', 'Prompt Injection', 'FastAPI', 'React'],
+    },
   ],
   demos: [
     {
@@ -610,6 +636,13 @@ const es: Content = {
       project: 'DocIntel',
       title: 'Verificación documental con umbral de confianza',
       caption: 'Una factura que no cuadra: el modelo leyó cada número correctamente y la validación cruzada bloqueó la aprobación igual. Pasa el mouse por un campo para ver de dónde salió.',
+    },
+    {
+      src: './auspex_demo.mp4',
+      poster: './posters/auspex_demo.jpg',
+      project: 'Auspex',
+      title: 'Cuatro agentes investigando un incidente en producción',
+      caption: 'Replay de una corrida real a 6×. Los agentes se abren sobre cinco servidores MCP, el escéptico cuestiona la conclusión, y el rollback espera a una persona antes de tocar producción.',
     },
   ],
   systems: [
@@ -844,6 +877,15 @@ const pt: Content = {
       tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
       repo: 'https://github.com/Rasantis/docintel',
     },
+    {
+      title: 'Auspex — Comando de Incidentes Multiagente',
+      role: 'IA aplicada · sistemas de agentes · 2026',
+      pill: { label: 'Estudo de caso', type: 'flagship' },
+      description:
+        'Um alerta dispara às 3 da manhã. Quatro agentes especialistas investigam em paralelo — métricas, logs, deploys, runbooks — cada um conectado a um servidor MCP diferente que eu escrevi, e cada um capaz de chamar apenas as tools que aquele servidor expõe. Um comandante aponta uma causa-raiz, um cético a ataca com as mesmas ferramentas, e só então um planejador propõe uma mitigação. Ele não consegue executá-la: toda escrita é uma proposta que para num interrupt do LangGraph até uma pessoa aprovar.',
+      impact: '0 ações inseguras em todo o conjunto · contenção mantida em 100% dos incidentes onde agir é o erro · ação correta em 4 de 7 · roda numa GPU de consumo, sem custo por incidente',
+      tags: ['LangGraph', 'MCP', 'Multiagente', 'Human-in-the-Loop', 'Evals de Agentes', 'Prompt Injection', 'FastAPI', 'React'],
+    },
   ],
   demos: [
     {
@@ -908,6 +950,13 @@ const pt: Content = {
       project: 'DocIntel',
       title: 'Verificação documental com limiar de confiança',
       caption: 'Uma nota que não fecha: o modelo leu cada número corretamente e a validação cruzada bloqueou a aprovação mesmo assim. Passe o mouse num campo para ver de onde ele saiu.',
+    },
+    {
+      src: './auspex_demo.mp4',
+      poster: './posters/auspex_demo.jpg',
+      project: 'Auspex',
+      title: 'Quatro agentes investigando um incidente em produção',
+      caption: 'Replay de um run real a 6×. Os agentes se abrem sobre cinco servidores MCP, o cético contesta a conclusão, e o rollback espera uma pessoa antes de qualquer coisa tocar produção.',
     },
   ],
   systems: [
