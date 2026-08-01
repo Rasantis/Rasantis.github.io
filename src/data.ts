@@ -357,7 +357,7 @@ const en: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Damage attributed to the panel it sits on',
-      caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Toggling between raw, parts and damage is how you prove a mask is a scratch and not a panel edge — and a mask too fragmented to be a region falls back to a dashed box rather than scribbling across the car.',
+      caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Toggling between raw, parts and damage is how you prove a mask is a scratch and not a panel edge — and a mask too fragmented to be a region falls back to a dashed box rather than scribbling across the car. Below the frame, the findings grouped by panel — which is the shape a body shop quote takes.',
     },
   ],
   systems: [
@@ -689,7 +689,7 @@ const es: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Daño atribuido a la pieza sobre la que está',
-      caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Alternar entre foto, piezas y daños es como se comprueba que una máscara es un rayón y no el borde de una pieza — y una máscara demasiado fragmentada cae a una caja punteada en vez de garabatear el coche.',
+      caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Alternar entre foto, piezas y daños es como se comprueba que una máscara es un rayón y no el borde de una pieza — y una máscara demasiado fragmentada cae a una caja punteada en vez de garabatear el coche. Debajo, los hallazgos agrupados por pieza, que es la forma que tiene un presupuesto de chapa.',
     },
   ],
   systems: [
@@ -1021,7 +1021,7 @@ const pt: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Dano atribuído à peça em que ele está',
-      caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Alternar entre foto, peças e danos é como se prova que uma máscara é um risco e não a divisa de uma peça — e máscara fragmentada demais cai para uma caixa tracejada em vez de rabiscar o carro.',
+      caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Alternar entre foto, peças e danos é como se prova que uma máscara é um risco e não a divisa de uma peça — e máscara fragmentada demais cai para uma caixa tracejada em vez de rabiscar o carro. Embaixo, os achados agrupados por peça, que é o formato de um orçamento de funilaria.',
     },
   ],
   systems: [
