@@ -70,7 +70,10 @@ export interface UI {
     badgeAvailable: string;
     badgeEu: string;
   };
-  work: { eyebrow: string; heading: string; sub: string; videos: string; architecture: string; zoom: string };
+  work: {
+    eyebrow: string; heading: string; sub: string; videos: string; architecture: string; zoom: string;
+    filters: { all: string; agents: string; vision: string; fullstack: string };
+  };
   arch: { eyebrow: string; heading: string; sub: string; also: string };
   skills: { eyebrow: string; heading: string; sub: string };
   experience: { eyebrow: string; heading: string; sub: string };
@@ -104,12 +107,17 @@ export const links = {
  * `projectIdx` indexes `content[lang].projects`, which is ordered identically in
  * every language: keep the three arrays in sync when editing.
  */
+export type Track = 'agents' | 'vision' | 'fullstack';
+
 export interface CaseDef {
   key: string;
   idx: string;
   projectIdx: number;
   demoSrcs: string[];
   systemPrefix?: 'agents' | 'auto';
+  /** Which lens this case answers to. A recruiter hiring for agents should not
+   *  have to scroll past four vision projects to find the one that matters. */
+  tracks: Track[];
 }
 
 export const CASES: CaseDef[] = [
@@ -119,13 +127,14 @@ export const CASES: CaseDef[] = [
     projectIdx: 0,
     demoSrcs: ['./pharmacy_detection_demo.mp4', './furto_vd8_processado.mp4', './furto_vd15_processado.mp4'],
     systemPrefix: 'auto',
+    tracks: ['vision', 'fullstack'],
   },
-  { key: 'soccer', idx: '02', projectIdx: 5, demoSrcs: ['./soccer_ai_demo.mp4'] },
-  { key: 'promeat', idx: '03', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents' },
-  { key: 'pixsafety', idx: '04', projectIdx: 1, demoSrcs: [] },
-  { key: 'pixforce', idx: '05', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'] },
-  { key: 'docintel', idx: '06', projectIdx: 6, demoSrcs: ['./docintel_demo.mp4'] },
-  { key: 'auspex', idx: '07', projectIdx: 7, demoSrcs: ['./auspex_demo.mp4'] },
+  { key: 'auspex', idx: '02', projectIdx: 7, demoSrcs: ['./auspex_demo.mp4'], tracks: ['agents', 'fullstack'] },
+  { key: 'promeat', idx: '03', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents', tracks: ['agents', 'vision'] },
+  { key: 'docintel', idx: '04', projectIdx: 6, demoSrcs: ['./docintel_demo.mp4'], tracks: ['agents', 'fullstack'] },
+  { key: 'soccer', idx: '05', projectIdx: 5, demoSrcs: ['./soccer_ai_demo.mp4'], tracks: ['vision'] },
+  { key: 'pixsafety', idx: '06', projectIdx: 1, demoSrcs: [], tracks: ['vision', 'fullstack'] },
+  { key: 'pixforce', idx: '07', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'], tracks: ['vision'] },
 ];
 
 /** Work that has no case block of its own — shown compactly at the end. */
@@ -150,10 +159,11 @@ const en: Content = {
     work: {
       eyebrow: 'Selected Work',
       heading: 'Every system, end to end',
-      sub: 'Each block is one full case — what it does, what it changed, footage of it running, and the architecture underneath. All of it shipped to real users under production traffic.',
+      sub: 'Each block is one full case — what it does, what it changed, footage of it running, and the architecture underneath. Most of it ran in production for real users; the two marked Case study and Open source are mine, built to show the parts production work cannot show publicly.',
       videos: 'See it running',
       architecture: 'Architecture',
       zoom: 'open full size',
+      filters: { all: 'All work', agents: 'Agents & LLM', vision: 'Computer vision', fullstack: 'Full-stack & cloud' },
     },
     arch: {
       eyebrow: 'How I Build',
@@ -464,10 +474,11 @@ const es: Content = {
     work: {
       eyebrow: 'Trabajo seleccionado',
       heading: 'Cada sistema, de punta a punta',
-      sub: 'Cada bloque es un caso completo — qué hace, qué cambió, el video de eso corriendo y la arquitectura por debajo. Todo llegó a usuarios reales, bajo tráfico de producción.',
+      sub: 'Cada bloque es un caso completo — qué hace, qué cambió, el video de eso corriendo y la arquitectura por debajo. La mayoría corrió en producción para usuarios reales; los dos marcados Caso de estudio y Código abierto son míos, hechos para mostrar lo que el trabajo de producción no puede mostrar en público.',
       videos: 'Míralo funcionando',
       architecture: 'Arquitectura',
       zoom: 'abrir en tamaño real',
+      filters: { all: 'Todo', agents: 'Agentes y LLM', vision: 'Visión computacional', fullstack: 'Full-stack y cloud' },
     },
     arch: {
       eyebrow: 'Cómo lo construyo',
@@ -778,10 +789,11 @@ const pt: Content = {
     work: {
       eyebrow: 'Trabalhos selecionados',
       heading: 'Cada sistema, de ponta a ponta',
-      sub: 'Cada bloco é um caso completo — o que faz, o que mudou, o vídeo dele rodando e a arquitetura por baixo. Tudo chegou a usuários reais, sob tráfego de produção.',
+      sub: 'Cada bloco é um caso completo — o que faz, o que mudou, o vídeo dele rodando e a arquitetura por baixo. A maior parte rodou em produção para usuários reais; os dois marcados Estudo de caso e Código aberto são meus, feitos para mostrar o que o trabalho de produção não pode mostrar em público.',
       videos: 'Veja funcionando',
       architecture: 'Arquitetura',
       zoom: 'abrir em tamanho real',
+      filters: { all: 'Tudo', agents: 'Agentes e LLM', vision: 'Visão computacional', fullstack: 'Full-stack e cloud' },
     },
     arch: {
       eyebrow: 'Como eu construo',

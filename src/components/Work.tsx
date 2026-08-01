@@ -1,12 +1,33 @@
-import { CASES } from '../data';
+import { useMemo, useState } from 'react';
+import { CASES, type Track } from '../data';
 import { useLang } from '../i18n';
 import Blueprint from './Blueprint';
 import Reveal from './Reveal';
 
+const TRACKS: (Track | 'all')[] = ['all', 'agents', 'vision', 'fullstack'];
+
 /** One case per project: the story, the footage and the architecture together,
- *  so nothing is described twice in three different places. */
+ *  so nothing is described twice in three different places.
+ *
+ *  The filter exists because this section is most of the page. Somebody hiring
+ *  for agent work should not have to scroll past four computer-vision projects
+ *  to find out whether the agent experience is real — one click and the page is
+ *  only the evidence they came for. Nothing is hidden by default; "All work"
+ *  is the initial state and the counts are always visible.
+ */
 export default function Work() {
   const { c } = useLang();
+  const [track, setTrack] = useState<Track | 'all'>('all');
+
+  const counts = useMemo(() => {
+    const out: Record<string, number> = { all: CASES.length };
+    for (const t of ['agents', 'vision', 'fullstack'] as Track[]) {
+      out[t] = CASES.filter((d) => d.tracks.includes(t)).length;
+    }
+    return out;
+  }, []);
+
+  const shown = track === 'all' ? CASES : CASES.filter((d) => d.tracks.includes(track));
 
   return (
     <section id="work">
@@ -14,8 +35,23 @@ export default function Work() {
       <h2 className="section-heading">{c.ui.work.heading}</h2>
       <p className="section-sub">{c.ui.work.sub}</p>
 
+      <div className="track-filter" role="tablist" aria-label={c.ui.work.eyebrow}>
+        {TRACKS.map((t) => (
+          <button
+            key={t}
+            role="tab"
+            aria-selected={track === t}
+            className={`track-chip ${track === t ? 'on' : ''}`}
+            onClick={() => setTrack(t)}
+          >
+            {c.ui.work.filters[t]}
+            <span className="track-count">{counts[t]}</span>
+          </button>
+        ))}
+      </div>
+
       <div className="cases">
-        {CASES.map((def) => {
+        {shown.map((def) => {
           const p = c.projects[def.projectIdx];
           if (!p) return null;
           const videos = def.demoSrcs

@@ -615,6 +615,57 @@ section {
     margin-bottom: 40px;
 }
 
+/* Track filter — this section is most of the page, so it gets a way in.
+   Styled as a quiet control rather than a call to action: it should read as
+   navigation a visitor may use, never as a gate they must pass. */
+.track-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: -18px 0 34px;
+}
+
+.track-chip {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    letter-spacing: .02em;
+    color: var(--text-dim);
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    padding: 7px 14px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color .16s, color .16s, background .16s;
+}
+
+.track-chip:hover {
+    color: var(--text);
+    border-color: #33404f;
+}
+
+.track-chip.on {
+    color: var(--accent-ink);
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 600;
+}
+
+.track-count {
+    font-size: 10.5px;
+    opacity: .6;
+}
+
+.track-chip.on .track-count {
+    opacity: .75;
+}
+
+@media (max-width: 560px) {
+    .track-chip { font-size: 11.5px; padding: 6px 11px; }
+}
+
 /* WORK — one self-contained case per project: story, footage, architecture */
 .cases {
     display: flex;

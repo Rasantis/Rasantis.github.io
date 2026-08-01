@@ -1,6 +1,6 @@
 # Portfólio — Rafael De Santis
 
-Aplicação **React + TypeScript + Vite** com os projetos reais de visão computacional, IA e full-stack. **Trilíngue (EN padrão · ES · PT)** — seletor com bandeiras no nav, inglês como padrão (espanhol auto-detectado pelo navegador; português só manual), escolha persistida em `localStorage`; conteúdo dos três idiomas centralizado em `src/data.ts` (**sempre editar os TRÊS**). Voltada para recrutador internacional. Todos os números batem com os CVs ATS de `cv_atualizado/`.
+Aplicação **React + TypeScript + Vite** com os projetos reais de visão computacional, IA e full-stack. **Trilíngue (EN padrão · ES · PT)** — seletor com bandeiras no nav, inglês como padrão (espanhol auto-detectado pelo navegador; português só manual), escolha persistida em `localStorage`; conteúdo dos três idiomas centralizado em `src/data.ts` (**sempre editar os TRÊS**). Voltada para recrutador internacional. Todos os números batem com os CVs ATS de `cv/`.
 
 O próprio código deste repositório é vitrine: React, TypeScript, componentes, dados tipados — a stack declarada nos CVs.
 
@@ -28,7 +28,7 @@ portfolio/
 └── .github/workflows/deploy.yml  ← deploy automático no GitHub Pages
 ```
 
-> ℹ️ **Vídeos:** os arquivos originais saíram do pipeline OpenCV com codec `mpeg4`, que navegadores não reproduzem — por isso "não apareciam". Foram re-encodados para **H.264 + faststart** (e ficaram ~3× menores). Originais preservados em `..\videos_originais\`. Para adicionar vídeo novo no futuro:
+> ℹ️ **Vídeos:** os arquivos originais saíram do pipeline OpenCV com codec `mpeg4`, que navegadores não reproduzem — por isso "não apareciam". Foram re-encodados para **H.264 + faststart** (e ficaram ~3× menores). Originais preservados em `..\midiaideos_fonte\`. Para adicionar vídeo novo no futuro:
 > ```powershell
 > ffmpeg -i entrada.mp4 -c:v libx264 -crf 23 -pix_fmt yuv420p -movflags +faststart -an public\saida.mp4
 > ```
@@ -92,7 +92,7 @@ ffmpeg -y -ss <segundos> -i public\<video>.mp4 -frames:v 1 -vf "scale=800:-2" -q
   - **Por que não Graphviz/mermaid:** auto-layout decide as posições — e decide mal (camadas escorregam para o lado, buracos aparecem, arestas cortam as bandas). Diagrama bom de arquitetura é posicionado à mão, então o script é dono das coordenadas: cada camada é uma linha, cada componente ocupa uma coluna, links que **pulam camadas** correm por calhas laterais, e bifurcações fazem **arco** sobre a caixa vizinha (senão um "ou" parece uma sequência).
   - Regerar: `python tools/build_diagrams.py` (precisa de `pillow`; os ícones oficiais vêm do pacote `diagrams`, embutidos em base64 — cada SVG é autocontido).
   - Vantagem sobre raster: texto nítido em qualquer zoom, escala em qualquer container, ~95 KB vetorial contra ~250 KB de PNG.
-  - Regra ao editar: **ícone de vendor só onde a tecnologia é realmente daquele vendor**; componentes próprios usam `Comp(...)` sem ícone — nunca emprestar um logo que sugira um serviço que não é usado. E nada de número inventado (threshold, latência): só o que está em `cv_atualizado/README.md`.
+  - Regra ao editar: **ícone de vendor só onde a tecnologia é realmente daquele vendor**; componentes próprios usam `Comp(...)` sem ícone — nunca emprestar um logo que sugira um serviço que não é usado. E nada de número inventado (threshold, latência): só o que está em `cv/README.md`.
   - Os diagramas ficam **em inglês** (como documentação de engenharia normalmente fica); o `alt` e a legenda são traduzidos nos 3 idiomas.
   - `Blueprint.tsx` só exibe a imagem, com link para abrir em tamanho real (no celular o diagrama reduz a ~290px).
 - **Para adicionar um projeto novo com vídeo:** dropar `.mp4` + poster em `public/`, criar o projeto e o demo nos 3 idiomas em `data.ts` e adicionar a entrada em `CASES`.
