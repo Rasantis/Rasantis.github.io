@@ -276,9 +276,9 @@ const en: Content = {
       role: 'Computer vision · applied AI · 2026',
       pill: { label: 'Case study', type: 'flagship' },
       description:
-        'A walk-around goes in; a damage report comes out with every finding attributed to the body panel it sits on. Two YOLO11-seg models fine-tuned on open data — one for 23 body panels, one for 8 defect types — are intersected mask-to-mask, so the output is not "scratch, 0.81" but "scratch on the front left door", which is the line item that gets quoted. A quality gate refuses out-of-focus or badly framed photos before they can produce confident nonsense, and repeat views of one dent merge into a single defect instead of three.',
-      impact: 'Defects straddling a panel edge are flagged for a human, never assigned by a 2% margin · mask mAP50 65% on 23 body panels (3,156 training images) and 11% on 8 defect types (655) · per-class metrics reported, including the two damage classes that did not learn · runs on one consumer GPU',
-      tags: ['YOLO11-seg', 'Instance Segmentation', 'PyTorch', 'FastAPI', 'WebSockets', 'React', 'OpenCV', 'ReportLab'],
+        'A walk-around goes in; a damage report comes out with every finding attributed to the body panel it sits on. Two YOLO11-seg models fine-tuned on open data — one for 23 body panels, one for 8 defect types — are intersected mask-to-mask, so the output is not "scratch, 0.81" but "scratch on the front left door", which is the line item that gets quoted. A quality gate refuses out-of-focus or badly framed photos before they can produce confident nonsense, repeat views of one dent merge into a single defect instead of three — and the report ends where a real inspection ends: a priced repair estimate, findings mapped to operations per panel against an auditable rate card.',
+      impact: 'Defects straddling a panel edge are flagged for a human, never assigned by a 2% margin · mask mAP50 65% on 23 body panels (3,156 training images) and 12% on 8 defect types (655) · per-class metrics reported, including the two damage classes that did not learn · runs on one consumer GPU',
+      tags: ['YOLO11-seg', 'Instance Segmentation', 'PyTorch', 'Repair Estimating', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
   ],
   demos: [
@@ -357,7 +357,7 @@ const en: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Damage attributed to the panel it sits on',
-      caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Toggling between raw, parts and damage is how you prove a mask is a scratch and not a panel edge — and a mask too fragmented to be a region falls back to a dashed box rather than scribbling across the car. Below the frame, the findings grouped by panel — which is the shape a body shop quote takes.',
+      caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Clicking a line on the repair estimate zooms the camera onto the exact pixels that produced it — money to evidence in one click. And a mask too fragmented to be a region falls back to a dashed box rather than scribbling across the car.',
     },
   ],
   systems: [
@@ -608,9 +608,9 @@ const es: Content = {
       role: 'Visión computacional · IA aplicada · 2026',
       pill: { label: 'Caso de estudio', type: 'flagship' },
       description:
-        'Entra una vuelta al vehículo; sale un informe de daños con cada hallazgo atribuido a la pieza de carrocería sobre la que está. Dos modelos YOLO11-seg afinados sobre datos abiertos — uno para 23 piezas, otro para 8 tipos de daño — se intersectan máscara con máscara, así la salida no es "rayón, 0.81" sino "rayón en la puerta delantera izquierda", que es la línea que se presupuesta. Un filtro de calidad rechaza las fotos desenfocadas o mal encuadradas antes de que produzcan tonterías con alta confianza, y varias vistas del mismo golpe se fusionan en un solo defecto en vez de tres.',
-      impact: 'Los defectos a caballo entre dos piezas se marcan para revisión humana, nunca se asignan por un 2% de margen · mask mAP50 65% en 23 piezas (3.156 imágenes de entrenamiento) y 11% en 8 tipos de daño (655) · métricas por clase, incluidas las dos que no aprendieron · corre en una GPU de consumo',
-      tags: ['YOLO11-seg', 'Segmentación de Instancias', 'PyTorch', 'FastAPI', 'WebSockets', 'React', 'OpenCV', 'ReportLab'],
+        'Entra una vuelta al vehículo; sale un informe de daños con cada hallazgo atribuido a la pieza de carrocería sobre la que está. Dos modelos YOLO11-seg afinados sobre datos abiertos — uno para 23 piezas, otro para 8 tipos de daño — se intersectan máscara con máscara, así la salida no es "rayón, 0.81" sino "rayón en la puerta delantera izquierda", que es la línea que se presupuesta. Un filtro de calidad rechaza las fotos desenfocadas o mal encuadradas antes de que produzcan tonterías con alta confianza, varias vistas del mismo golpe se fusionan en un solo defecto en vez de tres — y el informe termina donde termina una inspección real: un presupuesto de reparación, con los hallazgos convertidos en operaciones por pieza contra una tarifa auditable.',
+      impact: 'Los defectos a caballo entre dos piezas se marcan para revisión humana, nunca se asignan por un 2% de margen · mask mAP50 65% en 23 piezas (3.156 imágenes de entrenamiento) y 12% en 8 tipos de daño (655) · métricas por clase, incluidas las dos que no aprendieron · corre en una GPU de consumo',
+      tags: ['YOLO11-seg', 'Segmentación de Instancias', 'PyTorch', 'Presupuestos de Reparación', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
   ],
   demos: [
@@ -689,7 +689,7 @@ const es: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Daño atribuido a la pieza sobre la que está',
-      caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Alternar entre foto, piezas y daños es como se comprueba que una máscara es un rayón y no el borde de una pieza — y una máscara demasiado fragmentada cae a una caja punteada en vez de garabatear el coche. Debajo, los hallazgos agrupados por pieza, que es la forma que tiene un presupuesto de chapa.',
+      caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Hacer clic en una línea del presupuesto acerca la cámara a los píxeles exactos que la produjeron — del dinero a la evidencia en un clic. Y una máscara demasiado fragmentada cae a una caja punteada en vez de garabatear el coche.',
     },
   ],
   systems: [
@@ -940,9 +940,9 @@ const pt: Content = {
       role: 'Visão computacional · IA aplicada · 2026',
       pill: { label: 'Estudo de caso', type: 'flagship' },
       description:
-        'Entra uma volta ao redor do carro; sai um laudo de avarias com cada achado atribuído à peça de lataria em que ele está. Dois modelos YOLO11-seg ajustados sobre dados abertos — um para 23 peças, outro para 8 tipos de dano — são intersectados máscara a máscara, então a saída não é "risco, 0.81" e sim "risco na porta dianteira esquerda", que é o item que entra no orçamento. Um filtro de qualidade recusa fotos desfocadas ou mal enquadradas antes que produzam besteira com alta confiança, e várias vistas do mesmo amassado viram um defeito só em vez de três.',
-      impact: 'Defeitos em cima da divisa entre duas peças vão para revisão humana, nunca são atribuídos por 2% de margem · mask mAP50 65% em 23 peças (3.156 imagens de treino) e 11% em 8 tipos de dano (655) · métricas por classe, incluindo as duas que não aprenderam · roda numa GPU de consumo',
-      tags: ['YOLO11-seg', 'Segmentação de Instâncias', 'PyTorch', 'FastAPI', 'WebSockets', 'React', 'OpenCV', 'ReportLab'],
+        'Entra uma volta ao redor do carro; sai um laudo de avarias com cada achado atribuído à peça de lataria em que ele está. Dois modelos YOLO11-seg ajustados sobre dados abertos — um para 23 peças, outro para 8 tipos de dano — são intersectados máscara a máscara, então a saída não é "risco, 0.81" e sim "risco na porta dianteira esquerda", que é o item que entra no orçamento. Um filtro de qualidade recusa fotos desfocadas ou mal enquadradas antes que produzam besteira com alta confiança, várias vistas do mesmo amassado viram um defeito só em vez de três — e o laudo termina onde uma inspeção real termina: um orçamento de reparo, com os achados convertidos em operações por peça contra uma tabela de preços auditável.',
+      impact: 'Defeitos em cima da divisa entre duas peças vão para revisão humana, nunca são atribuídos por 2% de margem · mask mAP50 65% em 23 peças (3.156 imagens de treino) e 12% em 8 tipos de dano (655) · métricas por classe, incluindo as duas que não aprenderam · roda numa GPU de consumo',
+      tags: ['YOLO11-seg', 'Segmentação de Instâncias', 'PyTorch', 'Orçamento de Reparo', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
   ],
   demos: [
@@ -1021,7 +1021,7 @@ const pt: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Dano atribuído à peça em que ele está',
-      caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Alternar entre foto, peças e danos é como se prova que uma máscara é um risco e não a divisa de uma peça — e máscara fragmentada demais cai para uma caixa tracejada em vez de rabiscar o carro. Embaixo, os achados agrupados por peça, que é o formato de um orçamento de funilaria.',
+      caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Clicar numa linha do orçamento aproxima a câmera dos pixels exatos que a geraram — do dinheiro à evidência em um clique. E máscara fragmentada demais cai para uma caixa tracejada em vez de rabiscar o carro.',
     },
   ],
   systems: [
