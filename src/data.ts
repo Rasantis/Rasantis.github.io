@@ -131,11 +131,12 @@ export const CASES: CaseDef[] = [
     tracks: ['vision', 'fullstack'],
   },
   { key: 'auspex', idx: '02', projectIdx: 7, demoSrcs: ['./auspex_demo.mp4'], tracks: ['agents', 'fullstack'] },
-  { key: 'promeat', idx: '03', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents', tracks: ['agents', 'vision'] },
-  { key: 'docintel', idx: '04', projectIdx: 6, demoSrcs: ['./docintel_demo.mp4'], tracks: ['agents', 'fullstack'] },
-  { key: 'soccer', idx: '05', projectIdx: 5, demoSrcs: ['./soccer_ai_demo.mp4'], tracks: ['vision'] },
-  { key: 'pixsafety', idx: '06', projectIdx: 1, demoSrcs: [], tracks: ['vision', 'fullstack'] },
-  { key: 'pixforce', idx: '07', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'], tracks: ['vision'] },
+  { key: 'autoinspect', idx: '03', projectIdx: 8, demoSrcs: ['./autoinspect_demo.mp4'], tracks: ['vision', 'fullstack'] },
+  { key: 'promeat', idx: '04', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents', tracks: ['agents', 'vision'] },
+  { key: 'docintel', idx: '05', projectIdx: 6, demoSrcs: ['./docintel_demo.mp4'], tracks: ['agents', 'fullstack'] },
+  { key: 'soccer', idx: '06', projectIdx: 5, demoSrcs: ['./soccer_ai_demo.mp4'], tracks: ['vision'] },
+  { key: 'pixsafety', idx: '07', projectIdx: 1, demoSrcs: [], tracks: ['vision', 'fullstack'] },
+  { key: 'pixforce', idx: '08', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'], tracks: ['vision'] },
 ];
 
 /** Work that has no case block of its own — shown compactly at the end. */
@@ -270,6 +271,15 @@ const en: Content = {
       impact: '0 unsafe actions across the eval set · restraint held on 100% of the incidents where acting is the mistake · correct action on 4 of 7 · runs on one consumer GPU, no per-incident cost',
       tags: ['LangGraph', 'MCP', 'Multi-Agent', 'Human-in-the-Loop', 'Agent Evals', 'Prompt Injection', 'FastAPI', 'React'],
     },
+    {
+      title: 'AutoInspect AI — Automated Vehicle Condition Reporting',
+      role: 'Computer vision · applied AI · 2026',
+      pill: { label: 'Case study', type: 'flagship' },
+      description:
+        'A walk-around goes in; a damage report comes out with every finding attributed to the body panel it sits on. Two YOLO11-seg models fine-tuned on open data — one for 23 body panels, one for 8 defect types — are intersected mask-to-mask, so the output is not "scratch, 0.81" but "scratch on the front left door", which is the line item that gets quoted. A quality gate refuses out-of-focus or badly framed photos before they can produce confident nonsense, and repeat views of one dent merge into a single defect instead of three.',
+      impact: 'Defects straddling a panel edge are flagged for a human, never assigned by a 2% margin · mask mAP50 65% on 23 body panels (3,156 training images) and 11% on 8 defect types (655) · per-class metrics reported, including the two damage classes that did not learn · runs on one consumer GPU',
+      tags: ['YOLO11-seg', 'Instance Segmentation', 'PyTorch', 'FastAPI', 'WebSockets', 'React', 'OpenCV', 'ReportLab'],
+    },
   ],
   demos: [
     {
@@ -341,6 +351,13 @@ const en: Content = {
       project: 'Auspex',
       title: 'Four agents investigating one production incident',
       caption: 'Replay of a real run at 6×. The agents fan out across five MCP servers, the skeptic challenges the conclusion, and the rollback waits for a human before anything touches production.',
+    },
+    {
+      src: './autoinspect_demo.mp4',
+      poster: './posters/autoinspect_demo.jpg',
+      project: 'AutoInspect AI',
+      title: 'Damage attributed to the panel it sits on',
+      caption: 'The body map lights the panel each finding was assigned to. Clicking a defect dims every other mask across the photo set, so you can see exactly which pixels produced the line item.',
     },
   ],
   systems: [
@@ -586,6 +603,15 @@ const es: Content = {
       impact: '0 acciones inseguras en todo el set · contención sostenida en el 100% de los incidentes donde actuar es el error · acción correcta en 4 de 7 · corre en una GPU de consumo, sin costo por incidente',
       tags: ['LangGraph', 'MCP', 'Multiagente', 'Human-in-the-Loop', 'Evals de Agentes', 'Prompt Injection', 'FastAPI', 'React'],
     },
+    {
+      title: 'AutoInspect AI — Informe Automatizado de Estado del Vehículo',
+      role: 'Visión computacional · IA aplicada · 2026',
+      pill: { label: 'Caso de estudio', type: 'flagship' },
+      description:
+        'Entra una vuelta al vehículo; sale un informe de daños con cada hallazgo atribuido a la pieza de carrocería sobre la que está. Dos modelos YOLO11-seg afinados sobre datos abiertos — uno para 23 piezas, otro para 8 tipos de daño — se intersectan máscara con máscara, así la salida no es "rayón, 0.81" sino "rayón en la puerta delantera izquierda", que es la línea que se presupuesta. Un filtro de calidad rechaza las fotos desenfocadas o mal encuadradas antes de que produzcan tonterías con alta confianza, y varias vistas del mismo golpe se fusionan en un solo defecto en vez de tres.',
+      impact: 'Los defectos a caballo entre dos piezas se marcan para revisión humana, nunca se asignan por un 2% de margen · mask mAP50 65% en 23 piezas (3.156 imágenes de entrenamiento) y 11% en 8 tipos de daño (655) · métricas por clase, incluidas las dos que no aprendieron · corre en una GPU de consumo',
+      tags: ['YOLO11-seg', 'Segmentación de Instancias', 'PyTorch', 'FastAPI', 'WebSockets', 'React', 'OpenCV', 'ReportLab'],
+    },
   ],
   demos: [
     {
@@ -657,6 +683,13 @@ const es: Content = {
       project: 'Auspex',
       title: 'Cuatro agentes investigando un incidente en producción',
       caption: 'Replay de una corrida real a 6×. Los agentes se abren sobre cinco servidores MCP, el escéptico cuestiona la conclusión, y el rollback espera a una persona antes de tocar producción.',
+    },
+    {
+      src: './autoinspect_demo.mp4',
+      poster: './posters/autoinspect_demo.jpg',
+      project: 'AutoInspect AI',
+      title: 'Daño atribuido a la pieza sobre la que está',
+      caption: 'El mapa de carrocería enciende la pieza a la que se asignó cada hallazgo. Al hacer clic en un defecto se atenúan las demás máscaras del set, para ver exactamente qué píxeles produjeron esa línea del presupuesto.',
     },
   ],
   systems: [
@@ -902,6 +935,15 @@ const pt: Content = {
       impact: '0 ações inseguras em todo o conjunto · contenção mantida em 100% dos incidentes onde agir é o erro · ação correta em 4 de 7 · roda numa GPU de consumo, sem custo por incidente',
       tags: ['LangGraph', 'MCP', 'Multiagente', 'Human-in-the-Loop', 'Evals de Agentes', 'Prompt Injection', 'FastAPI', 'React'],
     },
+    {
+      title: 'AutoInspect AI — Laudo Automatizado de Estado do Veículo',
+      role: 'Visão computacional · IA aplicada · 2026',
+      pill: { label: 'Estudo de caso', type: 'flagship' },
+      description:
+        'Entra uma volta ao redor do carro; sai um laudo de avarias com cada achado atribuído à peça de lataria em que ele está. Dois modelos YOLO11-seg ajustados sobre dados abertos — um para 23 peças, outro para 8 tipos de dano — são intersectados máscara a máscara, então a saída não é "risco, 0.81" e sim "risco na porta dianteira esquerda", que é o item que entra no orçamento. Um filtro de qualidade recusa fotos desfocadas ou mal enquadradas antes que produzam besteira com alta confiança, e várias vistas do mesmo amassado viram um defeito só em vez de três.',
+      impact: 'Defeitos em cima da divisa entre duas peças vão para revisão humana, nunca são atribuídos por 2% de margem · mask mAP50 65% em 23 peças (3.156 imagens de treino) e 11% em 8 tipos de dano (655) · métricas por classe, incluindo as duas que não aprenderam · roda numa GPU de consumo',
+      tags: ['YOLO11-seg', 'Segmentação de Instâncias', 'PyTorch', 'FastAPI', 'WebSockets', 'React', 'OpenCV', 'ReportLab'],
+    },
   ],
   demos: [
     {
@@ -973,6 +1015,13 @@ const pt: Content = {
       project: 'Auspex',
       title: 'Quatro agentes investigando um incidente em produção',
       caption: 'Replay de um run real a 6×. Os agentes se abrem sobre cinco servidores MCP, o cético contesta a conclusão, e o rollback espera uma pessoa antes de qualquer coisa tocar produção.',
+    },
+    {
+      src: './autoinspect_demo.mp4',
+      poster: './posters/autoinspect_demo.jpg',
+      project: 'AutoInspect AI',
+      title: 'Dano atribuído à peça em que ele está',
+      caption: 'O mapa de lataria acende a peça a que cada achado foi atribuído. Clicar num defeito apaga as outras máscaras do conjunto, mostrando exatamente quais pixels geraram aquele item de orçamento.',
     },
   ],
   systems: [
