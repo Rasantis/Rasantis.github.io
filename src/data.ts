@@ -357,7 +357,7 @@ const en: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Damage attributed to the panel it sits on',
-      caption: 'The body map lights the panel each finding was assigned to. Clicking a defect dims every other mask across the photo set, so you can see exactly which pixels produced the line item.',
+      caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Toggling between raw, parts and damage is how you prove a mask is a scratch and not a panel edge — and a mask too fragmented to be a region falls back to a dashed box rather than scribbling across the car.',
     },
   ],
   systems: [
@@ -689,7 +689,7 @@ const es: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Daño atribuido a la pieza sobre la que está',
-      caption: 'El mapa de carrocería enciende la pieza a la que se asignó cada hallazgo. Al hacer clic en un defecto se atenúan las demás máscaras del set, para ver exactamente qué píxeles produjeron esa línea del presupuesto.',
+      caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Alternar entre foto, piezas y daños es como se comprueba que una máscara es un rayón y no el borde de una pieza — y una máscara demasiado fragmentada cae a una caja punteada en vez de garabatear el coche.',
     },
   ],
   systems: [
@@ -1021,7 +1021,7 @@ const pt: Content = {
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Dano atribuído à peça em que ele está',
-      caption: 'O mapa de lataria acende a peça a que cada achado foi atribuído. Clicar num defeito apaga as outras máscaras do conjunto, mostrando exatamente quais pixels geraram aquele item de orçamento.',
+      caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Alternar entre foto, peças e danos é como se prova que uma máscara é um risco e não a divisa de uma peça — e máscara fragmentada demais cai para uma caixa tracejada em vez de rabiscar o carro.',
     },
   ],
   systems: [
