@@ -105,12 +105,24 @@ export default function Work() {
                 </div>
               )}
 
+              {/* The diagram is 700px tall — half a case block — and it sits at the
+                  bottom, which is exactly where a skimming reader has already
+                  stopped. Folded away it costs one line; the people who want it
+                  are the ones who will open it. Native <details> so it works with
+                  a keyboard, survives Ctrl+F, and needs no state of its own. */}
               {system && (
-                <div className="case-block">
-                  <div className="case-block-label">{c.ui.work.architecture}</div>
-                  <Blueprint system={system} />
-                  <div className="system-footer">{system.footer}</div>
-                </div>
+                <details className="arch-disclose">
+                  <summary>
+                    <span className="arch-disclose-label">{c.ui.work.architecture}</span>
+                    <span className="arch-disclose-title">{system.title}</span>
+                    <span className="arch-disclose-cta">{c.ui.work.archToggle}</span>
+                    <span className="arch-disclose-chevron" aria-hidden="true" />
+                  </summary>
+                  <div className="arch-disclose-body">
+                    <Blueprint system={system} />
+                    <div className="system-footer">{system.footer}</div>
+                  </div>
+                </details>
               )}
             </Reveal>
           );

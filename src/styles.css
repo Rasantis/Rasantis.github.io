@@ -666,6 +666,105 @@ section {
     .track-chip { font-size: 11.5px; padding: 6px 11px; }
 }
 
+/* Architecture, folded. The row has to read as a control worth opening, not as
+   a footnote — so it gets the card's own border and a hover that lifts, the
+   same language as everything else on the page that responds to a click. */
+.arch-disclose {
+    margin-top: 22px;
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    background: var(--bg-soft);
+    overflow: hidden;
+    transition: border-color .16s;
+}
+
+.arch-disclose:hover { border-color: #33404f; }
+.arch-disclose[open] { border-color: #2c3846; background: transparent; }
+
+.arch-disclose > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    user-select: none;
+}
+
+/* the browser's own marker, gone in both engines */
+.arch-disclose > summary::-webkit-details-marker { display: none; }
+.arch-disclose > summary::marker { content: ''; }
+
+.arch-disclose-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    flex-shrink: 0;
+}
+
+.arch-disclose-title {
+    color: var(--text-dim);
+    font-size: 13.5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+}
+
+.arch-disclose-cta {
+    margin-left: auto;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    color: var(--text-faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.arch-disclose:hover .arch-disclose-cta { color: var(--text-dim); }
+
+.arch-disclose-chevron {
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid var(--text-faint);
+    border-bottom: 1.5px solid var(--text-faint);
+    transform: rotate(45deg);
+    margin-top: -4px;
+    flex-shrink: 0;
+    transition: transform .2s, border-color .16s;
+}
+
+.arch-disclose[open] .arch-disclose-chevron {
+    transform: rotate(-135deg);
+    margin-top: 2px;
+}
+
+.arch-disclose:hover .arch-disclose-chevron {
+    border-color: var(--text-dim);
+}
+
+.arch-disclose-body {
+    padding: 4px 18px 18px;
+    animation: arch-open .22s ease-out;
+}
+
+@keyframes arch-open {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .arch-disclose-body { animation: none; }
+    .arch-disclose-chevron { transition: none; }
+}
+
+/* on a phone the case title alone fills the row */
+@media (max-width: 720px) {
+    .arch-disclose-title { display: none; }
+    .arch-disclose > summary { padding: 13px 14px; gap: 10px; }
+}
+
 /* WORK — one self-contained case per project: story, footage, architecture */
 .cases {
     display: flex;

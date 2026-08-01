@@ -73,6 +73,7 @@ export interface UI {
   work: {
     eyebrow: string; heading: string; sub: string; videos: string; architecture: string; zoom: string;
     filters: { all: string; agents: string; vision: string; fullstack: string };
+    archToggle: string;
   };
   arch: { eyebrow: string; heading: string; sub: string; also: string };
   skills: { eyebrow: string; heading: string; sub: string };
@@ -164,6 +165,7 @@ const en: Content = {
       architecture: 'Architecture',
       zoom: 'open full size',
       filters: { all: 'All work', agents: 'Agents & LLM', vision: 'Computer vision', fullstack: 'Full-stack & cloud' },
+      archToggle: 'See the architecture',
     },
     arch: {
       eyebrow: 'How I Build',
@@ -479,6 +481,7 @@ const es: Content = {
       architecture: 'Arquitectura',
       zoom: 'abrir en tamaño real',
       filters: { all: 'Todo', agents: 'Agentes y LLM', vision: 'Visión computacional', fullstack: 'Full-stack y cloud' },
+      archToggle: 'Ver la arquitectura',
     },
     arch: {
       eyebrow: 'Cómo lo construyo',
@@ -794,6 +797,7 @@ const pt: Content = {
       architecture: 'Arquitetura',
       zoom: 'abrir em tamanho real',
       filters: { all: 'Tudo', agents: 'Agentes e LLM', vision: 'Visão computacional', fullstack: 'Full-stack e cloud' },
+      archToggle: 'Ver a arquitetura',
     },
     arch: {
       eyebrow: 'Como eu construo',
