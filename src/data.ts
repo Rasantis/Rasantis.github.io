@@ -147,7 +147,7 @@ export const CASES: CaseDef[] = [
  *  Soccer lives here deliberately: it is a personal build with no client and no
  *  outcome number, and sitting among the production cases it diluted them. */
 export const EXTRA_PROJECT_IDX = [4];
-export const EXTRA_DEMO_SRCS = ['./soccer_ai_demo.mp4', './vehicle_counting_demo.mp4'];
+export const EXTRA_DEMO_SRCS = ['./soccer_ai_demo.mp4'];
 /** The full-stack blueprint is cross-cutting: it belongs to no single project. */
 export const CROSS_SYSTEM_PREFIX = 'fullstack';
 
@@ -320,13 +320,6 @@ const en: Content = {
       project: 'Government Contract',
       title: 'Drone crowd counting',
       caption: 'Aerial line-crossing tally + per-frame headcount over dense crowds — 1,100+ people in frame at peak.',
-    },
-    {
-      src: './vehicle_counting_demo.mp4',
-      poster: './posters/vehicle_counting_demo.jpg',
-      project: 'Traffic Analytics',
-      title: 'Vehicle counting & traffic flow',
-      caption: 'Multi-zone in / out vehicle tallies and tracking on a live traffic camera.',
     },
     {
       src: './soccer_ai_demo.mp4',
@@ -652,13 +645,6 @@ const es: Content = {
       caption: 'Conteo aéreo por cruce de línea + personas por cuadro en multitudes densas — pico de 1.100+ personas en cuadro.',
     },
     {
-      src: './vehicle_counting_demo.mp4',
-      poster: './posters/vehicle_counting_demo.jpg',
-      project: 'Analítica de tráfico',
-      title: 'Conteo de vehículos y flujo de tráfico',
-      caption: 'Conteos de entrada / salida multizona y tracking sobre una cámara de tráfico en vivo.',
-    },
-    {
       src: './soccer_ai_demo.mp4',
       poster: './posters/soccer_ai_demo.jpg',
       project: 'Analítica deportiva',
@@ -980,13 +966,6 @@ const pt: Content = {
       project: 'Contrato governamental',
       title: 'Contagem de multidões por drone',
       caption: 'Contagem aérea por cruzamento de linha + pessoas por quadro em multidões densas — pico de 1.100+ pessoas em quadro.',
-    },
-    {
-      src: './vehicle_counting_demo.mp4',
-      poster: './posters/vehicle_counting_demo.jpg',
-      project: 'Analítica de tráfego',
-      title: 'Contagem de veículos e fluxo de tráfego',
-      caption: 'Contagens de entrada / saída multizona e tracking em uma câmera de tráfego ao vivo.',
     },
     {
       src: './soccer_ai_demo.mp4',
