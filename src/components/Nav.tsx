@@ -1,3 +1,4 @@
+import type { MouseEvent } from 'react';
 import { links, type Lang } from '../data';
 import { useLang } from '../i18n';
 
@@ -43,6 +44,23 @@ const LANGS: { code: Lang; label: string; aria: string; Flag: () => JSX.Element 
 export default function Nav() {
   const { lang, setLang, c } = useLang();
 
+  /* The dropdown is a native <details>: no menu state to manage, and it keeps
+     working if hydration is slow. The only JS it needs is closing itself after
+     a link is chosen — <details> has no idea navigation happened. */
+  const closeMenu = (e: MouseEvent<HTMLElement>) => {
+    e.currentTarget.closest('details')?.removeAttribute('open');
+  };
+
+  const anchors = (
+    <>
+      <a href="#work" onClick={closeMenu}>{c.ui.nav.work}</a>
+      <a href="#architecture" onClick={closeMenu}>{c.ui.nav.architecture}</a>
+      <a href="#skills" onClick={closeMenu}>{c.ui.nav.skills}</a>
+      <a href="#experience" onClick={closeMenu}>{c.ui.nav.experience}</a>
+      <a href="#contact" onClick={closeMenu}>{c.ui.nav.contact}</a>
+    </>
+  );
+
   return (
     <nav>
       <div className="nav-inner">
@@ -50,13 +68,7 @@ export default function Nav() {
           Rafael <span>De Santis</span>
         </div>
         <div className="nav-right">
-          <div className="nav-links">
-            <a href="#work">{c.ui.nav.work}</a>
-            <a href="#architecture">{c.ui.nav.architecture}</a>
-            <a href="#skills">{c.ui.nav.skills}</a>
-            <a href="#experience">{c.ui.nav.experience}</a>
-            <a href="#contact">{c.ui.nav.contact}</a>
-          </div>
+          <div className="nav-links">{anchors}</div>
           <div className="lang-switch" role="group" aria-label="Language / Idioma">
             {LANGS.map(({ code, label, aria, Flag }) => (
               <button
@@ -75,6 +87,12 @@ export default function Nav() {
           <a className="btn btn-primary btn-nav" href={links.cv} target="_blank" rel="noreferrer">
             {c.ui.nav.cv}
           </a>
+          <details className="nav-menu">
+            <summary aria-label="Menu">
+              <span className="nav-burger" aria-hidden="true" />
+            </summary>
+            <div className="nav-menu-panel">{anchors}</div>
+          </details>
         </div>
       </div>
     </nav>

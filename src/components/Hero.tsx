@@ -16,28 +16,28 @@ export default function Hero() {
         </h1>
         {lang === 'en' ? (
           <p className="lede">
-            Full-stack AI engineer — today Senior AI Engineer III at <strong>Pix Force</strong>. Founder &amp; CTO of
-            <strong> ShopGuard AI</strong> — a retail security platform I built solo and ran across 150 stores. Built
-            the computer vision platform serving <strong>JBS and Marfrig</strong>, the world's two largest meat
-            processors — real systems, real traffic, zero handoffs.
+            5+ years shipping AI that runs in production. Today Senior AI Engineer III at <strong>Pix Force</strong>;
+            before that, founder &amp; CTO of <strong>ShopGuard AI</strong>, a retail security platform I built solo
+            and operated across 150 stores; in between, the computer vision platform counting 25,000+ animals a day
+            for <strong>JBS and Marfrig</strong> plants.
           </p>
         ) : lang === 'es' ? (
           <p className="lede">
-            Ingeniero de IA full-stack — hoy Senior AI Engineer III en <strong>Pix Force</strong>. Founder &amp; CTO de
-            <strong> ShopGuard AI</strong>, una plataforma de seguridad para retail que construí solo y operé en 150
-            tiendas. Construí la plataforma de visión computacional que atiende a <strong>JBS y Marfrig</strong>, los
-            dos mayores procesadores de carne del mundo — sistemas reales, tráfico real, cero handoffs.
+            5+ años poniendo IA en producción. Hoy Senior AI Engineer III en <strong>Pix Force</strong>; antes,
+            founder &amp; CTO de <strong>ShopGuard AI</strong>, una plataforma de seguridad para retail que construí
+            solo y operé en 150 tiendas; en el medio, la plataforma de visión computacional que cuenta 25.000+
+            animales al día para plantas de <strong>JBS y Marfrig</strong>.
           </p>
         ) : (
           <p className="lede">
-            Engenheiro de IA full-stack — hoje Senior AI Engineer III na <strong>Pix Force</strong>. Founder &amp; CTO
-            da <strong>ShopGuard AI</strong>, uma plataforma de segurança para o varejo que construí sozinho e operei
-            em 150 lojas. Construí a plataforma de visão computacional que atende <strong>JBS e Marfrig</strong>, os
-            dois maiores frigoríficos do mundo — sistemas reais, tráfego real, zero handoffs.
+            5+ anos colocando IA em produção. Hoje Senior AI Engineer III na <strong>Pix Force</strong>; antes,
+            founder &amp; CTO da <strong>ShopGuard AI</strong>, uma plataforma de segurança para o varejo que construí
+            sozinho e operei em 150 lojas; no meio do caminho, a plataforma de visão computacional que conta 25.000+
+            animais por dia para plantas da <strong>JBS e Marfrig</strong>.
           </p>
         )}
         <div className="hero-ctas">
-          <a className="btn btn-primary" href="#projects">
+          <a className="btn btn-primary" href="#work">
             {h.ctaProjects}
           </a>
           <a className="btn btn-ghost" href={links.cv} target="_blank" rel="noreferrer">
@@ -68,7 +68,7 @@ export default function Hero() {
         </div>
       </div>
       <figure className="feed" aria-label="Rafael De Santis, framed as a camera feed with a detection overlay">
-        <img src="./profile.png" alt="Rafael De Santis" />
+        <img src="./profile_studio.jpg" alt="Rafael De Santis" />
         <span className="feed-corner tl" aria-hidden="true" />
         <span className="feed-corner tr" aria-hidden="true" />
         <span className="feed-corner bl" aria-hidden="true" />

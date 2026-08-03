@@ -21,8 +21,21 @@ export default function Architecture() {
 
       {system && (
         <Reveal className="case case-arch">
-          <Blueprint system={system} />
-          <div className="system-footer">{system.footer}</div>
+          {/* Same folded-by-default treatment as the per-case diagrams: the
+              900px blueprint is for the reader who wants it, not a toll for
+              the one scrolling to Experience. */}
+          <details className="arch-disclose arch-disclose-bare">
+            <summary>
+              <span className="arch-disclose-label">{c.ui.work.architecture}</span>
+              <span className="arch-disclose-title">{system.title}</span>
+              <span className="arch-disclose-cta">{c.ui.work.archToggle}</span>
+              <span className="arch-disclose-chevron" aria-hidden="true" />
+            </summary>
+            <div className="arch-disclose-body">
+              <Blueprint system={system} />
+              <div className="system-footer">{system.footer}</div>
+            </div>
+          </details>
           <div className="tags case-tags">
             {system.tags.map((t) => (
               <span key={t} className="tag">

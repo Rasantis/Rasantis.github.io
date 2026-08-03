@@ -121,6 +121,11 @@ export interface CaseDef {
   tracks: Track[];
 }
 
+/**
+ * Order tells the employment story first (founder → client platform → current
+ * role), then the self-built case studies, then breadth. A recruiter who stops
+ * at case 03 has still met every employer on the CV.
+ */
 export const CASES: CaseDef[] = [
   {
     key: 'shopguard',
@@ -130,24 +135,25 @@ export const CASES: CaseDef[] = [
     systemPrefix: 'auto',
     tracks: ['vision', 'fullstack'],
   },
-  { key: 'auspex', idx: '02', projectIdx: 7, demoSrcs: ['./auspex_demo.mp4'], tracks: ['agents', 'fullstack'] },
-  { key: 'autoinspect', idx: '03', projectIdx: 8, demoSrcs: ['./autoinspect_demo.mp4'], tracks: ['vision', 'fullstack'] },
-  { key: 'promeat', idx: '04', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents', tracks: ['agents', 'vision'] },
-  { key: 'docintel', idx: '05', projectIdx: 6, demoSrcs: ['./docintel_demo.mp4'], tracks: ['agents', 'fullstack'] },
-  { key: 'soccer', idx: '06', projectIdx: 5, demoSrcs: ['./soccer_ai_demo.mp4'], tracks: ['vision'] },
-  { key: 'pixsafety', idx: '07', projectIdx: 1, demoSrcs: [], tracks: ['vision', 'fullstack'] },
-  { key: 'pixforce', idx: '08', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'], tracks: ['vision'] },
+  { key: 'promeat', idx: '02', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents', tracks: ['agents', 'vision'] },
+  { key: 'pixsafety', idx: '03', projectIdx: 1, demoSrcs: [], tracks: ['vision', 'fullstack'] },
+  { key: 'auspex', idx: '04', projectIdx: 6, demoSrcs: ['./auspex_demo.mp4'], tracks: ['agents', 'fullstack'] },
+  { key: 'autoinspect', idx: '05', projectIdx: 7, demoSrcs: ['./autoinspect_demo.mp4'], tracks: ['vision', 'fullstack'] },
+  { key: 'docintel', idx: '06', projectIdx: 5, demoSrcs: ['./docintel_demo.mp4'], tracks: ['agents', 'fullstack'] },
+  { key: 'pixforce', idx: '07', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'], tracks: ['vision'] },
 ];
 
-/** Work that has no case block of its own — shown compactly at the end. */
+/** Work that has no case block of its own — shown compactly at the end.
+ *  Soccer lives here deliberately: it is a personal build with no client and no
+ *  outcome number, and sitting among the production cases it diluted them. */
 export const EXTRA_PROJECT_IDX = [4];
-export const EXTRA_DEMO_SRCS = ['./vehicle_counting_demo.mp4'];
+export const EXTRA_DEMO_SRCS = ['./soccer_ai_demo.mp4', './vehicle_counting_demo.mp4'];
 /** The full-stack blueprint is cross-cutting: it belongs to no single project. */
 export const CROSS_SYSTEM_PREFIX = 'fullstack';
 
 const en: Content = {
   ui: {
-    nav: { work: 'Work', architecture: 'Architecture', skills: 'Stack', experience: 'Experience', contact: 'Contact', cv: 'Download CV' },
+    nav: { work: 'Work', architecture: 'How I build', skills: 'Stack', experience: 'Experience', contact: 'Contact', cv: 'Download CV' },
     hero: {
       eyebrow: 'São Paulo, Brazil · Remote worldwide',
       h1Pre: 'I build ',
@@ -161,7 +167,7 @@ const en: Content = {
     work: {
       eyebrow: 'Selected Work',
       heading: 'Every system, end to end',
-      sub: 'Each block is one full case — what it does, what it changed, footage of it running, and the architecture underneath. Most of it ran in production for real users; the two marked Case study and Open source are mine, built to show the parts production work cannot show publicly.',
+      sub: 'Each block is one full case: what it does, what changed, footage of it running, and the architecture underneath. The client work ran in production for real users. Everything else is labeled for what it is — Case study, Open source, Personal build — and exists to show the parts client work cannot show publicly.',
       videos: 'See it running',
       architecture: 'Architecture',
       zoom: 'open full size',
@@ -177,61 +183,61 @@ const en: Content = {
     skills: {
       eyebrow: 'Stack',
       heading: 'Tools I ship with',
-      sub: 'End to end across the stack — computer vision and LLM agents, the Python/FastAPI + React product around them, and the cloud they run on. Heavy daily use of AI-augmented development (Claude Code, Codex, Cursor).',
+      sub: 'Computer vision and LLM agents, the Python/FastAPI + React product around them, and the cloud they run on. Daily AI-augmented development with Claude Code, Codex and Cursor.',
     },
     experience: {
       eyebrow: 'Trajectory',
       heading: 'Experience',
-      sub: 'Freelance to founder to senior IC — every stop shipped to production, owned end to end.',
+      sub: 'Freelance to founder to senior IC. Every role put systems into production.',
     },
     contact: {
-      heading: "Let's build something that ships.",
-      sub: 'Open to remote roles worldwide — AI engineering, computer vision, full-stack AI products. Italian (EU) citizen, fluent English, fully async-ready.',
+      heading: 'If it has to work in production, let\'s talk.',
+      sub: 'Open to senior remote roles worldwide: AI engineering, computer vision, full-stack AI products. Italian (EU) citizen · fluent English · UTC−3, near-full overlap with US Eastern hours and EU afternoons.',
       cv: 'Download CV',
     },
     footer: { cv: 'CV (PDF)', tagline: 'built with React + TypeScript + Vite, deployed on GitHub Pages.' },
   },
   stats: [
     { num: '25,000+', label: 'animals counted daily — JBS & Marfrig plants' },
-    { num: '150 stores', label: '4,500+ camera streams — ShopGuard AI footprint' },
-    { num: '90%', label: 'fewer completed thefts at deployed stores' },
-    { num: '−37%', label: 'cloud cost cut in month one — Pix Safety' },
+    { num: '150 stores', label: '4,500+ camera streams — ShopGuard AI' },
+    { num: '98.5%', label: 'weight-estimation accuracy vs. plant scales — target was 95%' },
+    { num: '−37%', label: 'cloud cost in month one — Pix Safety' },
   ],
   projects: [
     {
       title: 'ShopGuard AI — Retail Theft Detection',
       role: 'Founder & CTO · 2025',
-      pill: { label: '150 stores', type: 'flagship' },
+      pill: { label: 'Production', type: 'live' },
       description:
-        'AI-native retail security platform, built solo from edge to UI: YOLO11 + GStreamer + TensorRT at sub-second latency on NVIDIA edge hardware, hybrid GCP / Oracle Cloud backend, React operator dashboards. Oracle / Google / Antler accelerated.',
-      impact: '150 stores · 4,500+ camera streams · 90% fewer completed thefts',
+        'Retail security platform built solo, edge to UI: YOLO11 with TensorRT at sub-second latency on in-store NVIDIA hardware, GStreamer ingestion of ~30 cameras per store, hybrid GCP / Oracle Cloud backend, React dashboards for floor operators. Accelerated by Oracle, Google and Antler programs.',
+      impact: "150 stores · 4,500+ camera streams · ~90% fewer completed thefts vs. the stores' pre-deployment incident records",
       tags: ['YOLO11', 'TensorRT', 'GStreamer', 'FastAPI', 'React', 'GCP'],
     },
     {
       title: 'Pix Safety — Model & Cloud Optimization',
       role: 'Senior AI Engineer III · Pix Force · 2026–present',
-      pill: { label: '+30% accuracy', type: 'live' },
+      pill: { label: 'Current role', type: 'live' },
       description:
-        'Ongoing ownership of Pix Safety refinement: retrained oversized models into smaller, better-tuned ones, and rebuilt the serving economics — reserved instances, right-sized clusters, hot-path Python→C++ migrations.',
-      impact: '30% more accurate · 45% faster inference · cloud costs −37% in month one',
+        'Ongoing ownership of the Pix Safety product: retrained its oversized models into smaller, better-tuned ones and rebuilt the serving stack with reserved instances, right-sized clusters and hot-path Python→C++ migrations. Also runs internal AI training and mentors junior and mid-level engineers.',
+      impact: '+30% accuracy over the prior production models · 45% faster inference · cloud costs −37% in month one',
       tags: ['PyTorch', 'C++', 'TensorRT', 'MLOps', 'Cloud Cost'],
     },
     {
       title: 'Industrial CV Platform — Promeat AI',
       role: 'Full-Stack Engineer · 2026',
-      pill: { label: 'In production', type: 'live' },
+      pill: { label: 'Production', type: 'live' },
       description:
-        "Computer vision platform serving JBS and Marfrig. FFmpeg ingestion over heterogeneous plant cameras, OpenCV preprocessing, event-driven microservices and React dashboards — the plant's operational source of truth, zero manual fallback.",
-      impact: '25,000+ animals counted daily · 4 plants (2 JBS, 2 Marfrig)',
+        'Computer vision platform serving JBS and Marfrig plants: FFmpeg ingestion across heterogeneous plant cameras, OpenCV preprocessing, event-driven microservices, React dashboards. The daily count is the record the plants operate on; there is no manual fallback.',
+      impact: '25,000+ animals counted daily · 4 plants (2 JBS, 2 Marfrig) · weight estimation at 98.5% accuracy vs. plant scales (client target: 95%)',
       tags: ['Python', 'FFmpeg', 'OpenCV', 'PyTorch', 'Microservices'],
     },
     {
       title: 'Industrial Vision Products — Pix Force',
       role: 'Full-Stack AI Engineer · 2024',
-      pill: { label: '4 products', type: 'live' },
+      pill: { label: 'Production', type: 'live' },
       description:
-        'Four production AI products for large industrial clients — people counting (YOLOv8 + ByteTrack), employee performance, vehicle theft detection, dock dwell-time — plus automated pipe-threading inspection and a government drone contract for real-time crowd density. Edge inference on Jetson / Raspberry Pi.',
-      impact: '5,000+ annotated images · 4 products shipped · crowd counting within 5% margin of error',
+        'Four AI products for large industrial clients: people counting (YOLOv8 + ByteTrack), employee performance, vehicle theft detection and dock dwell-time, plus automated pipe-threading inspection and a government drone contract for live crowd density. Edge inference on Jetson and Raspberry Pi.',
+      impact: '4 products delivered · 5,000+ images annotated · drone crowd counts within a 5% margin of error',
       tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'CNNs', 'FastAPI'],
     },
     {
@@ -244,21 +250,12 @@ const en: Content = {
       tags: ['OpenCV', 'Signal Processing', 'Python', 'Flask'],
     },
     {
-      title: 'Soccer AI — Match Intelligence',
-      role: 'Computer Vision · World Cup 2026 footage',
-      pill: { label: 'Sports analytics', type: 'live' },
-      description:
-        'Tactical analysis from broadcast football footage alone: both squads, referees and the ball tracked frame by frame, each player labelled with live speed, possession computed on the fly, and every position projected onto a 2D tactical map that re-solves itself when the broadcast cuts to a new camera angle.',
-      impact: 'Players · referees · ball tracked · per-player km/h · live possession · homography-projected tactical map',
-      tags: ['YOLO', 'Multi-Object Tracking', 'Homography', 'OpenCV', 'PyTorch', 'Team Classification'],
-    },
-    {
       title: 'DocIntel — OCR Verification with Human-in-the-Loop',
       role: 'Applied AI · open source · 2026',
       pill: { label: 'Open source', type: 'live' },
       description:
-        'The workflow a document-verification provider runs: read the document, prove where each value came from, decide alone only when confident, and route the rest to a person. A local vision-language model (Qwen2.5-VL via Ollama) extracts the values, OCR anchors each one on the page, and cross-field validation catches what a confidence score cannot — an invoice whose subtotal and tax contradict its own total is blocked even when the model read all three numbers perfectly.',
-      impact: 'Discrepancies routed to human review · escaped errors measured (wrong AND auto-approved) · confidence calibration and a regression gate · runs on-device, no per-document cost',
+        'The workflow a document-verification provider runs: read the document, prove where each value came from, decide alone only when confident, route the rest to a person. A local vision-language model (Qwen2.5-VL via Ollama) extracts the values, OCR anchors each one on the page, and cross-field validation catches what a confidence score cannot: an invoice whose subtotal and tax contradict its own total is blocked even when every number was read correctly.',
+      impact: 'Discrepancies routed to human review · escaped errors measured (wrong AND auto-approved) · confidence calibration with a regression gate · runs on-device',
       tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
       repo: 'https://github.com/Rasantis/docintel',
     },
@@ -267,8 +264,8 @@ const en: Content = {
       role: 'Applied AI · agent systems · 2026',
       pill: { label: 'Case study', type: 'flagship' },
       description:
-        'An alert fires at 3am. Four specialist agents investigate in parallel — metrics, logs, deploys, runbooks — each connected to a different MCP server I wrote, and each able to call only the tools that server exposes. A commander names one root cause, a skeptic attacks it with the same tools, and only then does a planner propose a mitigation. It cannot execute one: every write is a proposal that stops at a LangGraph interrupt until a person approves it.',
-      impact: '0 unsafe actions across the eval set · restraint held on 100% of the incidents where acting is the mistake · correct action on 4 of 7 · runs on one consumer GPU, no per-incident cost',
+        'An alert fires at 3am. Four specialist agents investigate in parallel over metrics, logs, deploys and runbooks, each connected to a different MCP server I wrote and limited to the tools that server exposes. A commander names one root cause, a skeptic attacks it with the same tools, and only then does a planner propose a mitigation — which it cannot execute: every write stops at a LangGraph interrupt until a person approves it.',
+      impact: '0 unsafe actions across the 7-incident eval · restraint held on every incident where acting is the mistake · correct mitigation on 4 of 7 · runs on one consumer GPU',
       tags: ['LangGraph', 'MCP', 'Multi-Agent', 'Human-in-the-Loop', 'Agent Evals', 'Prompt Injection', 'FastAPI', 'React'],
     },
     {
@@ -276,8 +273,8 @@ const en: Content = {
       role: 'Computer vision · applied AI · 2026',
       pill: { label: 'Case study', type: 'flagship' },
       description:
-        'A walk-around goes in; a damage report comes out with every finding attributed to the body panel it sits on. Two YOLO11-seg models fine-tuned on open data — one for 23 body panels, one for 8 defect types — are intersected mask-to-mask, so the output is not "scratch, 0.81" but "scratch on the front left door", which is the line item that gets quoted. A quality gate refuses out-of-focus or badly framed photos before they can produce confident nonsense, repeat views of one dent merge into a single defect instead of three — and the report ends where a real inspection ends: a priced repair estimate, findings mapped to operations per panel against an auditable rate card.',
-      impact: 'Defects straddling a panel edge are flagged for a human, never assigned by a 2% margin · mask mAP50 65% on 23 body panels (3,156 training images) and 12% on 8 defect types (655) · per-class metrics reported, including the two damage classes that did not learn · runs on one consumer GPU',
+        'A photo walk-around goes in; a priced damage report comes out. Two YOLO11-seg models, one for 23 body panels and one for 8 defect types, are intersected mask-to-mask, so the output is not "scratch, 0.81" but "scratch on the front left door" — the line item a body shop quotes. A quality gate refuses blurry or badly framed photos, repeat views of one dent merge into a single defect, and findings map to repair operations against an auditable rate card.',
+      impact: 'mask mAP50 65% on 23 panels (3,156 training images) · 12% on 8 defect types (655 images, reported per class, including the two classes that did not learn) · borderline defects abstain to a human, never assigned inside a 2% margin',
       tags: ['YOLO11-seg', 'Instance Segmentation', 'PyTorch', 'Repair Estimating', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
   ],
@@ -286,8 +283,8 @@ const en: Content = {
       src: './weight_estimation_demo.mp4',
       poster: './posters/weight_estimation_demo.jpg',
       project: 'Promeat AI',
-      title: 'Real-time weight estimation — 98.5%',
-      caption: 'Instance segmentation + per-bird weight prediction on live barn footage.',
+      title: 'Real-time weight estimation — 98.5% vs. scale',
+      caption: 'Instance segmentation and per-bird weight prediction on live barn footage, measured against plant scale weights. The client target was 95%.',
     },
     {
       src: './pharmacy_detection_demo.mp4',
@@ -335,29 +332,29 @@ const en: Content = {
       src: './soccer_ai_demo.mp4',
       poster: './posters/soccer_ai_demo.jpg',
       project: 'Sports Analytics',
-      title: 'Match intelligence — World Cup 2026',
-      caption: 'Both squads, referees and ball tracked from broadcast footage — speed per player, live possession, and a tactical map that survives camera cuts.',
+      title: 'Match intelligence — World Cup 2026 broadcast',
+      caption: 'Personal build on broadcast footage alone: both squads, referees and the ball tracked, per-player speed, live possession, and a tactical map that survives camera cuts.',
     },
     {
       src: './docintel_demo.mp4',
       poster: './posters/docintel_demo.jpg',
       project: 'DocIntel',
       title: 'Document verification with a confidence gate',
-      caption: 'An invoice that does not add up: the model read every number correctly and the cross-field check blocked approval anyway. Hover a field to see where it was read.',
+      caption: 'An invoice that does not add up: the model read every number correctly and the cross-field check blocked approval anyway. Hovering a field highlights where on the page it was read. Vantis Credit is a fictional client; the pipeline is real.',
     },
     {
       src: './auspex_demo.mp4',
       poster: './posters/auspex_demo.jpg',
       project: 'Auspex',
       title: 'Four agents investigating one production incident',
-      caption: 'Replay of a real run at 6×. The agents fan out across five MCP servers, the skeptic challenges the conclusion, and the rollback waits for a human before anything touches production.',
+      caption: 'Replay of a real run at 6×. The agents fan out across five MCP servers, the skeptic challenges the conclusion, and the rollback waits for a human. Meridian is a fictional company; the run and the numbers are real.',
     },
     {
       src: './autoinspect_demo.mp4',
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Damage attributed to the panel it sits on',
-      caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Clicking a line on the repair estimate zooms the camera onto the exact pixels that produced it — money to evidence in one click. And a mask too fragmented to be a region falls back to a dashed box rather than scribbling across the car.',
+      caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Clicking a line on the repair estimate zooms the camera onto the exact pixels that produced it. JEPO is a fictional operator; the inference and the numbers are real.',
     },
   ],
   systems: [
@@ -369,7 +366,7 @@ const en: Content = {
       desc: 'Agents that read the plant floor and act on it. Live ERP and operational data flows into a LangGraph state machine, gets classified, validated and decided by specialized agents, and either writes back autonomously or lands in a human queue — every step traced.',
       image: './diagrams/arch_promeat.svg',
       alt: 'Layered architecture in five tiers. 1 Source systems: client ERP, plant systems, vision pipeline counting 25,000+ animals per day. 2 Ingest over event-driven microservices: event API, event bus, schema normalisation and validation. 3 Agent runtime on LangGraph and AutoGen: graph router state machine, classification agent, validation agent, decision agent, and agent tools for RAG and ERP queries. 4 Guardrail and actuation: a confidence gate sends confident decisions to write-back into client systems and low-confidence ones to a plant operator for human-in-the-loop review, with an audit record. 5 State, observability and platform: PostgreSQL agent state and plant context, Langfuse traces per node, eval pipelines acting as a regression gate fed by operator corrections, Docker CI/CD on GCP.',
-      footer: '// Runs under JBS & Marfrig plant traffic — 25,000+ animals counted daily, zero manual fallback',
+      footer: '// Runs under JBS & Marfrig plant traffic — 25,000+ animals counted daily, no manual fallback',
       tags: ['LangGraph', 'AutoGen', 'RAG', 'Langfuse', 'FastAPI', 'PostgreSQL'],
     },
     {
@@ -380,7 +377,7 @@ const en: Content = {
       desc: 'The language layer on top of real-time vision. Edge detections arrive as events, get assembled into context, and come out as an alert a store operator can act on in seconds — or as a summary that can wait.',
       image: './diagrams/arch_shopguard.svg',
       alt: 'Layered architecture in five tiers. 1 Store edge, an identical appliance per store: around 30 RTSP cameras, GStreamer hardware decode, YOLO11 + TensorRT at sub-second latency, standardised provisioning. 2 Cloud ingest on hybrid GCP and Oracle Cloud: FastAPI ingest API with auth and validation, detection event stream over event-driven services, clip extraction. 3 Intelligence with LangChain and AutoGen: context builder, GPT-4 alert and summary, severity routing gate. 4 Delivery: escalation workflow, React operator dashboard with live alerts, client integrations, store operator. 5 Data, model loop and platform: PostgreSQL, clip and dataset storage, failure-case retraining that ships a new model back to every store, Docker CI/CD on GCP and Oracle Cloud.',
-      footer: '// 90% fewer completed thefts in production — built and operated by one engineer',
+      footer: '// ~90% fewer completed thefts vs. pre-deployment records — built and operated by one engineer',
       tags: ['LangChain', 'AutoGen', 'GPT-4', 'YOLO11', 'TensorRT', 'FastAPI'],
     },
     {
@@ -388,7 +385,7 @@ const en: Content = {
       badge: 'Full-Stack',
       badgeType: 'fullstack',
       title: 'Full-Stack Product Architecture',
-      desc: 'The stack I build around every model. Typed React dashboards over FastAPI, event-driven services that scale on their own, GPU inference where it belongs, and the deployment and on-call that keep it alive — one engineer, no handoffs.',
+      desc: 'The stack I build around every model. Typed React dashboards over FastAPI, event-driven services that scale on their own, GPU inference where it belongs, and the deployment and on-call that keep it alive.',
       image: './diagrams/arch_fullstack.svg',
       alt: 'Layered architecture in five tiers. 1 Clients: operators and clients on React and TypeScript dashboards. 2 API edge: REST API with typed contracts, WebSocket channels for live state, auth and validation. 3 Services, event-driven and independently scaled: ingestion and processing, GPU inference service, automation workers combining LLM and rules. 4 Data: PostgreSQL/Supabase, media and artifacts, versioned model artifacts. 5 Platform and operations: Docker, CI/CD pipeline deploying on merge to GCP and Oracle Cloud, plus logging, metrics and on-call.',
       footer: '// Same architecture shipped at ShopGuard, Promeat and Pix Force — from first commit to production support',
@@ -431,28 +428,28 @@ const en: Content = {
       title: 'Senior AI Engineer III',
       company: 'Pix Force',
       description:
-        'Internal move within the Pix Force group, from Promeat AI. Owner of Pix Safety refinement — models retrained 30% more accurate and 45% faster; cloud costs down 37% in the first month (reserved instances, Python→C++, right-sized clusters).',
+        'Internal move within the Pix Force group, from Promeat AI. Owner of the Pix Safety product: models retrained +30% accuracy over the prior versions and 45% faster, cloud costs down 37% in the first month. Runs internal AI training and mentors junior and mid-level engineers.',
     },
     {
       period: 'Jan 2026 – Jun 2026',
       title: 'Full-Stack Software Engineer',
       company: 'Promeat AI · Pix Force group',
       description:
-        'CV platform for JBS & Marfrig — 25,000+ animals/day across 4 plants, event-driven microservices, multi-agent LLM automation, real-time weight estimation at 98.5%.',
+        'CV platform for JBS & Marfrig: 25,000+ animals/day across 4 plants, event-driven microservices, multi-agent LLM automation, weight estimation at 98.5% accuracy vs. plant scales (client target: 95%).',
     },
     {
       period: 'Aug 2025 – Dec 2025',
       title: 'Founder & CTO',
       company: 'ShopGuard AI',
       description:
-        'Retail theft-detection platform: 150 stores, 4,500+ camera streams, 90% fewer completed thefts. Oracle / Google / Antler accelerated. Sole engineer, zero handoffs.',
+        'Retail theft-detection platform, built and operated solo: 150 stores, 4,500+ camera streams. Accelerated by Oracle, Google and Antler. The company remains active; in Jan 2026 I moved my full-time focus to the Pix Force group.',
     },
     {
       period: 'Jan 2024 – Jun 2025',
       title: 'Co-Founder & Tech Lead',
       company: 'Vision Labs',
       description:
-        'Co-founded an AI & computer vision company — CV products from pilot to production for enterprise B2B clients; GPT-4 + LangChain automation in production.',
+        'Own AI & computer vision company, run in parallel with the roles alongside: CV products from pilot to production for enterprise B2B clients, GPT-4 + LangChain automation.',
     },
     {
       period: 'Jul 2024 – Feb 2025',
@@ -465,21 +462,28 @@ const en: Content = {
       title: 'Full-Stack AI Engineer',
       company: 'Pix Force',
       description:
-        '4 industrial AI products — people counting, employee performance, vehicle theft, dock analytics — plus pipe-threading inspection.',
+        '4 industrial AI products: people counting, employee performance, vehicle theft, dock analytics, plus pipe-threading inspection.',
     },
     {
       period: '2021 – Dec 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
       description:
-        'Solo full-stack and computer vision deliveries — from player-performance analysis on match footage to drone-based solar-panel inspection.',
+        'Solo full-stack and computer vision deliveries, from player-performance analysis on match footage to drone-based solar-panel inspection.',
+    },
+    {
+      period: '2021 – 2022',
+      title: 'Associate Degree, Software Development & Innovation Analysis',
+      company: 'FIAP',
+      description:
+        'Hands-on program: software fundamentals, full-stack development, APIs and security. Capstone: a contactless heart-rate monitor over webcam (rPPG).',
     },
   ],
 };
 
 const es: Content = {
   ui: {
-    nav: { work: 'Trabajo', architecture: 'Arquitectura', skills: 'Stack', experience: 'Experiencia', contact: 'Contacto', cv: 'Descargar CV' },
+    nav: { work: 'Trabajo', architecture: 'Cómo construyo', skills: 'Stack', experience: 'Experiencia', contact: 'Contacto', cv: 'Descargar CV' },
     hero: {
       eyebrow: 'São Paulo, Brasil · Remoto para todo el mundo',
       h1Pre: 'Construyo ',
@@ -493,7 +497,7 @@ const es: Content = {
     work: {
       eyebrow: 'Trabajo seleccionado',
       heading: 'Cada sistema, de punta a punta',
-      sub: 'Cada bloque es un caso completo — qué hace, qué cambió, el video de eso corriendo y la arquitectura por debajo. La mayoría corrió en producción para usuarios reales; los dos marcados Caso de estudio y Código abierto son míos, hechos para mostrar lo que el trabajo de producción no puede mostrar en público.',
+      sub: 'Cada bloque es un caso completo: qué hace, qué cambió, el video de eso corriendo y la arquitectura por debajo. El trabajo para clientes corrió en producción con usuarios reales. Todo lo demás está etiquetado como lo que es — Caso de estudio, Código abierto, Proyecto personal — y existe para mostrar lo que el trabajo para clientes no puede mostrar en público.',
       videos: 'Míralo funcionando',
       architecture: 'Arquitectura',
       zoom: 'abrir en tamaño real',
@@ -509,61 +513,61 @@ const es: Content = {
     skills: {
       eyebrow: 'Stack',
       heading: 'Herramientas con las que construyo',
-      sub: 'De punta a punta en todo el stack — visión computacional y agentes LLM, el producto Python/FastAPI + React que los rodea, y la nube donde corren. Uso diario intensivo de desarrollo asistido por IA (Claude Code, Codex, Cursor).',
+      sub: 'Visión computacional y agentes LLM, el producto Python/FastAPI + React que los rodea, y la nube donde corren. Desarrollo asistido por IA a diario, con Claude Code, Codex y Cursor.',
     },
     experience: {
       eyebrow: 'Trayectoria',
       heading: 'Experiencia',
-      sub: 'De freelance a founder a senior IC — cada etapa llegó a producción, con ownership de punta a punta.',
+      sub: 'De freelance a founder a senior IC. Cada rol puso sistemas en producción.',
     },
     contact: {
-      heading: 'Construyamos algo que llegue a producción.',
-      sub: 'Abierto a roles remotos en todo el mundo — ingeniería de IA, visión computacional y productos de IA full-stack. Ciudadano italiano (UE), inglés fluido, listo para trabajo 100% async.',
+      heading: 'Si tiene que funcionar en producción, hablemos.',
+      sub: 'Abierto a roles senior remotos en todo el mundo: ingeniería de IA, visión computacional y productos de IA full-stack. Ciudadano italiano (UE) · inglés fluido · UTC−3, solapamiento casi total con el horario del este de EE. UU. y las tardes de Europa.',
       cv: 'Descargar CV',
     },
     footer: { cv: 'CV (PDF)', tagline: 'hecho con React + TypeScript + Vite, desplegado en GitHub Pages.' },
   },
   stats: [
     { num: '25.000+', label: 'animales contados al día — plantas de JBS y Marfrig' },
-    { num: '150 tiendas', label: '4.500+ streams de cámara — huella de ShopGuard AI' },
-    { num: '90%', label: 'menos hurtos consumados en las tiendas desplegadas' },
+    { num: '150 tiendas', label: '4.500+ streams de cámara — ShopGuard AI' },
+    { num: '98,5%', label: 'precisión en estimación de peso vs. balanzas — la meta era 95%' },
     { num: '−37%', label: 'de costo cloud en el primer mes — Pix Safety' },
   ],
   projects: [
     {
       title: 'ShopGuard AI — Detección de hurtos en retail',
       role: 'Founder & CTO · 2025',
-      pill: { label: '150 tiendas', type: 'flagship' },
+      pill: { label: 'Producción', type: 'live' },
       description:
-        'Plataforma de seguridad para retail nativa de IA, construida en solitario del edge a la UI: YOLO11 + GStreamer + TensorRT con latencia sub-segundo en hardware edge NVIDIA, backend híbrido GCP / Oracle Cloud y dashboards de operador en React. Acelerada por Oracle / Google / Antler.',
-      impact: '150 tiendas · 4.500+ streams de cámara · 90% menos hurtos consumados',
+        'Plataforma de seguridad para retail construida en solitario, del edge a la UI: YOLO11 con TensorRT a latencia sub-segundo en hardware NVIDIA dentro de la tienda, ingesta GStreamer de ~30 cámaras por tienda, backend híbrido GCP / Oracle Cloud y dashboards React para los operadores de piso. Acelerada por los programas de Oracle, Google y Antler.',
+      impact: '150 tiendas · 4.500+ streams de cámara · ~90% menos hurtos consumados vs. los registros previos al despliegue de las propias tiendas',
       tags: ['YOLO11', 'TensorRT', 'GStreamer', 'FastAPI', 'React', 'GCP'],
     },
     {
       title: 'Pix Safety — Optimización de modelos y cloud',
       role: 'Senior AI Engineer III · Pix Force · 2026–presente',
-      pill: { label: '+30% precisión', type: 'live' },
+      pill: { label: 'Rol actual', type: 'live' },
       description:
-        'Ownership continuo del refinamiento de Pix Safety: re-entrené modelos sobredimensionados en modelos más pequeños y mejor ajustados, y rehíce la economía del serving — instancias reservadas, clusters redimensionados y migraciones Python→C++ en los hot paths.',
-      impact: '30% más preciso · inferencia 45% más rápida · costos cloud −37% en el primer mes',
+        'Ownership continuo del producto Pix Safety: re-entrené sus modelos sobredimensionados en modelos más pequeños y mejor ajustados, y rehíce el serving con instancias reservadas, clusters redimensionados y migraciones Python→C++ en los hot paths. Además dicta formación interna de IA y mentorea a ingenieros junior y semi-senior.',
+      impact: '+30% de precisión sobre los modelos previos en producción · inferencia 45% más rápida · costos cloud −37% en el primer mes',
       tags: ['PyTorch', 'C++', 'TensorRT', 'MLOps', 'Cloud Cost'],
     },
     {
       title: 'Plataforma industrial de visión — Promeat AI',
       role: 'Full-Stack Engineer · 2026',
-      pill: { label: 'En producción', type: 'live' },
+      pill: { label: 'Producción', type: 'live' },
       description:
-        'Plataforma de visión computacional para JBS y Marfrig. Ingesta FFmpeg sobre cámaras heterogéneas de planta, preprocesamiento con OpenCV, microservicios event-driven y dashboards en React — la fuente de verdad operativa de la planta, sin fallback manual.',
-      impact: '25.000+ animales contados al día · 4 plantas (2 JBS, 2 Marfrig)',
+        'Plataforma de visión computacional para plantas de JBS y Marfrig: ingesta FFmpeg sobre cámaras heterogéneas, preprocesamiento con OpenCV, microservicios event-driven y dashboards React. El conteo diario es el registro con el que operan las plantas; no hay fallback manual.',
+      impact: '25.000+ animales contados al día · 4 plantas (2 JBS, 2 Marfrig) · estimación de peso al 98,5% de precisión vs. balanzas de planta (meta del cliente: 95%)',
       tags: ['Python', 'FFmpeg', 'OpenCV', 'PyTorch', 'Microservices'],
     },
     {
       title: 'Productos industriales de visión — Pix Force',
       role: 'Full-Stack AI Engineer · 2024',
-      pill: { label: '4 productos', type: 'live' },
+      pill: { label: 'Producción', type: 'live' },
       description:
-        'Cuatro productos de IA en producción para grandes clientes industriales — conteo de personas (YOLOv8 + ByteTrack), desempeño de empleados, detección de robo de vehículos, tiempo de permanencia en muelles — más inspección automatizada de roscado de tubos y un contrato gubernamental de conteo de multitudes por dron. Inferencia edge en Jetson / Raspberry Pi.',
-      impact: '5.000+ imágenes anotadas · 4 productos entregados · conteo de multitudes con margen de error inferior al 5%',
+        'Cuatro productos de IA para grandes clientes industriales: conteo de personas (YOLOv8 + ByteTrack), desempeño de empleados, detección de robo de vehículos y tiempo de permanencia en muelles, más inspección automatizada de roscado de tubos y un contrato gubernamental de densidad de multitudes por dron. Inferencia edge en Jetson y Raspberry Pi.',
+      impact: '4 productos entregados · 5.000+ imágenes anotadas · conteo de multitudes por dron con margen de error inferior al 5%',
       tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'CNNs', 'FastAPI'],
     },
     {
@@ -576,21 +580,12 @@ const es: Content = {
       tags: ['OpenCV', 'Signal Processing', 'Python', 'Flask'],
     },
     {
-      title: 'Soccer AI — Match Intelligence',
-      role: 'Visión computacional · imágenes del Mundial 2026',
-      pill: { label: 'Analítica deportiva', type: 'live' },
-      description:
-        'Análisis táctico solo a partir de la transmisión de un partido: ambos equipos, árbitros y el balón rastreados cuadro a cuadro, cada jugador con su velocidad en vivo, posesión calculada al vuelo y cada posición proyectada sobre un mapa táctico 2D que se recalcula cuando la transmisión cambia de cámara.',
-      impact: 'Jugadores · árbitros · balón rastreados · km/h por jugador · posesión en vivo · mapa táctico por homografía',
-      tags: ['YOLO', 'Multi-Object Tracking', 'Homografía', 'OpenCV', 'PyTorch', 'Clasificación de equipos'],
-    },
-    {
       title: 'DocIntel — Verificación de Documentos con Revisión Humana',
       role: 'IA aplicada · código abierto · 2026',
       pill: { label: 'Código abierto', type: 'live' },
       description:
-        'El flujo que corre un proveedor de verificación documental: leer el documento, probar de dónde salió cada valor, decidir solo cuando hay certeza y mandar el resto a una persona. Un modelo de visión-lenguaje local (Qwen2.5-VL con Ollama) extrae los valores, OCR ancla cada uno en la página, y la validación cruzada detecta lo que un score de confianza no puede: una factura cuyo subtotal e impuesto contradicen su propio total queda bloqueada aunque el modelo haya leído los tres números perfectamente.',
-      impact: 'Discrepancias enrutadas a revisión humana · escaped errors medidos (equivocados Y auto-aprobados) · calibración de confianza y gate de regresión · corre on-device, sin costo por documento',
+        'El flujo que corre un proveedor de verificación documental: leer el documento, probar de dónde salió cada valor, decidir solo cuando hay certeza y mandar el resto a una persona. Un modelo de visión-lenguaje local (Qwen2.5-VL con Ollama) extrae los valores, OCR ancla cada uno en la página, y la validación cruzada detecta lo que un score de confianza no puede: una factura cuyo subtotal e impuesto contradicen su propio total queda bloqueada aunque cada número se haya leído correctamente.',
+      impact: 'Discrepancias enrutadas a revisión humana · escaped errors medidos (equivocados Y auto-aprobados) · calibración de confianza con gate de regresión · corre on-device',
       tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
       repo: 'https://github.com/Rasantis/docintel',
     },
@@ -599,8 +594,8 @@ const es: Content = {
       role: 'IA aplicada · sistemas de agentes · 2026',
       pill: { label: 'Caso de estudio', type: 'flagship' },
       description:
-        'Suena una alerta a las 3am. Cuatro agentes especialistas investigan en paralelo — métricas, logs, deploys, runbooks — cada uno conectado a un servidor MCP distinto que escribí, y cada uno capaz de llamar solo las herramientas que ese servidor expone. Un comandante nombra una causa raíz, un escéptico la ataca con las mismas herramientas, y recién entonces un planificador propone una mitigación. No puede ejecutarla: toda escritura es una propuesta que se detiene en un interrupt de LangGraph hasta que una persona la aprueba.',
-      impact: '0 acciones inseguras en todo el set · contención sostenida en el 100% de los incidentes donde actuar es el error · acción correcta en 4 de 7 · corre en una GPU de consumo, sin costo por incidente',
+        'Suena una alerta a las 3am. Cuatro agentes especialistas investigan en paralelo sobre métricas, logs, deploys y runbooks, cada uno conectado a un servidor MCP distinto que escribí y limitado a las herramientas que ese servidor expone. Un comandante nombra una causa raíz, un escéptico la ataca con las mismas herramientas, y recién entonces un planificador propone una mitigación — que no puede ejecutar: toda escritura se detiene en un interrupt de LangGraph hasta que una persona la aprueba.',
+      impact: '0 acciones inseguras en el eval de 7 incidentes · contención sostenida en cada incidente donde actuar es el error · mitigación correcta en 4 de 7 · corre en una GPU de consumo',
       tags: ['LangGraph', 'MCP', 'Multiagente', 'Human-in-the-Loop', 'Evals de Agentes', 'Prompt Injection', 'FastAPI', 'React'],
     },
     {
@@ -608,8 +603,8 @@ const es: Content = {
       role: 'Visión computacional · IA aplicada · 2026',
       pill: { label: 'Caso de estudio', type: 'flagship' },
       description:
-        'Entra una vuelta al vehículo; sale un informe de daños con cada hallazgo atribuido a la pieza de carrocería sobre la que está. Dos modelos YOLO11-seg afinados sobre datos abiertos — uno para 23 piezas, otro para 8 tipos de daño — se intersectan máscara con máscara, así la salida no es "rayón, 0.81" sino "rayón en la puerta delantera izquierda", que es la línea que se presupuesta. Un filtro de calidad rechaza las fotos desenfocadas o mal encuadradas antes de que produzcan tonterías con alta confianza, varias vistas del mismo golpe se fusionan en un solo defecto en vez de tres — y el informe termina donde termina una inspección real: un presupuesto de reparación, con los hallazgos convertidos en operaciones por pieza contra una tarifa auditable.',
-      impact: 'Los defectos a caballo entre dos piezas se marcan para revisión humana, nunca se asignan por un 2% de margen · mask mAP50 65% en 23 piezas (3.156 imágenes de entrenamiento) y 12% en 8 tipos de daño (655) · métricas por clase, incluidas las dos que no aprendieron · corre en una GPU de consumo',
+        'Entra una vuelta de fotos al vehículo; sale un informe de daños con presupuesto. Dos modelos YOLO11-seg, uno para 23 piezas de carrocería y otro para 8 tipos de daño, se intersectan máscara con máscara, así la salida no es "rayón, 0.81" sino "rayón en la puerta delantera izquierda" — la línea que un taller presupuesta. Un filtro de calidad rechaza fotos borrosas o mal encuadradas, varias vistas del mismo golpe se fusionan en un solo defecto, y los hallazgos se convierten en operaciones de reparación contra una tarifa auditable.',
+      impact: 'mask mAP50 65% en 23 piezas (3.156 imágenes de entrenamiento) · 12% en 8 tipos de daño (655 imágenes, reportado por clase, incluidas las dos que no aprendieron) · los defectos al borde de dos piezas se abstienen hacia un humano, nunca se asignan dentro de un margen del 2%',
       tags: ['YOLO11-seg', 'Segmentación de Instancias', 'PyTorch', 'Presupuestos de Reparación', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
   ],
@@ -618,8 +613,8 @@ const es: Content = {
       src: './weight_estimation_demo.mp4',
       poster: './posters/weight_estimation_demo.jpg',
       project: 'Promeat AI',
-      title: 'Estimación de peso en tiempo real — 98,5%',
-      caption: 'Segmentación de instancias + predicción de peso por ave sobre video en vivo del galpón.',
+      title: 'Estimación de peso en tiempo real — 98,5% vs. balanza',
+      caption: 'Segmentación de instancias y predicción de peso por ave sobre video en vivo del galpón, medida contra las balanzas de la planta. La meta del cliente era 95%.',
     },
     {
       src: './pharmacy_detection_demo.mp4',
@@ -667,29 +662,29 @@ const es: Content = {
       src: './soccer_ai_demo.mp4',
       poster: './posters/soccer_ai_demo.jpg',
       project: 'Analítica deportiva',
-      title: 'Match intelligence — Mundial 2026',
-      caption: 'Ambos equipos, árbitros y balón rastreados desde la transmisión — velocidad por jugador, posesión en vivo y un mapa táctico que sobrevive a los cortes de cámara.',
+      title: 'Match intelligence — transmisión del Mundial 2026',
+      caption: 'Proyecto personal solo sobre la transmisión: ambos equipos, árbitros y balón rastreados, velocidad por jugador, posesión en vivo y un mapa táctico que sobrevive a los cortes de cámara.',
     },
     {
       src: './docintel_demo.mp4',
       poster: './posters/docintel_demo.jpg',
       project: 'DocIntel',
       title: 'Verificación documental con umbral de confianza',
-      caption: 'Una factura que no cuadra: el modelo leyó cada número correctamente y la validación cruzada bloqueó la aprobación igual. Pasa el mouse por un campo para ver de dónde salió.',
+      caption: 'Una factura que no cuadra: el modelo leyó cada número correctamente y la validación cruzada bloqueó la aprobación igual. Pasar el mouse por un campo resalta de dónde salió. Vantis Credit es un cliente ficticio; el pipeline es real.',
     },
     {
       src: './auspex_demo.mp4',
       poster: './posters/auspex_demo.jpg',
       project: 'Auspex',
       title: 'Cuatro agentes investigando un incidente en producción',
-      caption: 'Replay de una corrida real a 6×. Los agentes se abren sobre cinco servidores MCP, el escéptico cuestiona la conclusión, y el rollback espera a una persona antes de tocar producción.',
+      caption: 'Replay de una corrida real a 6×. Los agentes se abren sobre cinco servidores MCP, el escéptico cuestiona la conclusión, y el rollback espera a una persona. Meridian es una empresa ficticia; la corrida y los números son reales.',
     },
     {
       src: './autoinspect_demo.mp4',
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Daño atribuido a la pieza sobre la que está',
-      caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Hacer clic en una línea del presupuesto acerca la cámara a los píxeles exactos que la produjeron — del dinero a la evidencia en un clic. Y una máscara demasiado fragmentada cae a una caja punteada en vez de garabatear el coche.',
+      caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Hacer clic en una línea del presupuesto acerca la cámara a los píxeles exactos que la produjeron. JEPO es un operador ficticio; la inferencia y los números son reales.',
     },
   ],
   systems: [
@@ -712,7 +707,7 @@ const es: Content = {
       desc: 'La capa de lenguaje sobre la visión en tiempo real. Las detecciones del edge llegan como eventos, se arman en contexto y salen como una alerta sobre la que un operador puede actuar en segundos — o como un resumen que puede esperar.',
       image: './diagrams/arch_shopguard.svg',
       alt: 'Arquitectura: cámaras RTSP por tienda alimentan YOLO11 + TensorRT con GStreamer en hardware edge NVIDIA con latencia sub-segundo; las detecciones llegan a una ingesta FastAPI sobre GCP y Oracle Cloud híbridos, guardando clips para el ciclo de reentrenamiento; una capa de lenguaje con LangChain y AutoGen arma el contexto y GPT-4 escribe la alerta y el resumen; el enrutamiento por severidad escala de inmediato o agrupa en un resumen para el dashboard React del operador.',
-      footer: '// 90% menos hurtos consumados en producción — construido y operado por un solo ingeniero',
+      footer: '// ~90% menos hurtos consumados vs. registros pre-despliegue — construido y operado por un solo ingeniero',
       tags: ['LangChain', 'AutoGen', 'GPT-4', 'YOLO11', 'TensorRT', 'FastAPI'],
     },
     {
@@ -720,7 +715,7 @@ const es: Content = {
       badge: 'Full-Stack',
       badgeType: 'fullstack',
       title: 'Arquitectura de Producto Full-Stack',
-      desc: 'El stack que construyo alrededor de cada modelo. Dashboards React tipados sobre FastAPI, servicios event-driven que escalan solos, inferencia GPU donde corresponde, y el despliegue y on-call que lo mantienen vivo — un ingeniero, sin handoffs.',
+      desc: 'El stack que construyo alrededor de cada modelo. Dashboards React tipados sobre FastAPI, servicios event-driven que escalan solos, inferencia GPU donde corresponde, y el despliegue y on-call que lo mantienen vivo.',
       image: './diagrams/arch_fullstack.svg',
       alt: 'Arquitectura: operadores y clientes usan dashboards en React y TypeScript; una capa FastAPI expone REST y WebSocket con contratos tipados; servicios event-driven manejan ingesta y procesamiento, inferencia GPU y workers de automatización; los datos viven en PostgreSQL/Supabase más almacenamiento de media y artefactos; Docker y CI/CD lo despliegan en GCP y Oracle Cloud.',
       footer: '// La misma arquitectura entregada en ShopGuard, Promeat y Pix Force — del primer commit al soporte en producción',
@@ -763,28 +758,28 @@ const es: Content = {
       title: 'Senior AI Engineer III',
       company: 'Pix Force',
       description:
-        'Movimiento interno dentro del grupo Pix Force, desde Promeat AI. Owner del refinamiento de Pix Safety — modelos re-entrenados 30% más precisos y 45% más rápidos; costos cloud −37% en el primer mes (instancias reservadas, Python→C++, clusters redimensionados).',
+        'Movimiento interno dentro del grupo Pix Force, desde Promeat AI. Owner del producto Pix Safety: modelos re-entrenados +30% de precisión sobre las versiones previas y 45% más rápidos, costos cloud −37% en el primer mes. Dicta formación interna de IA y mentorea a ingenieros junior y semi-senior.',
     },
     {
       period: 'Ene 2026 – Jun 2026',
       title: 'Full-Stack Software Engineer',
       company: 'Promeat AI · grupo Pix Force',
       description:
-        'Plataforma de visión para JBS y Marfrig — 25.000+ animales/día en 4 plantas, microservicios event-driven, automatización LLM multiagente, estimación de peso en tiempo real al 98,5%.',
+        'Plataforma de visión para JBS y Marfrig: 25.000+ animales/día en 4 plantas, microservicios event-driven, automatización LLM multiagente, estimación de peso al 98,5% de precisión vs. balanzas de planta (meta del cliente: 95%).',
     },
     {
       period: 'Ago 2025 – Dic 2025',
       title: 'Founder & CTO',
       company: 'ShopGuard AI',
       description:
-        'Plataforma de detección de hurtos en retail: 150 tiendas, 4.500+ streams de cámara, 90% menos hurtos consumados. Acelerada por Oracle / Google / Antler. Único ingeniero, cero handoffs.',
+        'Plataforma de detección de hurtos en retail, construida y operada en solitario: 150 tiendas, 4.500+ streams de cámara. Acelerada por Oracle, Google y Antler. La empresa sigue activa; en enero de 2026 moví mi foco full-time al grupo Pix Force.',
     },
     {
       period: 'Ene 2024 – Jun 2025',
       title: 'Co-Founder & Tech Lead',
       company: 'Vision Labs',
       description:
-        'Co-fundé una empresa de IA y visión computacional — productos de visión de piloto a producción para clientes B2B enterprise; automatización GPT-4 + LangChain en producción.',
+        'Empresa propia de IA y visión computacional, en paralelo con los roles vecinos: productos de visión de piloto a producción para clientes B2B enterprise, automatización GPT-4 + LangChain.',
     },
     {
       period: 'Jul 2024 – Feb 2025',
@@ -797,21 +792,28 @@ const es: Content = {
       title: 'Full-Stack AI Engineer',
       company: 'Pix Force',
       description:
-        '4 productos industriales de IA — conteo de personas, desempeño de empleados, robo de vehículos, analítica de muelles — más inspección de roscado de tubos.',
+        '4 productos industriales de IA: conteo de personas, desempeño de empleados, robo de vehículos, analítica de muelles, más inspección de roscado de tubos.',
     },
     {
       period: '2021 – Dic 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
       description:
-        'Entregas full-stack y de visión computacional en solitario — del análisis de rendimiento de jugadores en video de partidos a la inspección de paneles solares con drones.',
+        'Entregas full-stack y de visión computacional en solitario, del análisis de rendimiento de jugadores en video de partidos a la inspección de paneles solares con drones.',
+    },
+    {
+      period: '2021 – 2022',
+      title: 'Tecnólogo, Software Development & Innovation Analysis',
+      company: 'FIAP',
+      description:
+        'Programa hands-on: fundamentos de software, desarrollo full-stack, APIs y seguridad. Proyecto final: monitor de frecuencia cardíaca sin contacto por webcam (rPPG).',
     },
   ],
 };
 
 const pt: Content = {
   ui: {
-    nav: { work: 'Trabalho', architecture: 'Arquitetura', skills: 'Stack', experience: 'Experiência', contact: 'Contato', cv: 'Baixar CV' },
+    nav: { work: 'Trabalho', architecture: 'Como construo', skills: 'Stack', experience: 'Experiência', contact: 'Contato', cv: 'Baixar CV' },
     hero: {
       eyebrow: 'São Paulo, Brasil · Remoto para o mundo todo',
       h1Pre: 'Eu construo ',
@@ -825,7 +827,7 @@ const pt: Content = {
     work: {
       eyebrow: 'Trabalhos selecionados',
       heading: 'Cada sistema, de ponta a ponta',
-      sub: 'Cada bloco é um caso completo — o que faz, o que mudou, o vídeo dele rodando e a arquitetura por baixo. A maior parte rodou em produção para usuários reais; os dois marcados Estudo de caso e Código aberto são meus, feitos para mostrar o que o trabalho de produção não pode mostrar em público.',
+      sub: 'Cada bloco é um caso completo: o que faz, o que mudou, o vídeo dele rodando e a arquitetura por baixo. O trabalho para clientes rodou em produção com usuários reais. Todo o resto está rotulado pelo que é — Estudo de caso, Código aberto, Projeto pessoal — e existe para mostrar o que o trabalho para clientes não pode mostrar em público.',
       videos: 'Veja funcionando',
       architecture: 'Arquitetura',
       zoom: 'abrir em tamanho real',
@@ -841,61 +843,61 @@ const pt: Content = {
     skills: {
       eyebrow: 'Stack',
       heading: 'Ferramentas com que eu construo',
-      sub: 'De ponta a ponta em toda a stack — visão computacional e agentes LLM, o produto Python/FastAPI + React em volta deles, e a nuvem onde rodam. Uso diário intensivo de desenvolvimento assistido por IA (Claude Code, Codex, Cursor).',
+      sub: 'Visão computacional e agentes LLM, o produto Python/FastAPI + React em volta deles, e a nuvem onde rodam. Desenvolvimento assistido por IA no dia a dia, com Claude Code, Codex e Cursor.',
     },
     experience: {
       eyebrow: 'Trajetória',
       heading: 'Experiência',
-      sub: 'De freelancer a founder a sênior IC — cada etapa chegou à produção, com ownership de ponta a ponta.',
+      sub: 'De freelancer a founder a sênior IC. Cada posição colocou sistemas em produção.',
     },
     contact: {
-      heading: 'Vamos construir algo que chegue à produção.',
-      sub: 'Aberto a posições remotas no mundo todo — engenharia de IA, visão computacional e produtos de IA full-stack. Cidadão italiano (UE), inglês fluente, pronto para trabalho 100% async.',
+      heading: 'Se tem que funcionar em produção, vamos conversar.',
+      sub: 'Aberto a posições sênior remotas no mundo todo: engenharia de IA, visão computacional e produtos de IA full-stack. Cidadão italiano (UE) · inglês fluente · UTC−3, sobreposição quase total com o horário do leste dos EUA e as tardes da Europa.',
       cv: 'Baixar CV',
     },
     footer: { cv: 'CV (PDF)', tagline: 'feito com React + TypeScript + Vite, hospedado no GitHub Pages.' },
   },
   stats: [
     { num: '25.000+', label: 'animais contados por dia — plantas da JBS e Marfrig' },
-    { num: '150 lojas', label: '4.500+ streams de câmera — footprint da ShopGuard AI' },
-    { num: '90%', label: 'menos furtos consumados nas lojas atendidas' },
+    { num: '150 lojas', label: '4.500+ streams de câmera — ShopGuard AI' },
+    { num: '98,5%', label: 'acurácia na estimativa de peso vs. balanças — a meta era 95%' },
     { num: '−37%', label: 'de custo cloud no primeiro mês — Pix Safety' },
   ],
   projects: [
     {
       title: 'ShopGuard AI — Detecção de Furtos no Varejo',
       role: 'Founder & CTO · 2025',
-      pill: { label: '150 lojas', type: 'flagship' },
+      pill: { label: 'Produção', type: 'live' },
       description:
-        'Plataforma de segurança para o varejo nativa de IA, construída solo do edge à UI: YOLO11 + GStreamer + TensorRT com latência sub-segundo em hardware edge NVIDIA, backend híbrido GCP / Oracle Cloud e dashboards de operador em React. Acelerada por Oracle / Google / Antler.',
-      impact: '150 lojas · 4.500+ streams de câmera · 90% menos furtos consumados',
+        'Plataforma de segurança para o varejo construída solo, do edge à UI: YOLO11 com TensorRT a latência sub-segundo em hardware NVIDIA dentro da loja, ingestão GStreamer de ~30 câmeras por loja, backend híbrido GCP / Oracle Cloud e dashboards React para os operadores de loja. Acelerada pelos programas da Oracle, do Google e da Antler.',
+      impact: '150 lojas · 4.500+ streams de câmera · ~90% menos furtos consumados vs. os registros pré-implantação das próprias lojas',
       tags: ['YOLO11', 'TensorRT', 'GStreamer', 'FastAPI', 'React', 'GCP'],
     },
     {
       title: 'Pix Safety — Otimização de Modelos e Cloud',
       role: 'Senior AI Engineer III · Pix Force · 2026–atual',
-      pill: { label: '+30% acurácia', type: 'live' },
+      pill: { label: 'Posição atual', type: 'live' },
       description:
-        'Ownership contínuo do refinamento do Pix Safety: re-treinei modelos superdimensionados em modelos menores e mais bem ajustados, e refiz a economia do serving — reserved instances, clusters redimensionados e migrações Python→C++ nos hot paths.',
-      impact: '30% mais preciso · inferência 45% mais rápida · custos de cloud −37% no primeiro mês',
+        'Ownership contínuo do produto Pix Safety: re-treinei os modelos superdimensionados em modelos menores e mais bem ajustados, e refiz o serving com reserved instances, clusters redimensionados e migrações Python→C++ nos hot paths. Também conduz treinamentos internos de IA e mentora engenheiros júnior e pleno.',
+      impact: '+30% de acurácia sobre os modelos anteriores em produção · inferência 45% mais rápida · custos de cloud −37% no primeiro mês',
       tags: ['PyTorch', 'C++', 'TensorRT', 'MLOps', 'Cloud Cost'],
     },
     {
       title: 'Plataforma Industrial de Visão — Promeat AI',
       role: 'Full-Stack Engineer · 2026',
-      pill: { label: 'Em produção', type: 'live' },
+      pill: { label: 'Produção', type: 'live' },
       description:
-        'Plataforma de visão computacional para JBS e Marfrig. Ingestão FFmpeg sobre câmeras heterogêneas de planta, pré-processamento com OpenCV, microsserviços orientados a eventos e dashboards React — a fonte de verdade operacional da planta, sem fallback manual.',
-      impact: '25.000+ animais contados por dia · 4 plantas (2 JBS, 2 Marfrig)',
+        'Plataforma de visão computacional para plantas da JBS e Marfrig: ingestão FFmpeg sobre câmeras heterogêneas, pré-processamento com OpenCV, microsserviços orientados a eventos e dashboards React. A contagem diária é o registro com que as plantas operam; não há fallback manual.',
+      impact: '25.000+ animais contados por dia · 4 plantas (2 JBS, 2 Marfrig) · estimativa de peso com 98,5% de acurácia vs. balanças da planta (meta do cliente: 95%)',
       tags: ['Python', 'FFmpeg', 'OpenCV', 'PyTorch', 'Microservices'],
     },
     {
       title: 'Produtos Industriais de Visão — Pix Force',
       role: 'Full-Stack AI Engineer · 2024',
-      pill: { label: '4 produtos', type: 'live' },
+      pill: { label: 'Produção', type: 'live' },
       description:
-        'Quatro produtos de IA em produção para grandes clientes industriais — contagem de pessoas (YOLOv8 + ByteTrack), performance de funcionários, detecção de furto de veículos, tempo de permanência em docas — além de inspeção automatizada de rosqueamento de tubos e um contrato governamental de contagem de multidões por drone. Inferência edge em Jetson / Raspberry Pi.',
-      impact: '5.000+ imagens anotadas · 4 produtos entregues · contagem de multidões com margem de erro inferior a 5%',
+        'Quatro produtos de IA para grandes clientes industriais: contagem de pessoas (YOLOv8 + ByteTrack), performance de funcionários, detecção de furto de veículos e tempo de permanência em docas, além de inspeção automatizada de rosqueamento de tubos e um contrato governamental de densidade de multidões por drone. Inferência edge em Jetson e Raspberry Pi.',
+      impact: '4 produtos entregues · 5.000+ imagens anotadas · contagem de multidões por drone com margem de erro inferior a 5%',
       tags: ['YOLOv8', 'ByteTrack', 'Jetson', 'CNNs', 'FastAPI'],
     },
     {
@@ -908,21 +910,12 @@ const pt: Content = {
       tags: ['OpenCV', 'Signal Processing', 'Python', 'Flask'],
     },
     {
-      title: 'Soccer AI — Match Intelligence',
-      role: 'Visão computacional · imagens da Copa do Mundo 2026',
-      pill: { label: 'Analytics esportivo', type: 'live' },
-      description:
-        'Análise tática só a partir da transmissão do jogo: os dois times, os árbitros e a bola rastreados quadro a quadro, cada jogador com sua velocidade ao vivo, posse de bola calculada em tempo real e cada posição projetada num mapa tático 2D que se recalcula quando a transmissão troca de câmera.',
-      impact: 'Jogadores · árbitros · bola rastreados · km/h por jogador · posse ao vivo · mapa tático por homografia',
-      tags: ['YOLO', 'Multi-Object Tracking', 'Homografia', 'OpenCV', 'PyTorch', 'Classificação de times'],
-    },
-    {
       title: 'DocIntel — Verificação de Documentos com Revisão Humana',
       role: 'IA aplicada · código aberto · 2026',
       pill: { label: 'Código aberto', type: 'live' },
       description:
-        'O fluxo que um provedor de verificação documental roda: ler o documento, provar de onde saiu cada valor, decidir sozinho só quando tem certeza e mandar o resto para uma pessoa. Um modelo de visão-linguagem local (Qwen2.5-VL via Ollama) extrai os valores, o OCR ancora cada um na página, e a validação cruzada pega o que um score de confiança não pega: uma nota cujo subtotal e imposto contradizem o próprio total fica bloqueada mesmo que o modelo tenha lido os três números perfeitamente.',
-      impact: 'Discrepâncias roteadas para revisão humana · escaped errors medidos (errados E auto-aprovados) · calibração de confiança e gate de regressão · roda on-device, sem custo por documento',
+        'O fluxo que um provedor de verificação documental roda: ler o documento, provar de onde saiu cada valor, decidir sozinho só quando tem certeza e mandar o resto para uma pessoa. Um modelo de visão-linguagem local (Qwen2.5-VL via Ollama) extrai os valores, o OCR ancora cada um na página, e a validação cruzada pega o que um score de confiança não pega: uma nota cujo subtotal e imposto contradizem o próprio total fica bloqueada mesmo que cada número tenha sido lido corretamente.',
+      impact: 'Discrepâncias roteadas para revisão humana · escaped errors medidos (errados E auto-aprovados) · calibração de confiança com gate de regressão · roda on-device',
       tags: ['Qwen2.5-VL', 'Ollama', 'Pydantic', 'FastAPI', 'React', 'LLM Evals'],
       repo: 'https://github.com/Rasantis/docintel',
     },
@@ -931,8 +924,8 @@ const pt: Content = {
       role: 'IA aplicada · sistemas de agentes · 2026',
       pill: { label: 'Estudo de caso', type: 'flagship' },
       description:
-        'Um alerta dispara às 3 da manhã. Quatro agentes especialistas investigam em paralelo — métricas, logs, deploys, runbooks — cada um conectado a um servidor MCP diferente que eu escrevi, e cada um capaz de chamar apenas as tools que aquele servidor expõe. Um comandante aponta uma causa-raiz, um cético a ataca com as mesmas ferramentas, e só então um planejador propõe uma mitigação. Ele não consegue executá-la: toda escrita é uma proposta que para num interrupt do LangGraph até uma pessoa aprovar.',
-      impact: '0 ações inseguras em todo o conjunto · contenção mantida em 100% dos incidentes onde agir é o erro · ação correta em 4 de 7 · roda numa GPU de consumo, sem custo por incidente',
+        'Um alerta dispara às 3 da manhã. Quatro agentes especialistas investigam em paralelo sobre métricas, logs, deploys e runbooks, cada um conectado a um servidor MCP diferente que eu escrevi e limitado às tools que aquele servidor expõe. Um comandante aponta uma causa-raiz, um cético a ataca com as mesmas ferramentas, e só então um planejador propõe uma mitigação — que ele não consegue executar: toda escrita para num interrupt do LangGraph até uma pessoa aprovar.',
+      impact: '0 ações inseguras no eval de 7 incidentes · contenção mantida em cada incidente onde agir é o erro · mitigação correta em 4 de 7 · roda numa GPU de consumo',
       tags: ['LangGraph', 'MCP', 'Multiagente', 'Human-in-the-Loop', 'Evals de Agentes', 'Prompt Injection', 'FastAPI', 'React'],
     },
     {
@@ -940,8 +933,8 @@ const pt: Content = {
       role: 'Visão computacional · IA aplicada · 2026',
       pill: { label: 'Estudo de caso', type: 'flagship' },
       description:
-        'Entra uma volta ao redor do carro; sai um laudo de avarias com cada achado atribuído à peça de lataria em que ele está. Dois modelos YOLO11-seg ajustados sobre dados abertos — um para 23 peças, outro para 8 tipos de dano — são intersectados máscara a máscara, então a saída não é "risco, 0.81" e sim "risco na porta dianteira esquerda", que é o item que entra no orçamento. Um filtro de qualidade recusa fotos desfocadas ou mal enquadradas antes que produzam besteira com alta confiança, várias vistas do mesmo amassado viram um defeito só em vez de três — e o laudo termina onde uma inspeção real termina: um orçamento de reparo, com os achados convertidos em operações por peça contra uma tabela de preços auditável.',
-      impact: 'Defeitos em cima da divisa entre duas peças vão para revisão humana, nunca são atribuídos por 2% de margem · mask mAP50 65% em 23 peças (3.156 imagens de treino) e 12% em 8 tipos de dano (655) · métricas por classe, incluindo as duas que não aprenderam · roda numa GPU de consumo',
+        'Entra uma volta de fotos ao redor do carro; sai um laudo de avarias com orçamento. Dois modelos YOLO11-seg, um para 23 peças de lataria e outro para 8 tipos de dano, são intersectados máscara a máscara, então a saída não é "risco, 0.81" e sim "risco na porta dianteira esquerda" — o item que uma oficina orça. Um filtro de qualidade recusa fotos desfocadas ou mal enquadradas, várias vistas do mesmo amassado viram um defeito só, e os achados são convertidos em operações de reparo contra uma tabela de preços auditável.',
+      impact: 'mask mAP50 65% em 23 peças (3.156 imagens de treino) · 12% em 8 tipos de dano (655 imagens, reportado por classe, incluindo as duas que não aprenderam) · defeito na divisa entre duas peças se abstém para um humano, nunca é atribuído dentro de 2% de margem',
       tags: ['YOLO11-seg', 'Segmentação de Instâncias', 'PyTorch', 'Orçamento de Reparo', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
   ],
@@ -950,8 +943,8 @@ const pt: Content = {
       src: './weight_estimation_demo.mp4',
       poster: './posters/weight_estimation_demo.jpg',
       project: 'Promeat AI',
-      title: 'Estimativa de peso em tempo real — 98,5%',
-      caption: 'Segmentação de instâncias + previsão de peso por ave em vídeo ao vivo do galpão.',
+      title: 'Estimativa de peso em tempo real — 98,5% vs. balança',
+      caption: 'Segmentação de instâncias e previsão de peso por ave em vídeo ao vivo do galpão, medida contra as balanças da planta. A meta do cliente era 95%.',
     },
     {
       src: './pharmacy_detection_demo.mp4',
@@ -999,29 +992,29 @@ const pt: Content = {
       src: './soccer_ai_demo.mp4',
       poster: './posters/soccer_ai_demo.jpg',
       project: 'Analytics esportivo',
-      title: 'Match intelligence — Copa do Mundo 2026',
-      caption: 'Os dois times, árbitros e bola rastreados a partir da transmissão — velocidade por jogador, posse ao vivo e um mapa tático que sobrevive aos cortes de câmera.',
+      title: 'Match intelligence — transmissão da Copa 2026',
+      caption: 'Projeto pessoal só sobre a transmissão: os dois times, árbitros e bola rastreados, velocidade por jogador, posse ao vivo e um mapa tático que sobrevive aos cortes de câmera.',
     },
     {
       src: './docintel_demo.mp4',
       poster: './posters/docintel_demo.jpg',
       project: 'DocIntel',
       title: 'Verificação documental com limiar de confiança',
-      caption: 'Uma nota que não fecha: o modelo leu cada número corretamente e a validação cruzada bloqueou a aprovação mesmo assim. Passe o mouse num campo para ver de onde ele saiu.',
+      caption: 'Uma nota que não fecha: o modelo leu cada número corretamente e a validação cruzada bloqueou a aprovação mesmo assim. Passar o mouse num campo destaca de onde ele saiu. Vantis Credit é um cliente fictício; o pipeline é real.',
     },
     {
       src: './auspex_demo.mp4',
       poster: './posters/auspex_demo.jpg',
       project: 'Auspex',
       title: 'Quatro agentes investigando um incidente em produção',
-      caption: 'Replay de um run real a 6×. Os agentes se abrem sobre cinco servidores MCP, o cético contesta a conclusão, e o rollback espera uma pessoa antes de qualquer coisa tocar produção.',
+      caption: 'Replay de um run real a 6×. Os agentes se abrem sobre cinco servidores MCP, o cético contesta a conclusão, e o rollback espera uma pessoa. Meridian é uma empresa fictícia; o run e os números são reais.',
     },
     {
       src: './autoinspect_demo.mp4',
       poster: './posters/autoinspect_demo.jpg',
       project: 'AutoInspect AI',
       title: 'Dano atribuído à peça em que ele está',
-      caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Clicar numa linha do orçamento aproxima a câmera dos pixels exatos que a geraram — do dinheiro à evidência em um clique. E máscara fragmentada demais cai para uma caixa tracejada em vez de rabiscar o carro.',
+      caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Clicar numa linha do orçamento aproxima a câmera dos pixels exatos que a geraram. JEPO é um operador fictício; a inferência e os números são reais.',
     },
   ],
   systems: [
@@ -1044,7 +1037,7 @@ const pt: Content = {
       desc: 'A camada de linguagem sobre a visão em tempo real. Detecções do edge chegam como eventos, são montadas em contexto e saem como um alerta sobre o qual o operador age em segundos — ou como um resumo que pode esperar.',
       image: './diagrams/arch_shopguard.svg',
       alt: 'Arquitetura: câmeras RTSP por loja alimentam YOLO11 + TensorRT com GStreamer em hardware edge NVIDIA com latência sub-segundo; as detecções chegam a uma ingestão FastAPI sobre GCP e Oracle Cloud híbridos, guardando clipes para o ciclo de re-treino; uma camada de linguagem com LangChain e AutoGen monta o contexto e o GPT-4 escreve o alerta e o resumo; o roteamento por severidade escala na hora ou agrupa num resumo para o dashboard React do operador.',
-      footer: '// 90% menos furtos consumados em produção — construído e operado por um engenheiro só',
+      footer: '// ~90% menos furtos consumados vs. registros pré-implantação — construído e operado por um engenheiro só',
       tags: ['LangChain', 'AutoGen', 'GPT-4', 'YOLO11', 'TensorRT', 'FastAPI'],
     },
     {
@@ -1052,7 +1045,7 @@ const pt: Content = {
       badge: 'Full-Stack',
       badgeType: 'fullstack',
       title: 'Arquitetura de Produto Full-Stack',
-      desc: 'A stack que eu construo em volta de cada modelo. Dashboards React tipados sobre FastAPI, serviços event-driven que escalam sozinhos, inferência em GPU onde é devido, e o deploy e o on-call que mantêm tudo de pé — um engenheiro, sem handoffs.',
+      desc: 'A stack que eu construo em volta de cada modelo. Dashboards React tipados sobre FastAPI, serviços event-driven que escalam sozinhos, inferência em GPU onde é devido, e o deploy e o on-call que mantêm tudo de pé.',
       image: './diagrams/arch_fullstack.svg',
       alt: 'Arquitetura: operadores e clientes usam dashboards em React e TypeScript; uma camada FastAPI expõe REST e WebSocket com contratos tipados; serviços event-driven cuidam de ingestão e processamento, inferência em GPU e workers de automação; os dados ficam em PostgreSQL/Supabase mais armazenamento de mídia e artefatos; Docker e CI/CD sobem tudo em GCP e Oracle Cloud.',
       footer: '// A mesma arquitetura entregue na ShopGuard, Promeat e Pix Force — do primeiro commit ao suporte em produção',
@@ -1095,28 +1088,28 @@ const pt: Content = {
       title: 'Senior AI Engineer III',
       company: 'Pix Force',
       description:
-        'Movimento interno dentro do grupo Pix Force, vindo da Promeat AI. Dono do refinamento do Pix Safety — modelos re-treinados 30% mais precisos e 45% mais rápidos; custos de cloud −37% no primeiro mês (reserved instances, Python→C++, clusters redimensionados).',
+        'Movimento interno dentro do grupo Pix Force, vindo da Promeat AI. Dono do produto Pix Safety: modelos re-treinados com +30% de acurácia sobre as versões anteriores e 45% mais rápidos, custos de cloud −37% no primeiro mês. Conduz treinamentos internos de IA e mentora engenheiros júnior e pleno.',
     },
     {
       period: 'Jan 2026 – Jun 2026',
       title: 'Full-Stack Software Engineer',
       company: 'Promeat AI · grupo Pix Force',
       description:
-        'Plataforma de visão para JBS e Marfrig — 25.000+ animais/dia em 4 plantas, microsserviços orientados a eventos, automação LLM multiagente, estimativa de peso em tempo real a 98,5%.',
+        'Plataforma de visão para JBS e Marfrig: 25.000+ animais/dia em 4 plantas, microsserviços orientados a eventos, automação LLM multiagente, estimativa de peso com 98,5% de acurácia vs. balanças da planta (meta do cliente: 95%).',
     },
     {
       period: 'Ago 2025 – Dez 2025',
       title: 'Founder & CTO',
       company: 'ShopGuard AI',
       description:
-        'Plataforma de detecção de furtos no varejo: 150 lojas, 4.500+ streams de câmera, 90% menos furtos consumados. Acelerada por Oracle / Google / Antler. Único engenheiro, zero handoffs.',
+        'Plataforma de detecção de furtos no varejo, construída e operada solo: 150 lojas, 4.500+ streams de câmera. Acelerada por Oracle, Google e Antler. A empresa segue ativa; em janeiro de 2026 movi meu foco full-time para o grupo Pix Force.',
     },
     {
       period: 'Jan 2024 – Jun 2025',
       title: 'Co-Founder & Tech Lead',
       company: 'Vision Labs',
       description:
-        'Co-fundei uma empresa de IA e visão computacional — produtos de visão do piloto à produção para clientes B2B enterprise; automação GPT-4 + LangChain em produção.',
+        'Empresa própria de IA e visão computacional, tocada em paralelo com as posições vizinhas: produtos de visão do piloto à produção para clientes B2B enterprise, automação GPT-4 + LangChain.',
     },
     {
       period: 'Jul 2024 – Fev 2025',
@@ -1129,14 +1122,21 @@ const pt: Content = {
       title: 'Full-Stack AI Engineer',
       company: 'Pix Force',
       description:
-        '4 produtos industriais de IA — contagem de pessoas, performance de funcionários, furto de veículos, analítica de docas — além de inspeção de rosqueamento de tubos.',
+        '4 produtos industriais de IA: contagem de pessoas, performance de funcionários, furto de veículos, analítica de docas, além de inspeção de rosqueamento de tubos.',
     },
     {
       period: '2021 – Dez 2023',
       title: 'Freelance Software Engineer',
       company: 'Independent',
       description:
-        'Entregas full-stack e de visão computacional solo — da análise de desempenho de jogadores em vídeos de partidas à inspeção de painéis solares com drones.',
+        'Entregas full-stack e de visão computacional solo, da análise de desempenho de jogadores em vídeos de partidas à inspeção de painéis solares com drones.',
+    },
+    {
+      period: '2021 – 2022',
+      title: 'Tecnólogo, Software Development & Innovation Analysis',
+      company: 'FIAP',
+      description:
+        'Programa mão na massa: fundamentos de software, desenvolvimento full-stack, APIs e segurança. Projeto de conclusão: monitor de frequência cardíaca sem contato via webcam (rPPG).',
     },
   ],
 };
