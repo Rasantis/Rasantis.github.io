@@ -137,10 +137,11 @@ export const CASES: CaseDef[] = [
   },
   { key: 'promeat', idx: '02', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents', tracks: ['agents', 'vision'] },
   { key: 'pixsafety', idx: '03', projectIdx: 1, demoSrcs: [], tracks: ['vision', 'fullstack'] },
-  { key: 'auspex', idx: '04', projectIdx: 6, demoSrcs: ['./auspex_demo.mp4'], tracks: ['agents', 'fullstack'] },
-  { key: 'autoinspect', idx: '05', projectIdx: 7, demoSrcs: ['./autoinspect_demo.mp4'], tracks: ['vision', 'fullstack'] },
-  { key: 'docintel', idx: '06', projectIdx: 5, demoSrcs: ['./docintel_demo.mp4'], tracks: ['agents', 'fullstack'] },
-  { key: 'pixforce', idx: '07', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'], tracks: ['vision'] },
+  { key: 'kairos', idx: '04', projectIdx: 8, demoSrcs: ['./kairos_demo.mp4'], tracks: ['fullstack'] },
+  { key: 'auspex', idx: '05', projectIdx: 6, demoSrcs: ['./auspex_demo.mp4'], tracks: ['agents', 'fullstack'] },
+  { key: 'autoinspect', idx: '06', projectIdx: 7, demoSrcs: ['./autoinspect_demo.mp4'], tracks: ['vision', 'fullstack'] },
+  { key: 'docintel', idx: '07', projectIdx: 5, demoSrcs: ['./docintel_demo.mp4'], tracks: ['agents', 'fullstack'] },
+  { key: 'pixforce', idx: '08', projectIdx: 3, demoSrcs: ['./pipe_monitoring.mp4', './crowd_counting_demo.mp4'], tracks: ['vision'] },
 ];
 
 /** Work that has no case block of its own — shown compactly at the end.
@@ -277,6 +278,15 @@ const en: Content = {
       impact: 'mask mAP50 65% on 23 panels (3,156 training images) · 12% on 8 defect types (655 images, reported per class, including the two classes that did not learn) · borderline defects abstain to a human, never assigned inside a 2% margin',
       tags: ['YOLO11-seg', 'Instance Segmentation', 'PyTorch', 'Repair Estimating', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
+    {
+      title: 'Kairos — Real-Time Ad Decision Engine',
+      role: 'Ranking systems · applied ML · 2026',
+      pill: { label: 'Case study', type: 'flagship' },
+      description:
+        'Someone is mid-session inside an AI app and something has to decide, in milliseconds, which sponsored experience to place — or that none should be. A two-tower model over an HNSW index narrows 7,583 campaigns to a short list, three gradient-boosted heads score it, and a policy layer prices the result against what it costs the session: engagement value credited, harm and fatigue debited, and a floor the balance has to clear before anything is served. The first measurement is why that layer exists — ranking on predicted clicks alone lifts engagement from 18% to 43% and doubles the rate at which users tell the product to stop.',
+      impact: 'p50 17.4 ms end to end, p99 22.9 ms · +31% engagement and −65% negative feedback per 1,000 opportunities against random exposure, by replay on 1.19M uniformly randomised impressions · uncalibrated, the model would bid 1.61× over true value; isotonic calibration cuts expected calibration error 62% · cold-start retrieval failed and is reported as measured',
+      tags: ['Two-Tower Retrieval', 'HNSW', 'LightGBM', 'Calibration', 'Off-Policy Evaluation', 'PyTorch', 'FastAPI', 'React'],
+    },
   ],
   demos: [
     {
@@ -348,6 +358,13 @@ const en: Content = {
       project: 'AutoInspect AI',
       title: 'Damage attributed to the panel it sits on',
       caption: 'Masks trace onto the vehicle worst-finding-first, each carrying its own label. Clicking a line on the repair estimate zooms the camera onto the exact pixels that produced it. JEPO is a fictional operator; the inference and the numbers are real.',
+    },
+    {
+      src: './kairos_demo.mp4',
+      poster: './posters/kairos_demo.jpg',
+      project: 'Kairos',
+      title: 'One request, one answer — or none',
+      caption: 'A live decision with its whole path: 7,583 campaigns narrowed by approximate nearest neighbours, 24 candidates scored and calibrated, then the ledger that prices engagement against harm. Raising the cost of a negative reaction re-decides the auction on camera; raising the floor makes the engine serve nothing at all. Bids are synthetic and labelled as such — every behavioural figure is measured on a randomised holdout.',
     },
   ],
   systems: [
@@ -600,6 +617,15 @@ const es: Content = {
       impact: 'mask mAP50 65% en 23 piezas (3.156 imágenes de entrenamiento) · 12% en 8 tipos de daño (655 imágenes, reportado por clase, incluidas las dos que no aprendieron) · los defectos al borde de dos piezas se abstienen hacia un humano, nunca se asignan dentro de un margen del 2%',
       tags: ['YOLO11-seg', 'Segmentación de Instancias', 'PyTorch', 'Presupuestos de Reparación', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
+    {
+      title: 'Kairos — Motor de Decisión Publicitaria en Tiempo Real',
+      role: 'Sistemas de ranking · ML aplicado · 2026',
+      pill: { label: 'Caso de estudio', type: 'flagship' },
+      description:
+        'Alguien está en medio de una sesión dentro de una app de IA y algo tiene que decidir, en milisegundos, qué experiencia patrocinada colocar — o que no se coloque ninguna. Un modelo de dos torres sobre un índice HNSW reduce 7.583 campañas a una lista corta, tres modelos de gradient boosting la puntúan, y una capa de política le pone precio al resultado contra lo que le cuesta a la sesión: valor de engagement acreditado, daño y fatiga debitados, y un piso que el saldo tiene que superar antes de servir algo. La primera medición explica por qué existe esa capa: ordenar solo por clic previsto sube el engagement de 18% a 43% y duplica la tasa a la que los usuarios piden que pare.',
+      impact: 'p50 17,4 ms de punta a punta, p99 22,9 ms · +31% de engagement y −65% de feedback negativo por cada 1.000 oportunidades frente a exposición aleatoria, por replay sobre 1,19M de impresiones uniformemente aleatorizadas · sin calibrar, el modelo ofertaría 1,61× por encima del valor real; la calibración isotónica reduce el error de calibración 62% · el arranque en frío del retrieval falló y se reporta como fue medido',
+      tags: ['Retrieval de Dos Torres', 'HNSW', 'LightGBM', 'Calibración', 'Evaluación Off-Policy', 'PyTorch', 'FastAPI', 'React'],
+    },
   ],
   demos: [
     {
@@ -671,6 +697,13 @@ const es: Content = {
       project: 'AutoInspect AI',
       title: 'Daño atribuido a la pieza sobre la que está',
       caption: 'Las máscaras se dibujan sobre el vehículo empezando por el hallazgo más grave, cada una con su etiqueta. Hacer clic en una línea del presupuesto acerca la cámara a los píxeles exactos que la produjeron. JEPO es un operador ficticio; la inferencia y los números son reales.',
+    },
+    {
+      src: './kairos_demo.mp4',
+      poster: './posters/kairos_demo.jpg',
+      project: 'Kairos',
+      title: 'Una petición, una respuesta — o ninguna',
+      caption: 'Una decisión en vivo con todo su recorrido: 7.583 campañas reducidas por vecinos más cercanos aproximados, 24 candidatos puntuados y calibrados, y luego el libro mayor que pone el engagement contra el daño. Subir el costo de una reacción negativa vuelve a decidir la subasta en cámara; subir el piso hace que el motor no sirva nada. Las pujas son sintéticas y están etiquetadas como tales — cada cifra de comportamiento está medida sobre un holdout aleatorizado.',
     },
   ],
   systems: [
@@ -923,6 +956,15 @@ const pt: Content = {
       impact: 'mask mAP50 65% em 23 peças (3.156 imagens de treino) · 12% em 8 tipos de dano (655 imagens, reportado por classe, incluindo as duas que não aprenderam) · defeito na divisa entre duas peças se abstém para um humano, nunca é atribuído dentro de 2% de margem',
       tags: ['YOLO11-seg', 'Segmentação de Instâncias', 'PyTorch', 'Orçamento de Reparo', 'FastAPI', 'WebSockets', 'React', 'OpenCV'],
     },
+    {
+      title: 'Kairos — Motor de Decisão de Anúncios em Tempo Real',
+      role: 'Sistemas de ranking · ML aplicado · 2026',
+      pill: { label: 'Estudo de caso', type: 'flagship' },
+      description:
+        'Alguém está no meio de uma sessão dentro de um app de IA e algo precisa decidir, em milissegundos, qual experiência patrocinada entra — ou que nenhuma deve entrar. Um modelo de duas torres sobre um índice HNSW reduz 7.583 campanhas a uma lista curta, três modelos de gradient boosting pontuam essa lista, e uma camada de política precifica o resultado contra o que ele custa à sessão: valor de engajamento creditado, dano e fadiga debitados, e um piso que o saldo precisa limpar antes de qualquer coisa ser servida. A primeira medição explica por que essa camada existe: ordenar só por clique previsto leva o engajamento de 18% para 43% e dobra a taxa em que os usuários pedem para o produto parar.',
+      impact: 'p50 17,4 ms de ponta a ponta, p99 22,9 ms · +31% de engajamento e −65% de feedback negativo por 1.000 oportunidades contra exposição aleatória, por replay sobre 1,19M de impressões uniformemente aleatorizadas · sem calibração, o modelo daria lance 1,61× acima do valor real; a calibração isotônica corta o erro de calibração em 62% · o cold-start do retrieval falhou e está reportado como foi medido',
+      tags: ['Retrieval de Duas Torres', 'HNSW', 'LightGBM', 'Calibração', 'Avaliação Off-Policy', 'PyTorch', 'FastAPI', 'React'],
+    },
   ],
   demos: [
     {
@@ -994,6 +1036,13 @@ const pt: Content = {
       project: 'AutoInspect AI',
       title: 'Dano atribuído à peça em que ele está',
       caption: 'As máscaras se desenham sobre o veículo começando pelo achado mais grave, cada uma com o próprio rótulo. Clicar numa linha do orçamento aproxima a câmera dos pixels exatos que a geraram. JEPO é um operador fictício; a inferência e os números são reais.',
+    },
+    {
+      src: './kairos_demo.mp4',
+      poster: './posters/kairos_demo.jpg',
+      project: 'Kairos',
+      title: 'Uma requisição, uma resposta — ou nenhuma',
+      caption: 'Uma decisão ao vivo com o caminho inteiro: 7.583 campanhas reduzidas por vizinhos mais próximos aproximados, 24 candidatos pontuados e calibrados, e então o razão que põe engajamento contra dano. Subir o custo de uma reação negativa redecide o leilão na câmera; subir o piso faz o motor não servir nada. Os lances são sintéticos e estão rotulados como tais — todo número de comportamento é medido sobre um holdout aleatorizado.',
     },
   ],
   systems: [
