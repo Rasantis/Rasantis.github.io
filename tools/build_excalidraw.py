@@ -176,29 +176,40 @@ def band(x, label, sub=''):
         note(x, 250, sub, color='#59626e', size=12, font=MONO, w=460)
 
 
+def boundary(x, y, w, h, label, sub='', *, color='#4a6fa8'):
+    """A dashed enclosure — a cluster, a node pool, a trust boundary.
+    Label sits at the top-left corner, the way a real infra drawing does it."""
+    _els.append(base(id=uid('bd'), type='rectangle', x=x, y=y, width=w, height=h,
+                     strokeColor=color, backgroundColor='#111a26',
+                     strokeWidth=1.5, strokeStyle='dashed', roughness=0,
+                     roundness={'type': 3}, opacity=70))
+    note(x + 16, y + 12, label, color=color, size=12.5, font=MONO, w=w - 32)
+    if sub:
+        note(x + 16, y + 30, sub, color='#59626e', size=11.5, font=MONO, w=w - 32)
+
+
 # ═══════════════════════════════════════════════════════════════════════════
-# ShopGuard AI — theft detection, edge to Google Cloud
+# ShopGuard AI — theft detection, store edge to Google Cloud
 #
 # The argument: 4,500 concurrent 1080p streams cannot be shipped to a cloud.
-# So inference happens in the store and only an event crosses the wire. Every
-# other decision in this system falls out of that one constraint.
+# Inference happens in the store, RabbitMQ absorbs the backpressure so no frame
+# is dropped, and only an event crosses the wire. Everything downstream — a
+# stateless GKE cluster that scales on burst, state pushed out to managed
+# services — falls out of that one constraint.
 # ═══════════════════════════════════════════════════════════════════════════
 
 note(60, 46, 'ShopGuard AI — real-time theft detection', color=INK, size=27,
      font=HAND, w=900)
 note(62, 88, '150 stores  ·  ~30 cameras each  ·  4,500+ concurrent streams  ·  '
      'sub-second inference at the edge', color=MUTED, size=14, font=MONO, w=1000)
-
-# Level 1 — the whole thing in one line, before any detail.
-note(62, 132, 'camera  →  decode  →  detect  →  track  →  rule  →  event  →  '
-     'GCP  →  operator acts  →  label  →  retrain', color=FAINT, size=13,
-     font=MONO, w=1100)
+note(62, 132, 'camera  →  decode  →  queue  →  detect  →  track  →  rule  →  '
+     'event  →  GKE  →  operator acts  →  label  →  retrain', color=FAINT,
+     size=13, font=MONO, w=1200)
 hline(60, 2344, 172)
 
 # ── A. store edge ──────────────────────────────────────────────────────────
 band(60, 'STORE EDGE', 'one identical appliance per store, ×150')
 
-# cameras: a stack seen edge-on, only the front one labelled
 for i in range(2):
     _els.append(base(id=uid('b'), type='rectangle', x=66 + i * 13,
                      y=292 + i * 15, width=150, height=34,
@@ -206,157 +217,166 @@ for i in range(2):
                      strokeWidth=1.5, roundness={'type': 3}))
 box(92, 322, 150, 34, 'IP camera', fill='#141a22', stroke='#6f7885', size=13,
     drift=2)
-note(70, 384, '~30 per store\nRTSP · H.264 · 1080p', color=FAINT, size=12,
+note(70, 380, '~30 per store\nRTSP · H.264 · 1080p', color=FAINT, size=12,
      font=MONO, w=220)
 
-jetson = box(266, 292, 300, 60, 'NVIDIA Jetson', 'store appliance', size=16)
-box(266, 380, 300, 46, 'GStreamer', 'hardware decode · 30 streams', size=14)
-box(266, 442, 300, 52, 'YOLO11 + TensorRT', 'FP16 engine · sub-second', size=14,
+box(266, 292, 300, 56, 'NVIDIA Jetson', 'store appliance', size=16)
+box(266, 368, 300, 46, 'GStreamer', 'NVDEC · 30 streams', size=14)
+box(266, 434, 300, 54, 'RabbitMQ', 'frame queue', size=15, stroke='#e08a4a')
+box(266, 508, 300, 54, 'YOLO11 + TensorRT', 'FP16 engine · sub-second', size=14,
     stroke=AMBER)
-box(266, 510, 300, 46, 'ByteTrack', 'identity across frames', size=14)
-box(266, 572, 300, 52, 'Rule engine', 'zone · dwell · concealment', size=14)
+box(266, 582, 300, 44, 'ByteTrack', 'identity across frames', size=14)
+box(266, 646, 300, 52, 'Rule engine', 'zone · dwell · concealment', size=14)
 
-arrow([(246, 338), (262, 326)])
-for y0, y1 in ((352, 378), (426, 440), (494, 508), (556, 570)):
+arrow([(246, 339), (262, 326)])
+for y0, y1 in ((348, 366), (414, 432), (488, 506), (562, 580), (626, 644)):
     arrow([(416, y0), (416, y1)])
 
-code(60, 650, 506, 132,
+note(70, 446, 'the queue is\nthe whole point:\ncapture never\nwaits for\ninference',
+     color='#e08a4a', size=12.5, font=HAND, w=190)
+
+code(60, 722, 506, 132,
      'rtspsrc location=... latency=200\n'
      '  ! rtph264depay ! h264parse\n'
      '  ! nvv4l2decoder            # NVDEC, not CPU\n'
      '  ! nvvidconv ! video/x-raw(memory:NVMM)\n'
-     '  ! appsink                  -> TensorRT engine',
+     '  ! appsink   -> amqp publish -> TensorRT',
      title='edge pipeline — decode never touches the CPU')
 
-note(64, 800, 'detection is not an event.\nan event needs a zone, dwell time and\n'
-     'a concealment sequence — otherwise\nyou page a human 400 times a night.',
-     color=MUTED, size=13, font=HAND, w=420)
+note(64, 872, 'detection is not an event.\nan event needs a zone, dwell time and a\n'
+     'concealment sequence — otherwise you page\na human 400 times a night.',
+     color=MUTED, size=13, font=HAND, w=470)
 
 # ── the wall ───────────────────────────────────────────────────────────────
-vline(620, 236, 900, color='#3d4757')
-note(636, 300, 'video stops here', color=AMBER, size=15, font=HAND, w=260)
-note(636, 328, '4,500 streams × 1080p ≈ 9 Gbps\nif you shipped the video. you don\'t.\n'
-     'what crosses the wire is ~2 KB of JSON\nand one 6 s clip, only when something\nhappened.',
-     color=MUTED, size=13, font=HAND, w=330)
-note(636, 456, 'the clip is cut from a ring buffer —\nthe theft starts before\nthe alert does.',
-     color=FAINT, size=12.5, font=HAND, w=280)
+vline(590, 236, 940, color='#3d4757')
+note(606, 300, 'video stops here', color=AMBER, size=15, font=HAND, w=200)
+note(606, 328, '4,500 streams x 1080p ~ 9 Gbps\nif you shipped the video.\nyou do not.\n\n'
+     'what crosses is ~2 KB of JSON\nand one 6 s clip, only when\nsomething happened.',
+     color=MUTED, size=13, font=HAND, w=200)
+note(606, 470, 'if inference stalls, the queue\ngrows — it does not drop\nframes. that is why RabbitMQ\n'
+     'is in the store and not\nin the cloud.', color=FAINT, size=12.5, font=HAND, w=200)
+note(606, 686, 'event + clip  ·  HTTPS, retried by the appliance', color=FAINT,
+     size=12, font=MONO, w=440)
 
-# ── B. GCP ingest ──────────────────────────────────────────────────────────
-band(1010, 'GOOGLE CLOUD — INGEST', 'stateless, scales with event volume')
+# ── B. Google Cloud — the cluster ──────────────────────────────────────────
+band(900, 'GOOGLE CLOUD', 'stateless cluster, state pushed outside it')
 
-box(1010, 292, 250, 48, 'Cloud Load Balancing', 'TLS · regional', fill=GCP_BG,
+boundary(900, 275, 860, 445, 'GKE cluster  ·  regional, 3 zones',
+         'node pool: e2-standard  ·  cluster autoscaler')
+
+box(930, 320, 240, 50, 'Ingress', 'Cloud Load Balancing', fill=GCP_BG,
     stroke=GCP_ST, size=14)
-api = box(1010, 362, 250, 56, 'Cloud Run', 'FastAPI · auth + schema check',
-          fill=GCP_BG, stroke=GCP_ST, size=14)
-box(1010, 440, 250, 48, 'Pub/Sub', 'events topic', fill=GCP_BG, stroke=GCP_ST,
-    size=14)
-box(1010, 510, 250, 48, 'Cloud Storage', 'clip + evidence bucket', fill=GCP_BG,
+box(930, 400, 240, 56, 'api  Deployment', 'FastAPI · auth + schema', fill=GCP_BG,
     stroke=GCP_ST, size=14)
-
-arrow([(566, 598), (978, 598), (978, 316), (1006, 316)], color='#5d6b7d')
-note(640, 566, 'event + clip  ·  HTTPS, retried on the appliance', color=FAINT,
-     size=12, font=MONO, w=420)
-for y0, y1 in ((340, 360), (418, 438), (488, 508)):
-    arrow([(1135, y0), (1135, y1)], color=GCP_ST)
-
-code(1010, 590, 400, 196,
-     '{\n'
-     '  "store_id":   "SP-0117",\n'
-     '  "camera_id":  "cam-14",\n'
-     '  "ts":         "2025-11-03T21:14:07Z",\n'
-     '  "track_id":   8321,\n'
-     '  "rule":       "concealment",\n'
-     '  "confidence": 0.83,\n'
-     '  "clip":       "gs://sg-clips/SP-0117/..."\n'
-     '}', title='what actually crosses the wire  (~2 KB)')
-
-# ── C. GCP intelligence ────────────────────────────────────────────────────
-band(1480, 'GOOGLE CLOUD — DECIDE', 'per-store policy, not a global threshold')
-
-box(1480, 292, 262, 52, 'Cloud Run worker', 'Pub/Sub push subscriber',
+box(930, 486, 240, 56, 'worker  Deployment', 'clip + evidence handling',
     fill=GCP_BG, stroke=GCP_ST, size=14)
-box(1480, 366, 262, 52, 'Context builder', 'store · camera · recent history',
+box(1240, 400, 240, 56, 'Context builder', 'store · camera · history',
     fill=GCP_BG, stroke=GCP_ST, size=14)
-box(1480, 440, 262, 56, 'GPT-4 via LangChain', 'alert text + summary',
+box(1240, 486, 240, 56, 'GPT-4 via LangChain', 'alert text + summary',
     fill=AI_BG, stroke=AI_ST, size=14)
 
-_els.append(base(id=uid('d'), type='diamond', x=1512, y=520, width=196,
-                 height=104, strokeColor=AMBER, backgroundColor='#2a2317',
+_els.append(base(id=uid('d'), type='diamond', x=1280, y=570, width=180,
+                 height=96, strokeColor=AMBER, backgroundColor='#2a2317',
                  strokeWidth=1.5))
-note(1536, 556, 'severity?', color=INK, size=15, font=MONO, w=160)
+note(1306, 606, 'severity?', color=INK, size=15, font=MONO, w=160)
 
-box(1810, 366, 210, 52, 'Firestore', 'events · stores · cameras', fill=GCP_BG,
+arrow([(566, 672), (850, 672), (850, 316), (926, 316)], color='#5d6b7d')
+arrow([(1050, 370), (1050, 398)], color=GCP_ST)
+arrow([(1050, 456), (1050, 484)], color=GCP_ST)
+arrow([(1170, 514), (1205, 514), (1205, 428), (1236, 428)], color=GCP_ST)
+arrow([(1360, 456), (1360, 484)], color=GCP_ST)
+arrow([(1360, 542), (1360, 568)], color=GCP_ST)
+
+note(936, 600, 'HPA scales on in-flight requests,\nnot CPU. the slow part is the LLM\n'
+     'call, and a pod pegged at 8% CPU\ncan still be saturated.',
+     color=MUTED, size=12.5, font=HAND, w=330)
+note(936, 676, '150 stores do not fire evenly — closing time spikes.',
+     color=FAINT, size=12, font=MONO, w=500)
+
+# managed services live outside the cluster
+box(1820, 370, 220, 50, 'Cloud Storage', 'clips + evidence', fill=GCP_BG,
     stroke=GCP_ST, size=13)
+box(1820, 450, 220, 50, 'Firestore', 'events · stores · cameras', fill=GCP_BG,
+    stroke=GCP_ST, size=13)
+arrow([(1764, 395), (1816, 395)], color='#5d6b7d')
+arrow([(1764, 475), (1816, 475)], color='#5d6b7d')
+note(1800, 524, 'state lives outside the cluster.\npods are disposable — that is\n'
+     'what makes the autoscaler safe.', color=FAINT, size=12.5, font=HAND, w=300)
 
-arrow([(1266, 464), (1476, 318)], color=GCP_ST)
-for y0, y1 in ((344, 364), (418, 438)):
-    arrow([(1611, y0), (1611, y1)], color=GCP_ST)
-arrow([(1611, 496), (1611, 518)], color=GCP_ST)
-arrow([(1742, 392), (1806, 392)], color='#5d6b7d', head=None)
+# ── C. ship it ─────────────────────────────────────────────────────────────
+box(930, 770, 220, 48, 'Artifact Registry', 'image per commit', fill=GCP_BG,
+    stroke=GCP_ST, size=13)
+box(1190, 770, 200, 48, 'Cloud Build', 'CI on merge', fill=GCP_BG,
+    stroke=GCP_ST, size=13)
+box(1430, 770, 210, 48, 'Rolling update', 'zero downtime', fill=GCP_BG,
+    stroke=GCP_ST, size=13)
+arrow([(1154, 794), (1186, 794)], color='#5d6b7d')
+arrow([(1394, 794), (1426, 794)], color='#5d6b7d')
+arrow([(1535, 766), (1535, 724)], color=GCP_ST, dashed=True)
+note(1676, 776, 'the cluster is cattle.\nthe appliances are not —\nsee the model loop.',
+     color=FAINT, size=12.5, font=HAND, w=280)
 
-note(1484, 650, 'one store wants a siren,\nanother wants a silent log.\n'
-     'the policy lives per store,\nnot in the model.', color=MUTED, size=13,
-     font=HAND, w=300)
+# ── D. operator ────────────────────────────────────────────────────────────
+band(2100, 'OPERATOR', 'the only human in the loop')
 
-# ── D. delivery ────────────────────────────────────────────────────────────
-band(2090, 'OPERATOR', 'the only human in the loop')
-
-box(2090, 366, 240, 56, 'React dashboard', 'live alert + clip', size=14)
-_els.append(base(id=uid('e'), type='ellipse', x=2110, y=470, width=200,
+box(2100, 370, 240, 56, 'React dashboard', 'live alert + clip', size=14)
+_els.append(base(id=uid('e'), type='ellipse', x=2120, y=480, width=200,
                  height=76, strokeColor=WIN_ST, backgroundColor=WIN_BG,
                  strokeWidth=1.5))
-note(2136, 496, 'store operator', color=INK, size=14, font=MONO, w=180)
+note(2146, 506, 'store operator', color=INK, size=14, font=MONO, w=180)
 
-arrow([(1708, 572), (2210, 572), (2210, 550)], color=AMBER)
-arrow([(2210, 424), (2210, 466)], color=EDGE_ST)
-note(1740, 546, 'escalate now', color=AMBER, size=12.5, font=MONO, w=200)
-note(1740, 606, 'batch to the shift digest', color=FAINT, size=12.5, font=MONO,
-     w=240)
-arrow([(1708, 600), (1980, 600)], color='#5d6b7d', dashed=True)
+arrow([(1764, 340), (2224, 340), (2224, 366)], color=EDGE_ST)
+note(1852, 314, 'live alerts', color=FAINT, size=12, font=MONO, w=200)
+arrow([(2220, 426), (2220, 476)], color=EDGE_ST)
+arrow([(1460, 618), (2220, 618), (2220, 562)], color=AMBER)
+note(1494, 592, 'escalate now', color=AMBER, size=12.5, font=MONO, w=200)
+arrow([(1460, 656), (1740, 656)], color='#5d6b7d', dashed=True)
+note(1494, 664, 'batch to the shift digest', color=FAINT, size=12.5, font=MONO,
+     w=260)
 
-box(2076, 640, 268, 62, '90% fewer completed thefts',
+box(2076, 640, 264, 62, '90% fewer completed thefts',
     '80%+ accuracy on real failures', fill=WIN_BG, stroke=WIN_ST, size=14)
-note(2080, 716, 'measured against the store\'s own\nloss numbers, not a benchmark set.',
+note(2080, 716, "measured against the store's own\nloss numbers, not a benchmark set.",
      color=FAINT, size=12.5, font=HAND, w=300)
 
 # ── E. the loop ────────────────────────────────────────────────────────────
-hline(60, 2344, 890)
-note(62, 900, 'MODEL LOOP', color=FAINT, size=13, font=MONO, w=300)
-note(62, 918, 'the operator is the labeller — that is the whole data strategy',
+hline(60, 2344, 950)
+note(62, 960, 'MODEL LOOP', color=FAINT, size=13, font=MONO, w=300)
+note(62, 978, 'the operator is the labeller — that is the whole data strategy',
      color='#59626e', size=12, font=MONO, w=620)
 
-box(1990, 960, 300, 52, 'confirmed / rejected', 'one click on the alert',
+box(1990, 1020, 300, 52, 'confirmed / rejected', 'one click on the alert',
     fill=WIN_BG, stroke=WIN_ST, size=14)
-box(1590, 960, 300, 52, 'Cloud Storage', 'labelled clips → dataset',
+box(1590, 1020, 300, 52, 'Cloud Storage', 'labelled clips → dataset',
     fill=GCP_BG, stroke=GCP_ST, size=14)
-box(1180, 960, 300, 52, 'Vertex AI', 'retrain YOLO11', fill=GCP_BG,
+box(1180, 1020, 300, 52, 'Vertex AI', 'retrain YOLO11', fill=GCP_BG,
     stroke=GCP_ST, size=14)
-box(770, 960, 300, 56, 'Build TensorRT engine', 'one per GPU model',
+box(770, 1020, 300, 56, 'Build TensorRT engine', 'one per GPU model',
     stroke=AMBER, size=14)
-box(360, 960, 300, 52, 'Staged rollout', '10 stores → 150', size=14)
+box(360, 1020, 300, 52, 'Staged rollout', '10 stores → 150', size=14)
 
-arrow([(2140, 1012), (2140, 1046), (1740, 1046), (1740, 1016)], color=WIN_ST)
+arrow([(2140, 1072), (2140, 1104), (1740, 1104), (1740, 1076)], color=WIN_ST)
 for x0, x1 in ((1586, 1484), (1176, 1074), (766, 664)):
-    arrow([(x0, 986), (x1, 986)], color='#5d6b7d')
+    arrow([(x0, 1046), (x1, 1046)], color='#5d6b7d')
+
 # The loop closes in the left margin — a lane with nothing in it, so the wire
-# never crosses a code block or a note. Lands on the engine, which is the thing
-# that actually changes when a new model ships.
-arrow([(356, 986), (38, 986), (38, 468), (262, 468)], color=EDGE_ST,
+# never crosses a code block or a note. It lands on the engine, the thing that
+# actually changes when a new model ships.
+arrow([(356, 1046), (38, 1046), (38, 534), (262, 534)], color=EDGE_ST,
       dashed=True)
-note(78, 1000, 'back to every appliance', color=FAINT, size=12.5, font=MONO,
+note(78, 1060, 'back to every appliance', color=FAINT, size=12.5, font=MONO,
      w=260)
 
-note(766, 1040, 'an engine is built per GPU model.\nthere is no single binary that ships\n'
+note(766, 1100, 'an engine is built per GPU model.\nthere is no single binary that ships\n'
      'to all 150 stores — this cost us weeks\nbefore we accepted it.', color=MUTED,
      size=13, font=HAND, w=380, angle=-0.008)
-
-note(1186, 1040, 'retraining is cheap.\ndeciding what to retrain ON is not —\n'
+note(1186, 1100, 'retraining is cheap.\ndeciding what to retrain ON is not —\n'
      'the operator clicks are the only\nground truth anyone ever gave us.',
      color=MUTED, size=13, font=HAND, w=380)
 
 # ── footer ─────────────────────────────────────────────────────────────────
-hline(60, 2344, 1140)
-note(62, 1158, 'Rafael De Santis  ·  rasantis.github.io  ·  built and operated solo, '
+hline(60, 2344, 1210)
+note(62, 1228, 'Rafael De Santis  ·  rasantis.github.io  ·  built and operated solo, '
      'edge to cloud', color='#59626e', size=12, font=MONO, w=800)
 
 
@@ -374,3 +394,5 @@ path = os.path.join(OUT, 'arch_shopguard.excalidraw')
 with open(path, 'w', encoding='utf-8') as fh:
     json.dump(doc, fh, indent=1)
 print(f'{len(_els)} elements -> {path}')
+
+

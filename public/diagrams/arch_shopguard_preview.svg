@@ -1,183 +1,208 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2592" height="1208" viewBox="0 0 2592 1208"><rect width="100%" height="100%" fill="#0f1319"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="2603" height="1272" viewBox="0 0 2603 1272"><rect width="100%" height="100%" fill="#0f1319"/>
 <g transform="translate(2.0,-8.0)">
 <path d="M60.0,172.0 L2344.0,172.0" fill="none" stroke="#2b3a4d" stroke-width="1.5" stroke-linecap="round"/>
 <rect x="66.0" y="292.0" width="150.0" height="34.0" rx="12" fill="#141a22" stroke="#525c69" stroke-width="1.5"/>
 <rect x="79.0" y="307.0" width="150.0" height="34.0" rx="12" fill="#141a22" stroke="#525c69" stroke-width="1.5"/>
 <rect x="94.0" y="321.0" width="150.0" height="34.0" rx="12" fill="#141a22" stroke="#6f7885" stroke-width="1.5"/>
-<rect x="263.0" y="294.0" width="300.0" height="60.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
-<rect x="268.0" y="383.0" width="300.0" height="46.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
-<rect x="263.0" y="442.0" width="300.0" height="52.0" rx="12" fill="#1b222c" stroke="#ffb224" stroke-width="1.5"/>
-<rect x="267.0" y="513.0" width="300.0" height="46.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
-<rect x="269.0" y="568.0" width="300.0" height="52.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
-<path d="M246.0,338.0 L262.0,326.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="262.0,326.0 256.2,336.6 250.2,328.6" fill="#4d5866"/>
-<path d="M416.0,352.0 L416.0,378.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="416.0,378.0 411.0,367.0 421.0,367.0" fill="#4d5866"/>
-<path d="M416.0,426.0 L416.0,440.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="416.0,440.0 411.0,429.0 421.0,429.0" fill="#4d5866"/>
-<path d="M416.0,494.0 L416.0,508.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="416.0,508.0 411.0,497.0 421.0,497.0" fill="#4d5866"/>
-<path d="M416.0,556.0 L416.0,570.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="416.0,570.0 411.0,559.0 421.0,559.0" fill="#4d5866"/>
-<rect x="60.0" y="650.0" width="506.0" height="132.0" rx="12" fill="#0b0f14" stroke="#2b3a4d" stroke-width="1"/>
-<path d="M620.0,236.0 L620.0,900.0" fill="none" stroke="#3d4757" stroke-width="1.5" stroke-dasharray="8 6" stroke-linecap="round"/>
-<rect x="1013.0" y="291.0" width="250.0" height="48.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<rect x="1011.0" y="363.0" width="250.0" height="56.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<rect x="1009.0" y="440.0" width="250.0" height="48.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<rect x="1014.0" y="513.0" width="250.0" height="48.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<path d="M566.0,598.0 L978.0,598.0 L978.0,316.0 L1006.0,316.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1006.0,316.0 995.0,321.0 995.0,311.0" fill="#5d6b7d"/>
-<path d="M1135.0,340.0 L1135.0,360.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1135.0,360.0 1130.0,349.0 1140.0,349.0" fill="#8fb4ff"/>
-<path d="M1135.0,418.0 L1135.0,438.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1135.0,438.0 1130.0,427.0 1140.0,427.0" fill="#8fb4ff"/>
-<path d="M1135.0,488.0 L1135.0,508.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1135.0,508.0 1130.0,497.0 1140.0,497.0" fill="#8fb4ff"/>
-<rect x="1010.0" y="590.0" width="400.0" height="196.0" rx="12" fill="#0b0f14" stroke="#2b3a4d" stroke-width="1"/>
-<rect x="1482.0" y="292.0" width="262.0" height="52.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<rect x="1484.0" y="362.0" width="262.0" height="52.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<rect x="1478.0" y="441.0" width="262.0" height="56.0" rx="12" fill="#231d33" stroke="#b39cf5" stroke-width="1.5"/>
-<polygon points="1610.0,520.0 1708.0,572.0 1610.0,624.0 1512.0,572.0" fill="#2a2317" stroke="#ffb224" stroke-width="1.5"/>
-<rect x="1814.0" y="367.0" width="210.0" height="52.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<path d="M1266.0,464.0 L1476.0,318.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1476.0,318.0 1469.8,328.4 1464.1,320.2" fill="#8fb4ff"/>
-<path d="M1611.0,344.0 L1611.0,364.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1611.0,364.0 1606.0,353.0 1616.0,353.0" fill="#8fb4ff"/>
-<path d="M1611.0,418.0 L1611.0,438.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1611.0,438.0 1606.0,427.0 1616.0,427.0" fill="#8fb4ff"/>
-<path d="M1611.0,496.0 L1611.0,518.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1611.0,518.0 1606.0,507.0 1616.0,507.0" fill="#8fb4ff"/>
-<path d="M1742.0,392.0 L1806.0,392.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
-<rect x="2091.0" y="363.0" width="240.0" height="56.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
-<ellipse cx="2210.0" cy="508.0" rx="100.0" ry="38.0" fill="#152b22" stroke="#45d483" stroke-width="1.5"/>
-<path d="M1708.0,572.0 L2210.0,572.0 L2210.0,550.0" fill="none" stroke="#ffb224" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="2210.0,550.0 2215.0,561.0 2205.0,561.0" fill="#ffb224"/>
-<path d="M2210.0,424.0 L2210.0,466.0" fill="none" stroke="#9db2ce" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="2210.0,466.0 2205.0,455.0 2215.0,455.0" fill="#9db2ce"/>
-<path d="M1708.0,600.0 L1980.0,600.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-dasharray="8 6" stroke-linecap="round"/>
-<polygon points="1980.0,600.0 1969.0,605.0 1969.0,595.0" fill="#5d6b7d"/>
-<rect x="2078.0" y="638.0" width="268.0" height="62.0" rx="12" fill="#152b22" stroke="#45d483" stroke-width="1.5"/>
-<path d="M60.0,890.0 L2344.0,890.0" fill="none" stroke="#2b3a4d" stroke-width="1.5" stroke-linecap="round"/>
-<rect x="1990.0" y="960.0" width="300.0" height="52.0" rx="12" fill="#152b22" stroke="#45d483" stroke-width="1.5"/>
-<rect x="1588.0" y="961.0" width="300.0" height="52.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<rect x="1178.0" y="964.0" width="300.0" height="52.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
-<rect x="768.0" y="957.0" width="300.0" height="56.0" rx="12" fill="#1b222c" stroke="#ffb224" stroke-width="1.5"/>
-<rect x="358.0" y="963.0" width="300.0" height="52.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
-<path d="M2140.0,1012.0 L2140.0,1046.0 L1740.0,1046.0 L1740.0,1016.0" fill="none" stroke="#45d483" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1740.0,1016.0 1745.0,1027.0 1735.0,1027.0" fill="#45d483"/>
-<path d="M1586.0,986.0 L1484.0,986.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1484.0,986.0 1495.0,981.0 1495.0,991.0" fill="#5d6b7d"/>
-<path d="M1176.0,986.0 L1074.0,986.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="1074.0,986.0 1085.0,981.0 1085.0,991.0" fill="#5d6b7d"/>
-<path d="M766.0,986.0 L664.0,986.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
-<polygon points="664.0,986.0 675.0,981.0 675.0,991.0" fill="#5d6b7d"/>
-<path d="M356.0,986.0 L38.0,986.0 L38.0,468.0 L262.0,468.0" fill="none" stroke="#9db2ce" stroke-width="1.5" stroke-dasharray="8 6" stroke-linecap="round"/>
-<polygon points="262.0,468.0 251.0,473.0 251.0,463.0" fill="#9db2ce"/>
-<path d="M60.0,1140.0 L2344.0,1140.0" fill="none" stroke="#2b3a4d" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="263.0" y="294.0" width="300.0" height="56.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
+<rect x="268.0" y="371.0" width="300.0" height="46.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
+<rect x="263.0" y="434.0" width="300.0" height="54.0" rx="12" fill="#1b222c" stroke="#e08a4a" stroke-width="1.5"/>
+<rect x="267.0" y="511.0" width="300.0" height="54.0" rx="12" fill="#1b222c" stroke="#ffb224" stroke-width="1.5"/>
+<rect x="269.0" y="578.0" width="300.0" height="44.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
+<rect x="265.0" y="642.0" width="300.0" height="52.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
+<path d="M246.0,339.0 L262.0,326.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="262.0,326.0 256.6,336.8 250.3,329.1" fill="#4d5866"/>
+<path d="M416.0,348.0 L416.0,366.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="416.0,366.0 411.0,355.0 421.0,355.0" fill="#4d5866"/>
+<path d="M416.0,414.0 L416.0,432.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="416.0,432.0 411.0,421.0 421.0,421.0" fill="#4d5866"/>
+<path d="M416.0,488.0 L416.0,506.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="416.0,506.0 411.0,495.0 421.0,495.0" fill="#4d5866"/>
+<path d="M416.0,562.0 L416.0,580.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="416.0,580.0 411.0,569.0 421.0,569.0" fill="#4d5866"/>
+<path d="M416.0,626.0 L416.0,644.0" fill="none" stroke="#4d5866" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="416.0,644.0 411.0,633.0 421.0,633.0" fill="#4d5866"/>
+<rect x="60.0" y="722.0" width="506.0" height="132.0" rx="12" fill="#0b0f14" stroke="#2b3a4d" stroke-width="1"/>
+<path d="M590.0,236.0 L590.0,940.0" fill="none" stroke="#3d4757" stroke-width="1.5" stroke-dasharray="8 6" stroke-linecap="round"/>
+<rect x="900.0" y="275.0" width="860.0" height="445.0" rx="12" fill="#111a26" stroke="#4a6fa8" stroke-width="1.5" stroke-dasharray="8 6"/>
+<rect x="927.0" y="320.0" width="240.0" height="50.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="934.0" y="404.0" width="240.0" height="56.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="930.0" y="482.0" width="240.0" height="56.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="1239.0" y="404.0" width="240.0" height="56.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="1242.0" y="488.0" width="240.0" height="56.0" rx="12" fill="#231d33" stroke="#b39cf5" stroke-width="1.5"/>
+<polygon points="1370.0,570.0 1460.0,618.0 1370.0,666.0 1280.0,618.0" fill="#2a2317" stroke="#ffb224" stroke-width="1.5"/>
+<path d="M566.0,672.0 L850.0,672.0 L850.0,316.0 L926.0,316.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="926.0,316.0 915.0,321.0 915.0,311.0" fill="#5d6b7d"/>
+<path d="M1050.0,370.0 L1050.0,398.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1050.0,398.0 1045.0,387.0 1055.0,387.0" fill="#8fb4ff"/>
+<path d="M1050.0,456.0 L1050.0,484.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1050.0,484.0 1045.0,473.0 1055.0,473.0" fill="#8fb4ff"/>
+<path d="M1170.0,514.0 L1205.0,514.0 L1205.0,428.0 L1236.0,428.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1236.0,428.0 1225.0,433.0 1225.0,423.0" fill="#8fb4ff"/>
+<path d="M1360.0,456.0 L1360.0,484.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1360.0,484.0 1355.0,473.0 1365.0,473.0" fill="#8fb4ff"/>
+<path d="M1360.0,542.0 L1360.0,568.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1360.0,568.0 1355.0,557.0 1365.0,557.0" fill="#8fb4ff"/>
+<rect x="1816.0" y="366.0" width="220.0" height="50.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="1823.0" y="449.0" width="220.0" height="50.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<path d="M1764.0,395.0 L1816.0,395.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1816.0,395.0 1805.0,400.0 1805.0,390.0" fill="#5d6b7d"/>
+<path d="M1764.0,475.0 L1816.0,475.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1816.0,475.0 1805.0,480.0 1805.0,470.0" fill="#5d6b7d"/>
+<rect x="929.0" y="772.0" width="220.0" height="48.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="1191.0" y="768.0" width="200.0" height="48.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="1426.0" y="774.0" width="210.0" height="48.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<path d="M1154.0,794.0 L1186.0,794.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1186.0,794.0 1175.0,799.0 1175.0,789.0" fill="#5d6b7d"/>
+<path d="M1394.0,794.0 L1426.0,794.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1426.0,794.0 1415.0,799.0 1415.0,789.0" fill="#5d6b7d"/>
+<path d="M1535.0,766.0 L1535.0,724.0" fill="none" stroke="#8fb4ff" stroke-width="1.5" stroke-dasharray="8 6" stroke-linecap="round"/>
+<polygon points="1535.0,724.0 1540.0,735.0 1530.0,735.0" fill="#8fb4ff"/>
+<rect x="2099.0" y="369.0" width="240.0" height="56.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
+<ellipse cx="2220.0" cy="518.0" rx="100.0" ry="38.0" fill="#152b22" stroke="#45d483" stroke-width="1.5"/>
+<path d="M1764.0,340.0 L2224.0,340.0 L2224.0,366.0" fill="none" stroke="#9db2ce" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="2224.0,366.0 2219.0,355.0 2229.0,355.0" fill="#9db2ce"/>
+<path d="M2220.0,426.0 L2220.0,476.0" fill="none" stroke="#9db2ce" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="2220.0,476.0 2215.0,465.0 2225.0,465.0" fill="#9db2ce"/>
+<path d="M1460.0,618.0 L2220.0,618.0 L2220.0,562.0" fill="none" stroke="#ffb224" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="2220.0,562.0 2225.0,573.0 2215.0,573.0" fill="#ffb224"/>
+<path d="M1460.0,656.0 L1740.0,656.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-dasharray="8 6" stroke-linecap="round"/>
+<polygon points="1740.0,656.0 1729.0,661.0 1729.0,651.0" fill="#5d6b7d"/>
+<rect x="2073.0" y="639.0" width="264.0" height="62.0" rx="12" fill="#152b22" stroke="#45d483" stroke-width="1.5"/>
+<path d="M60.0,950.0 L2344.0,950.0" fill="none" stroke="#2b3a4d" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="1993.0" y="1024.0" width="300.0" height="52.0" rx="12" fill="#152b22" stroke="#45d483" stroke-width="1.5"/>
+<rect x="1587.0" y="1017.0" width="300.0" height="52.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="1181.0" y="1022.0" width="300.0" height="52.0" rx="12" fill="#16202e" stroke="#8fb4ff" stroke-width="1.5"/>
+<rect x="771.0" y="1017.0" width="300.0" height="56.0" rx="12" fill="#1b222c" stroke="#ffb224" stroke-width="1.5"/>
+<rect x="364.0" y="1016.0" width="300.0" height="52.0" rx="12" fill="#1b222c" stroke="#9db2ce" stroke-width="1.5"/>
+<path d="M2140.0,1072.0 L2140.0,1104.0 L1740.0,1104.0 L1740.0,1076.0" fill="none" stroke="#45d483" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1740.0,1076.0 1745.0,1087.0 1735.0,1087.0" fill="#45d483"/>
+<path d="M1586.0,1046.0 L1484.0,1046.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1484.0,1046.0 1495.0,1041.0 1495.0,1051.0" fill="#5d6b7d"/>
+<path d="M1176.0,1046.0 L1074.0,1046.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="1074.0,1046.0 1085.0,1041.0 1085.0,1051.0" fill="#5d6b7d"/>
+<path d="M766.0,1046.0 L664.0,1046.0" fill="none" stroke="#5d6b7d" stroke-width="1.5" stroke-linecap="round"/>
+<polygon points="664.0,1046.0 675.0,1041.0 675.0,1051.0" fill="#5d6b7d"/>
+<path d="M356.0,1046.0 L38.0,1046.0 L38.0,534.0 L262.0,534.0" fill="none" stroke="#9db2ce" stroke-width="1.5" stroke-dasharray="8 6" stroke-linecap="round"/>
+<polygon points="262.0,534.0 251.0,539.0 251.0,529.0" fill="#9db2ce"/>
+<path d="M60.0,1210.0 L2344.0,1210.0" fill="none" stroke="#2b3a4d" stroke-width="1.5" stroke-linecap="round"/>
 <text x="58.0" y="74.3" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="27" fill="#eef1f6" text-anchor="start" xml:space="preserve">ShopGuard AI — real-time theft detection</text>
 <text x="62.0" y="99.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#9aa5b4" text-anchor="start" xml:space="preserve">150 stores  ·  ~30 cameras each  ·  4,500+ concurrent streams  ·  sub-second inference at the edge</text>
-<text x="63.0" y="143.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">camera  →  decode  →  detect  →  track  →  rule  →  event  →  GCP  →  operator acts  →  label  →  retrain</text>
+<text x="63.0" y="143.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">camera  →  decode  →  queue  →  detect  →  track  →  rule  →  event  →  GKE  →  operator acts  →  label  →  retrain</text>
 <text x="59.0" y="246.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">STORE EDGE</text>
 <text x="59.0" y="262.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">one identical appliance per store, ×150</text>
 <text x="169.0" y="342.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">IP camera</text>
-<text x="68.0" y="393.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">~30 per store</text>
-<text x="68.0" y="408.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">RTSP · H.264 · 1080p</text>
-<text x="413.0" y="319.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="16" fill="#eef1f6" text-anchor="middle" xml:space="preserve">NVIDIA Jetson</text>
-<text x="413.0" y="339.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="16" fill="#eef1f6" text-anchor="middle" xml:space="preserve">store appliance</text>
-<text x="418.0" y="402.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">GStreamer</text>
-<text x="418.0" y="419.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">hardware decode · 30 streams</text>
-<text x="413.0" y="464.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">YOLO11 + TensorRT</text>
-<text x="413.0" y="481.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">FP16 engine · sub-second</text>
-<text x="417.0" y="532.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">ByteTrack</text>
-<text x="417.0" y="549.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">identity across frames</text>
-<text x="419.0" y="590.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Rule engine</text>
-<text x="419.0" y="607.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">zone · dwell · concealment</text>
-<text x="75.0" y="667.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11" fill="#6f7885" text-anchor="start" xml:space="preserve">edge pipeline — decode never touches the CPU</text>
-<text x="75.0" y="692.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">rtspsrc location=... latency=200</text>
-<text x="75.0" y="706.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! rtph264depay ! h264parse</text>
-<text x="75.0" y="721.0" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! nvv4l2decoder            # NVDEC, not CPU</text>
-<text x="75.0" y="735.3" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! nvvidconv ! video/x-raw(memory:NVMM)</text>
-<text x="75.0" y="749.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! appsink                  -&gt; TensorRT engine</text>
-<text x="64.0" y="813.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">detection is not an event.</text>
-<text x="64.0" y="829.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">an event needs a zone, dwell time and</text>
-<text x="64.0" y="846.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">a concealment sequence — otherwise</text>
-<text x="64.0" y="862.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">you page a human 400 times a night.</text>
-<text x="639.0" y="314.6" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="15" fill="#ffb224" text-anchor="start" xml:space="preserve">video stops here</text>
-<text x="637.0" y="337.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">4,500 streams × 1080p ≈ 9 Gbps</text>
-<text x="637.0" y="353.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">if you shipped the video. you don't.</text>
-<text x="637.0" y="370.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">what crosses the wire is ~2 KB of JSON</text>
-<text x="637.0" y="386.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">and one 6 s clip, only when something</text>
-<text x="637.0" y="402.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">happened.</text>
-<text x="633.0" y="470.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">the clip is cut from a ring buffer —</text>
-<text x="633.0" y="485.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">the theft starts before</text>
-<text x="633.0" y="501.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">the alert does.</text>
-<text x="1012.0" y="247.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">GOOGLE CLOUD — INGEST</text>
-<text x="1010.0" y="261.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">stateless, scales with event volume</text>
-<text x="1138.0" y="311.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Load Balancing</text>
-<text x="1138.0" y="328.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">TLS · regional</text>
-<text x="1136.0" y="387.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Run</text>
-<text x="1136.0" y="404.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">FastAPI · auth + schema check</text>
-<text x="1134.0" y="460.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Pub/Sub</text>
-<text x="1134.0" y="477.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">events topic</text>
-<text x="1139.0" y="533.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Storage</text>
-<text x="1139.0" y="550.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">clip + evidence bucket</text>
-<text x="637.0" y="576.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">event + clip  ·  HTTPS, retried on the appliance</text>
-<text x="1023.0" y="608.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11" fill="#6f7885" text-anchor="start" xml:space="preserve">what actually crosses the wire  (~2 KB)</text>
-<text x="1020.0" y="633.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">{</text>
-<text x="1020.0" y="647.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  "store_id":   "SP-0117",</text>
-<text x="1020.0" y="662.0" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  "camera_id":  "cam-14",</text>
-<text x="1020.0" y="676.3" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  "ts":         "2025-11-03T21:14:07Z",</text>
-<text x="1020.0" y="690.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  "track_id":   8321,</text>
-<text x="1020.0" y="705.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  "rule":       "concealment",</text>
-<text x="1020.0" y="719.5" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  "confidence": 0.83,</text>
-<text x="1020.0" y="733.8" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  "clip":       "gs://sg-clips/SP-0117/..."</text>
-<text x="1020.0" y="748.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">}</text>
-<text x="1483.0" y="241.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">GOOGLE CLOUD — DECIDE</text>
-<text x="1480.0" y="261.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">per-store policy, not a global threshold</text>
-<text x="1613.0" y="314.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Run worker</text>
-<text x="1613.0" y="331.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Pub/Sub push subscriber</text>
-<text x="1615.0" y="384.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Context builder</text>
-<text x="1615.0" y="401.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">store · camera · recent history</text>
-<text x="1609.0" y="465.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">GPT-4 via LangChain</text>
-<text x="1609.0" y="482.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">alert text + summary</text>
-<text x="1536.0" y="569.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="15" fill="#eef1f6" text-anchor="start" xml:space="preserve">severity?</text>
-<text x="1919.0" y="389.4" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Firestore</text>
-<text x="1919.0" y="405.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">events · stores · cameras</text>
-<text x="1484.0" y="660.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">one store wants a siren,</text>
-<text x="1484.0" y="676.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">another wants a silent log.</text>
-<text x="1484.0" y="693.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">the policy lives per store,</text>
-<text x="1484.0" y="709.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">not in the model.</text>
-<text x="2090.0" y="243.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">OPERATOR</text>
-<text x="2089.0" y="259.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">the only human in the loop</text>
-<text x="2211.0" y="387.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">React dashboard</text>
-<text x="2211.0" y="404.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">live alert + clip</text>
-<text x="2136.0" y="512.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="start" xml:space="preserve">store operator</text>
-<text x="1737.0" y="561.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12.5" fill="#ffb224" text-anchor="start" xml:space="preserve">escalate now</text>
-<text x="1741.0" y="615.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">batch to the shift digest</text>
-<text x="2212.0" y="665.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">90% fewer completed thefts</text>
-<text x="2212.0" y="682.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">80%+ accuracy on real failures</text>
-<text x="2078.0" y="726.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">measured against the store's own</text>
-<text x="2078.0" y="741.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">loss numbers, not a benchmark set.</text>
-<text x="60.0" y="909.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">MODEL LOOP</text>
-<text x="65.0" y="928.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">the operator is the labeller — that is the whole data strategy</text>
-<text x="2140.0" y="982.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">confirmed / rejected</text>
-<text x="2140.0" y="999.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">one click on the alert</text>
-<text x="1738.0" y="983.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Storage</text>
-<text x="1738.0" y="1000.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">labelled clips → dataset</text>
-<text x="1328.0" y="986.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Vertex AI</text>
-<text x="1328.0" y="1003.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">retrain YOLO11</text>
-<text x="918.0" y="981.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Build TensorRT engine</text>
-<text x="918.0" y="998.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">one per GPU model</text>
-<text x="508.0" y="985.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Staged rollout</text>
-<text x="508.0" y="1002.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">10 stores → 150</text>
-<text x="79.0" y="1015.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">back to every appliance</text>
-<text x="768.0" y="1054.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">an engine is built per GPU model.</text>
-<text x="768.0" y="1070.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">there is no single binary that ships</text>
-<text x="768.0" y="1087.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">to all 150 stores — this cost us weeks</text>
-<text x="768.0" y="1103.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">before we accepted it.</text>
-<text x="1188.0" y="1052.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">retraining is cheap.</text>
-<text x="1188.0" y="1068.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">deciding what to retrain ON is not —</text>
-<text x="1188.0" y="1085.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">the operator clicks are the only</text>
-<text x="1188.0" y="1101.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">ground truth anyone ever gave us.</text>
-<text x="61.0" y="1172.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">Rafael De Santis  ·  rasantis.github.io  ·  built and operated solo, edge to cloud</text>
+<text x="68.0" y="389.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">~30 per store</text>
+<text x="68.0" y="404.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">RTSP · H.264 · 1080p</text>
+<text x="413.0" y="317.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="16" fill="#eef1f6" text-anchor="middle" xml:space="preserve">NVIDIA Jetson</text>
+<text x="413.0" y="337.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="16" fill="#eef1f6" text-anchor="middle" xml:space="preserve">store appliance</text>
+<text x="418.0" y="390.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">GStreamer</text>
+<text x="418.0" y="407.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">NVDEC · 30 streams</text>
+<text x="413.0" y="456.9" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="15" fill="#eef1f6" text-anchor="middle" xml:space="preserve">RabbitMQ</text>
+<text x="413.0" y="475.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="15" fill="#eef1f6" text-anchor="middle" xml:space="preserve">frame queue</text>
+<text x="417.0" y="534.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">YOLO11 + TensorRT</text>
+<text x="417.0" y="551.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">FP16 engine · sub-second</text>
+<text x="419.0" y="596.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">ByteTrack</text>
+<text x="419.0" y="613.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">identity across frames</text>
+<text x="415.0" y="664.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Rule engine</text>
+<text x="415.0" y="681.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">zone · dwell · concealment</text>
+<text x="71.0" y="455.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#e08a4a" text-anchor="start" xml:space="preserve">the queue is</text>
+<text x="71.0" y="470.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#e08a4a" text-anchor="start" xml:space="preserve">the whole point:</text>
+<text x="71.0" y="486.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#e08a4a" text-anchor="start" xml:space="preserve">capture never</text>
+<text x="71.0" y="502.1" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#e08a4a" text-anchor="start" xml:space="preserve">waits for</text>
+<text x="71.0" y="517.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#e08a4a" text-anchor="start" xml:space="preserve">inference</text>
+<text x="72.0" y="739.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11" fill="#6f7885" text-anchor="start" xml:space="preserve">edge pipeline — decode never touches the CPU</text>
+<text x="74.0" y="765.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">rtspsrc location=... latency=200</text>
+<text x="74.0" y="779.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! rtph264depay ! h264parse</text>
+<text x="74.0" y="794.0" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! nvv4l2decoder            # NVDEC, not CPU</text>
+<text x="74.0" y="808.3" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! nvvidconv ! video/x-raw(memory:NVMM)</text>
+<text x="74.0" y="822.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#7fd8a4" text-anchor="start" xml:space="preserve">  ! appsink   -&gt; amqp publish -&gt; TensorRT</text>
+<text x="66.0" y="887.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">detection is not an event.</text>
+<text x="66.0" y="903.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">an event needs a zone, dwell time and a</text>
+<text x="66.0" y="920.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">concealment sequence — otherwise you page</text>
+<text x="66.0" y="936.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">a human 400 times a night.</text>
+<text x="606.0" y="314.6" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="15" fill="#ffb224" text-anchor="start" xml:space="preserve">video stops here</text>
+<text x="606.0" y="338.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">4,500 streams x 1080p ~ 9 Gbps</text>
+<text x="606.0" y="354.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">if you shipped the video.</text>
+<text x="606.0" y="371.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">you do not.</text>
+<text x="606.0" y="387.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve"></text>
+<text x="606.0" y="403.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">what crosses is ~2 KB of JSON</text>
+<text x="606.0" y="419.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">and one 6 s clip, only when</text>
+<text x="606.0" y="436.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">something happened.</text>
+<text x="608.0" y="483.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">if inference stalls, the queue</text>
+<text x="608.0" y="498.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">grows — it does not drop</text>
+<text x="608.0" y="514.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">frames. that is why RabbitMQ</text>
+<text x="608.0" y="530.1" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">is in the store and not</text>
+<text x="608.0" y="545.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">in the cloud.</text>
+<text x="607.0" y="696.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">event + clip  ·  HTTPS, retried by the appliance</text>
+<text x="900.0" y="241.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">GOOGLE CLOUD</text>
+<text x="899.0" y="258.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">stateless cluster, state pushed outside it</text>
+<text x="917.0" y="301.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12.5" fill="#4a6fa8" text-anchor="start" xml:space="preserve">GKE cluster  ·  regional, 3 zones</text>
+<text x="916.0" y="313.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="11.5" fill="#59626e" text-anchor="start" xml:space="preserve">node pool: e2-standard  ·  cluster autoscaler</text>
+<text x="1047.0" y="341.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Ingress</text>
+<text x="1047.0" y="358.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Load Balancing</text>
+<text x="1054.0" y="428.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">api  Deployment</text>
+<text x="1054.0" y="445.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">FastAPI · auth + schema</text>
+<text x="1050.0" y="506.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">worker  Deployment</text>
+<text x="1050.0" y="523.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">clip + evidence handling</text>
+<text x="1359.0" y="428.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Context builder</text>
+<text x="1359.0" y="445.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">store · camera · history</text>
+<text x="1362.0" y="512.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">GPT-4 via LangChain</text>
+<text x="1362.0" y="529.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">alert text + summary</text>
+<text x="1303.0" y="619.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="15" fill="#eef1f6" text-anchor="start" xml:space="preserve">severity?</text>
+<text x="935.0" y="609.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#9aa5b4" text-anchor="start" xml:space="preserve">HPA scales on in-flight requests,</text>
+<text x="935.0" y="624.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#9aa5b4" text-anchor="start" xml:space="preserve">not CPU. the slow part is the LLM</text>
+<text x="935.0" y="640.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#9aa5b4" text-anchor="start" xml:space="preserve">call, and a pod pegged at 8% CPU</text>
+<text x="935.0" y="656.1" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#9aa5b4" text-anchor="start" xml:space="preserve">can still be saturated.</text>
+<text x="939.0" y="686.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">150 stores do not fire evenly — closing time spikes.</text>
+<text x="1926.0" y="387.4" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Storage</text>
+<text x="1926.0" y="403.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">clips + evidence</text>
+<text x="1933.0" y="470.4" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Firestore</text>
+<text x="1933.0" y="486.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">events · stores · cameras</text>
+<text x="1799.0" y="533.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">state lives outside the cluster.</text>
+<text x="1799.0" y="548.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">pods are disposable — that is</text>
+<text x="1799.0" y="564.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">what makes the autoscaler safe.</text>
+<text x="1039.0" y="792.4" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Artifact Registry</text>
+<text x="1039.0" y="808.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">image per commit</text>
+<text x="1291.0" y="788.4" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Build</text>
+<text x="1291.0" y="804.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">CI on merge</text>
+<text x="1531.0" y="794.4" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Rolling update</text>
+<text x="1531.0" y="810.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#eef1f6" text-anchor="middle" xml:space="preserve">zero downtime</text>
+<text x="1676.0" y="789.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">the cluster is cattle.</text>
+<text x="1676.0" y="804.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">the appliances are not —</text>
+<text x="1676.0" y="820.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">see the model loop.</text>
+<text x="2100.0" y="242.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">OPERATOR</text>
+<text x="2101.0" y="261.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">the only human in the loop</text>
+<text x="2219.0" y="393.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">React dashboard</text>
+<text x="2219.0" y="410.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">live alert + clip</text>
+<text x="2147.0" y="518.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="start" xml:space="preserve">store operator</text>
+<text x="1854.0" y="324.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#6f7885" text-anchor="start" xml:space="preserve">live alerts</text>
+<text x="1491.0" y="601.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12.5" fill="#ffb224" text-anchor="start" xml:space="preserve">escalate now</text>
+<text x="1494.0" y="675.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">batch to the shift digest</text>
+<text x="2205.0" y="666.1" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">90% fewer completed thefts</text>
+<text x="2205.0" y="683.6" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">80%+ accuracy on real failures</text>
+<text x="2080.0" y="729.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">measured against the store's own</text>
+<text x="2080.0" y="744.8" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">loss numbers, not a benchmark set.</text>
+<text x="63.0" y="974.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="13" fill="#6f7885" text-anchor="start" xml:space="preserve">MODEL LOOP</text>
+<text x="62.0" y="992.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">the operator is the labeller — that is the whole data strategy</text>
+<text x="2143.0" y="1046.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">confirmed / rejected</text>
+<text x="2143.0" y="1063.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">one click on the alert</text>
+<text x="1737.0" y="1039.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Cloud Storage</text>
+<text x="1737.0" y="1056.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">labelled clips → dataset</text>
+<text x="1331.0" y="1044.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Vertex AI</text>
+<text x="1331.0" y="1061.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">retrain YOLO11</text>
+<text x="921.0" y="1041.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Build TensorRT engine</text>
+<text x="921.0" y="1058.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">one per GPU model</text>
+<text x="514.0" y="1038.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">Staged rollout</text>
+<text x="514.0" y="1055.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="14" fill="#eef1f6" text-anchor="middle" xml:space="preserve">10 stores → 150</text>
+<text x="81.0" y="1069.2" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12.5" fill="#6f7885" text-anchor="start" xml:space="preserve">back to every appliance</text>
+<text x="767.0" y="1109.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">an engine is built per GPU model.</text>
+<text x="767.0" y="1125.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">there is no single binary that ships</text>
+<text x="767.0" y="1142.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">to all 150 stores — this cost us weeks</text>
+<text x="767.0" y="1158.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">before we accepted it.</text>
+<text x="1188.0" y="1115.7" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">retraining is cheap.</text>
+<text x="1188.0" y="1131.9" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">deciding what to retrain ON is not —</text>
+<text x="1188.0" y="1148.2" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">the operator clicks are the only</text>
+<text x="1188.0" y="1164.4" font-family="'Segoe Print','Comic Sans MS','Bradley Hand',cursive" font-size="13" fill="#9aa5b4" text-anchor="start" xml:space="preserve">ground truth anyone ever gave us.</text>
+<text x="64.0" y="1236.7" font-family="'Cascadia Code','Consolas','DejaVu Sans Mono',monospace" font-size="12" fill="#59626e" text-anchor="start" xml:space="preserve">Rafael De Santis  ·  rasantis.github.io  ·  built and operated solo, edge to cloud</text>
 </g></svg>
