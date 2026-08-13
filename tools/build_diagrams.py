@@ -385,7 +385,13 @@ sg.links = [
     Link((4, 1), (4, 2), dashed=True),
     Link((4, 2), (0, 3), 'new model to every store', BLUE, dashed=True),
 ]
-write(sg, 'arch_shopguard.svg')
+# SUPERSEDED (Aug 2026). The ShopGuard case now uses the deep Excalidraw board
+# from tools/build_excalidraw.py — it carries the store-side RabbitMQ frame
+# queue, the GKE orchestration layer, the VLM summary and the severity gate,
+# none of which fit this five-tier SVG. The canvas above is left intact as a
+# record of the earlier design; regenerating it would only create an orphan
+# nobody links to, so the write is disabled rather than the definition deleted.
+# write(sg, 'arch_shopguard.svg')
 
 
 # ══════════════════════════ 2. Promeat AI ══════════════════════════
