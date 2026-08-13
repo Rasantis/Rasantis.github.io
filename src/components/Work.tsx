@@ -57,8 +57,10 @@ export default function Work() {
           const videos = def.demoSrcs
             .map((src) => c.demos.find((d) => d.src === src))
             .filter((d): d is NonNullable<typeof d> => Boolean(d));
+          // Match on `prefix-` and not on `prefix`: 'autoinspect-en' starts with
+          // 'auto', so a bare prefix would hand ShopGuard the wrong diagram.
           const systems = (def.systemPrefixes ?? [])
-            .map((prefix) => c.systems.find((s) => s.key.startsWith(prefix)))
+            .map((prefix) => c.systems.find((s) => s.key.startsWith(`${prefix}-`)))
             .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
           return (
