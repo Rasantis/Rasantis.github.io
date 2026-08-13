@@ -441,7 +441,13 @@ pm.links = [
     Link((2, 3), (4, 1), dashed=True),
     Link((3, 2), (4, 2), 'corrections feed evals', AMBER, dashed=True),
 ]
-write(pm, 'arch_promeat.svg')
+# SUPERSEDED (Aug 2026). The Promeat case now carries a single architecture —
+# the per-bird weight board from tools/build_excalidraw_promeat.py — because the
+# case's video is the weighing system and two diagrams on one case was one too
+# many. The multi-agent engine still lives in the project copy ("multi-agent LLM
+# automation") and in the Auspex and DocIntel cases. Canvas kept as a record of
+# the design; only the write is disabled, so no orphan SVG is produced.
+# write(pm, 'arch_promeat.svg')
 
 
 # ══════════════════════════ 3. Full-stack ══════════════════════════
