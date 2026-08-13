@@ -270,22 +270,24 @@ box(930, 400, 240, 56, 'api  Deployment', 'FastAPI · auth + schema', fill=GCP_B
     stroke=GCP_ST, size=14)
 box(930, 486, 240, 56, 'worker  Deployment', 'clip + evidence handling',
     fill=GCP_BG, stroke=GCP_ST, size=14)
-box(1240, 400, 240, 56, 'Context builder', 'store · camera · history',
+box(1240, 400, 264, 56, 'Context builder', 'store · camera · history',
     fill=GCP_BG, stroke=GCP_ST, size=14)
-box(1240, 486, 240, 56, 'GPT-4 via LangChain', 'alert text + summary',
+box(1240, 486, 264, 60, 'VLM summary', 'Gemini · GPT-4V · Qwen-VL',
     fill=AI_BG, stroke=AI_ST, size=14)
 
-_els.append(base(id=uid('d'), type='diamond', x=1280, y=570, width=180,
+_els.append(base(id=uid('d'), type='diamond', x=1282, y=576, width=180,
                  height=96, strokeColor=AMBER, backgroundColor='#2a2317',
                  strokeWidth=1.5))
-note(1306, 606, 'severity?', color=INK, size=15, font=MONO, w=160)
+note(1308, 612, 'severity?', color=INK, size=15, font=MONO, w=160)
 
 arrow([(566, 672), (850, 672), (850, 316), (926, 316)], color='#5d6b7d')
 arrow([(1050, 370), (1050, 398)], color=GCP_ST)
 arrow([(1050, 456), (1050, 484)], color=GCP_ST)
 arrow([(1170, 514), (1205, 514), (1205, 428), (1236, 428)], color=GCP_ST)
-arrow([(1360, 456), (1360, 484)], color=GCP_ST)
-arrow([(1360, 542), (1360, 568)], color=GCP_ST)
+arrow([(1372, 456), (1372, 484)], color=GCP_ST)
+arrow([(1372, 546), (1372, 574)], color=AI_ST)
+note(1516, 490, 'the clip is the input,\nnot a caption of it —\nthe model watches\nwhat happened.',
+     color=AI_ST, size=12.5, font=HAND, w=230)
 
 note(936, 600, 'HPA scales on in-flight requests,\nnot CPU. the slow part is the LLM\n'
      'call, and a pod pegged at 8% CPU\ncan still be saturated.',
@@ -293,15 +295,16 @@ note(936, 600, 'HPA scales on in-flight requests,\nnot CPU. the slow part is the
 note(936, 676, '150 stores do not fire evenly — closing time spikes.',
      color=FAINT, size=12, font=MONO, w=500)
 
-# managed services live outside the cluster
-box(1820, 370, 220, 50, 'Cloud Storage', 'clips + evidence', fill=GCP_BG,
+# State lives outside the cluster. Postgres is ours, not Google's — so it does
+# not get the GCP colour (rule 1).
+box(2080, 300, 240, 50, 'Cloud Storage', 'clips + evidence', fill=GCP_BG,
     stroke=GCP_ST, size=13)
-box(1820, 450, 220, 50, 'Firestore', 'events · stores · cameras', fill=GCP_BG,
-    stroke=GCP_ST, size=13)
-arrow([(1764, 395), (1816, 395)], color='#5d6b7d')
-arrow([(1764, 475), (1816, 475)], color='#5d6b7d')
-note(1800, 524, 'state lives outside the cluster.\npods are disposable — that is\n'
-     'what makes the autoscaler safe.', color=FAINT, size=12.5, font=HAND, w=300)
+box(2080, 380, 240, 56, 'PostgreSQL', 'events · alerts · stores', size=14,
+    stroke='#7fd8a4')
+arrow([(1764, 325), (2076, 325)], color='#5d6b7d')
+arrow([(1764, 408), (2076, 408)], color='#5d6b7d')
+note(1786, 344, 'state lives outside the cluster —\npods are disposable, which is\n'
+     'what makes the autoscaler safe.', color=FAINT, size=12.5, font=HAND, w=280)
 
 # ── C. ship it ─────────────────────────────────────────────────────────────
 box(930, 770, 220, 48, 'Artifact Registry', 'image per commit', fill=GCP_BG,
@@ -313,30 +316,34 @@ box(1430, 770, 210, 48, 'Rolling update', 'zero downtime', fill=GCP_BG,
 arrow([(1154, 794), (1186, 794)], color='#5d6b7d')
 arrow([(1394, 794), (1426, 794)], color='#5d6b7d')
 arrow([(1535, 766), (1535, 724)], color=GCP_ST, dashed=True)
-note(1676, 776, 'the cluster is cattle.\nthe appliances are not —\nsee the model loop.',
-     color=FAINT, size=12.5, font=HAND, w=280)
+note(932, 840, 'the cluster is cattle. the appliances are not — see the model loop.',
+     color=FAINT, size=12.5, font=HAND, w=560)
 
 # ── D. operator ────────────────────────────────────────────────────────────
-band(2100, 'OPERATOR', 'the only human in the loop')
+band(2080, 'STATE  ·  DELIVERY', 'only HIGH severity reaches a person')
 
-box(2100, 370, 240, 56, 'React dashboard', 'live alert + clip', size=14)
-_els.append(base(id=uid('e'), type='ellipse', x=2120, y=480, width=200,
+box(2080, 596, 240, 56, 'Alert platform', 'live alert + clip', size=14)
+_els.append(base(id=uid('e'), type='ellipse', x=2110, y=706, width=200,
                  height=76, strokeColor=WIN_ST, backgroundColor=WIN_BG,
                  strokeWidth=1.5))
-note(2146, 506, 'store operator', color=INK, size=14, font=MONO, w=180)
+note(2136, 732, 'store operator', color=INK, size=14, font=MONO, w=180)
 
-arrow([(1764, 340), (2224, 340), (2224, 366)], color=EDGE_ST)
-note(1852, 314, 'live alerts', color=FAINT, size=12, font=MONO, w=200)
-arrow([(2220, 426), (2220, 476)], color=EDGE_ST)
-arrow([(1460, 618), (2220, 618), (2220, 562)], color=AMBER)
-note(1494, 592, 'escalate now', color=AMBER, size=12.5, font=MONO, w=200)
-arrow([(1460, 656), (1740, 656)], color='#5d6b7d', dashed=True)
-note(1494, 664, 'batch to the shift digest', color=FAINT, size=12.5, font=MONO,
-     w=260)
+# The one branch that leaves the cluster.
+arrow([(1462, 624), (2076, 624)], color=AMBER)
+note(1600, 598, 'severity = high', color=AMBER, size=13, font=MONO, w=220)
+arrow([(2200, 436), (2200, 592)], color='#5d6b7d', dashed=True)
+note(2222, 496, 'the platform reads\nthe alert row', color=FAINT, size=12,
+     font=MONO, w=220)
+arrow([(2200, 652), (2200, 702)], color=EDGE_ST)
 
-box(2076, 640, 264, 62, '90% fewer completed thefts',
+note(1690, 744, 'everything else never leaves.\nit is already a row in Postgres,\n'
+     'and it stays there for the shift digest —\nwhich is the only reason the operator\n'
+     'still trusts the siren when it does fire.',
+     color=MUTED, size=12.5, font=HAND, w=380)
+
+box(2076, 852, 264, 62, '90% fewer completed thefts',
     '80%+ accuracy on real failures', fill=WIN_BG, stroke=WIN_ST, size=14)
-note(2080, 716, "measured against the store's own\nloss numbers, not a benchmark set.",
+note(2080, 928, "measured against the store's own\nloss numbers, not a benchmark set.",
      color=FAINT, size=12.5, font=HAND, w=300)
 
 # ── E. the loop ────────────────────────────────────────────────────────────
