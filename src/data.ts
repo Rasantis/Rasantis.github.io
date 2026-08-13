@@ -36,7 +36,7 @@ export interface SkillGroup {
 export interface SystemFlow {
   key: string;
   badge: string;
-  badgeType: 'agents' | 'auto' | 'fullstack';
+  badgeType: 'agents' | 'auto' | 'fullstack' | 'vision';
   title: string;
   desc: string;
   image: string;
@@ -115,7 +115,11 @@ export interface CaseDef {
   idx: string;
   projectIdx: number;
   demoSrcs: string[];
-  systemPrefix?: 'agents' | 'auto';
+  /** A case can carry more than one architecture: Promeat shipped both a
+   *  weight-prediction pipeline and a multi-agent decision engine, and burying
+   *  one of them inside the other would misrepresent the work. Rendered in the
+   *  order given — put the one the case's video shows first. */
+  systemPrefixes?: string[];
   /** Which lens this case answers to. A recruiter hiring for agents should not
    *  have to scroll past four vision projects to find the one that matters. */
   tracks: Track[];
@@ -132,10 +136,18 @@ export const CASES: CaseDef[] = [
     idx: '01',
     projectIdx: 0,
     demoSrcs: ['./pharmacy_detection_demo.mp4', './furto_vd8_processado.mp4', './furto_vd15_processado.mp4'],
-    systemPrefix: 'auto',
+    systemPrefixes: ['auto'],
     tracks: ['vision', 'fullstack'],
   },
-  { key: 'promeat', idx: '02', projectIdx: 2, demoSrcs: ['./weight_estimation_demo.mp4'], systemPrefix: 'agents', tracks: ['agents', 'vision'] },
+  {
+    key: 'promeat',
+    idx: '02',
+    projectIdx: 2,
+    demoSrcs: ['./weight_estimation_demo.mp4'],
+    // Weight first: it is what the case's video actually shows.
+    systemPrefixes: ['weight', 'agents'],
+    tracks: ['agents', 'vision'],
+  },
   { key: 'pixsafety', idx: '03', projectIdx: 1, demoSrcs: [], tracks: ['vision', 'fullstack'] },
   { key: 'kairos', idx: '04', projectIdx: 8, demoSrcs: ['./kairos_demo.mp4'], tracks: ['fullstack'] },
   { key: 'auspex', idx: '05', projectIdx: 6, demoSrcs: ['./auspex_demo.mp4'], tracks: ['agents', 'fullstack'] },
@@ -368,6 +380,17 @@ const en: Content = {
     },
   ],
   systems: [
+    {
+      key: 'weight-en',
+      badge: 'Computer Vision',
+      badgeType: 'vision',
+      title: 'Per-Bird Weight Prediction — Promeat AI',
+      desc: 'A weight for every individual bird, from a camera above the house. A detector proposes one bird, SAM3 cuts the mask, and a CNN reads the masked crop together with the flock\'s line and age. The label is the bottleneck: nobody can put 25,000 birds on a scale, so a few hundred paired samples from the scale in the house have to carry the whole model.',
+      image: './diagrams/arch_promeat_weight.png',
+      alt: 'Architecture board in two registers. Inference, top row: an overhead camera on a broiler house captures periodically; a detector proposes one region per bird; SAM3 produces a mask per instance; the mask is applied to the frame to give a masked crop of a single bird with the background removed; a CNN regressor built from a backbone and a regression head reads that crop together with lote metadata — the Ross line and the age in days — and returns a weight per bird, for example bird 124 at 3.18 kilograms; weights are aggregated into flock mean, spread and uniformity, and shown on a dashboard as a weight curve per lote. Birds the segmenter is not confident about are left out of the sample rather than guessed at, because a biased sample is worse than a smaller one. SAM3 does not run at frame rate: capture is periodic, so the cost is paid per sample rather than per second. Data and model, bottom row: a camera and a scale in the house record the same bird, the two records are paired by timestamp into masked-crop and kilogram pairs, the dataset is split by lote rather than at random so the same bird cannot appear on both sides of the split, training optimises mean absolute error in kilograms against a gate at the client\'s 95 percent requirement, and the trained head is shipped versioned with the lote and replaces the live head in the inference row. Result: 98.5 percent accuracy, measured on lotes the model never saw during training.',
+      footer: '// 98.5% accuracy against a 95% requirement — measured on lotes the model never saw',
+      tags: ['SAM3', 'Instance segmentation', 'CNN regression', 'PyTorch', 'MAE in kg'],
+    },
     {
       key: 'agents-en',
       badge: 'LLM Agents',
@@ -708,6 +731,17 @@ const es: Content = {
   ],
   systems: [
     {
+      key: 'weight-es',
+      badge: 'Visión Computacional',
+      badgeType: 'vision',
+      title: 'Predicción de Peso por Ave — Promeat AI',
+      desc: 'Un peso para cada ave individual, desde una cámara sobre el galpón. Un detector propone un ave, SAM3 recorta la máscara, y una CNN lee el recorte enmascarado junto con la línea y la edad del lote. La etiqueta es el cuello de botella: nadie puede poner 25.000 aves en una balanza, así que unas pocas centenas de pares tomados de la balanza del galpón tienen que sostener todo el modelo.',
+      image: './diagrams/arch_promeat_weight.png',
+      alt: 'Diagrama de arquitectura en dos registros. Inferencia, fila superior: una cámara cenital sobre el galpón captura periódicamente; un detector propone una región por ave; SAM3 genera una máscara por instancia; la máscara se aplica al frame para obtener un recorte enmascarado de un ave sola, sin fondo; un regresor CNN formado por un backbone y una cabeza de regresión lee ese recorte junto con los metadatos del lote — la línea Ross y la edad en días — y devuelve un peso por ave, por ejemplo el ave 124 con 3,18 kilogramos; los pesos se agregan en media, dispersión y uniformidad del lote, y se muestran en un dashboard como curva de peso por lote. Las aves sobre las que el segmentador no tiene confianza quedan fuera de la muestra en lugar de ser adivinadas, porque una muestra sesgada es peor que una muestra menor. SAM3 no corre a velocidad de frame: la captura es periódica, así que el costo se paga por muestra y no por segundo. Datos y modelo, fila inferior: una cámara y una balanza en el galpón registran la misma ave, los dos registros se emparejan por marca de tiempo formando pares de recorte enmascarado y kilogramos, el dataset se divide por lote y no al azar para que la misma ave no aparezca a ambos lados de la división, el entrenamiento optimiza el error absoluto medio en kilogramos contra la exigencia del cliente del 95 por ciento, y la cabeza entrenada se despliega versionada con el lote y reemplaza a la cabeza en producción. Resultado: 98,5 por ciento de precisión, medido sobre lotes que el modelo nunca vio durante el entrenamiento.',
+      footer: '// 98,5% de precisión contra una exigencia de 95% — medido sobre lotes que el modelo nunca vio',
+      tags: ['SAM3', 'Segmentación de instancias', 'Regresión CNN', 'PyTorch', 'MAE en kg'],
+    },
+    {
       key: 'agents-es',
       badge: 'Agentes LLM',
       badgeType: 'agents',
@@ -1046,6 +1080,17 @@ const pt: Content = {
     },
   ],
   systems: [
+    {
+      key: 'weight-pt',
+      badge: 'Visão Computacional',
+      badgeType: 'vision',
+      title: 'Previsão de Peso por Ave — Promeat AI',
+      desc: 'Um peso para cada ave individual, a partir de uma câmera sobre o galpão. Um detector propõe uma ave, o SAM3 recorta a máscara, e uma CNN lê o recorte mascarado junto com a linhagem e a idade do lote. O rótulo é o gargalo: ninguém põe 25.000 aves numa balança, então algumas centenas de pares tirados da balança do galpão precisam sustentar o modelo inteiro.',
+      image: './diagrams/arch_promeat_weight.png',
+      alt: 'Quadro de arquitetura em dois registros. Inferência, linha de cima: uma câmera cenital sobre o galpão captura periodicamente; um detector propõe uma região por ave; o SAM3 gera uma máscara por instância; a máscara é aplicada ao frame para dar um recorte mascarado de uma ave só, sem fundo; um regressor CNN formado por um backbone e uma cabeça de regressão lê esse recorte junto com os metadados do lote — a linhagem Ross e a idade em dias — e devolve um peso por ave, por exemplo a ave 124 com 3,18 quilos; os pesos são agregados em média, dispersão e uniformidade do lote, e mostrados num dashboard como curva de peso por lote. As aves sobre as quais o segmentador não tem confiança ficam de fora da amostra em vez de serem chutadas, porque amostra enviesada é pior que amostra menor. O SAM3 não roda na taxa de quadros: a captura é periódica, então o custo é pago por amostra e não por segundo. Dados e modelo, linha de baixo: uma câmera e uma balança no galpão registram a mesma ave, os dois registros são pareados por marca de tempo formando pares de recorte mascarado e quilos, o dataset é dividido por lote e não aleatoriamente para que a mesma ave não apareça dos dois lados da divisão, o treino otimiza o erro absoluto médio em quilos contra a exigência do cliente de 95 por cento, e a cabeça treinada é publicada versionada com o lote e substitui a cabeça em produção. Resultado: 98,5 por cento de acurácia, medido em lotes que o modelo nunca viu durante o treino.',
+      footer: '// 98,5% de acurácia contra uma exigência de 95% — medido em lotes que o modelo nunca viu',
+      tags: ['SAM3', 'Segmentação de instâncias', 'Regressão CNN', 'PyTorch', 'MAE em kg'],
+    },
     {
       key: 'agents-pt',
       badge: 'Agentes LLM',

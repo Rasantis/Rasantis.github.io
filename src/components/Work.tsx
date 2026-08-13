@@ -57,7 +57,9 @@ export default function Work() {
           const videos = def.demoSrcs
             .map((src) => c.demos.find((d) => d.src === src))
             .filter((d): d is NonNullable<typeof d> => Boolean(d));
-          const system = def.systemPrefix ? c.systems.find((s) => s.key.startsWith(def.systemPrefix!)) : undefined;
+          const systems = (def.systemPrefixes ?? [])
+            .map((prefix) => c.systems.find((s) => s.key.startsWith(prefix)))
+            .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
           return (
             <Reveal key={def.key} className="case">
@@ -110,8 +112,8 @@ export default function Work() {
                   stopped. Folded away it costs one line; the people who want it
                   are the ones who will open it. Native <details> so it works with
                   a keyboard, survives Ctrl+F, and needs no state of its own. */}
-              {system && (
-                <details className="arch-disclose">
+              {systems.map((system) => (
+                <details className="arch-disclose" key={system.key}>
                   <summary>
                     <span className="arch-disclose-label">{c.ui.work.architecture}</span>
                     <span className="arch-disclose-title">{system.title}</span>
@@ -123,7 +125,7 @@ export default function Work() {
                     <div className="system-footer">{system.footer}</div>
                   </div>
                 </details>
-              )}
+              ))}
             </Reveal>
           );
         })}
